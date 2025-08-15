@@ -1,0 +1,302 @@
+@page "/play"
+@inject MyScoreBoard.Services.GameService Game
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+@using MyScoreBoard.Components
+
+<PageTitle>Play</PageTitle>
+
+@if (showWinnerModal)
+{
+    <Confetti />
+    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.8);">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-card">
+                <div class="modal-header border-0 text-center">
+                    <div class="w-100">
+                        <h3 class="modal-title text-center">🎉 Game Complete! 🎉</h3>
+                    </div>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <div class="mb-4">
+                        <i class="bi bi-trophy-fill" style="font-size: 4rem; color: var(--bs-warning);"></i>
+                    </div>
+                    <h4 class="mb-3">@winnerBanner</h4>
+                    <p class="text-muted">Congratulations on a great game!</p>
+                </div>
+                <div class="modal-footer border-0 justify-content-center">
+                    <button class="btn btn-primary btn-lg" @onclick="GoHome">
+                        <i class="bi bi-house-fill me-2"></i>
+                        Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="hero mb-4 glass-card">
+    <div class="d-flex align-items-center justify-content-between">
+        <div>
+            <h2 class="mb-1">@Game.Current.GameName</h2>
+            <p class="text-muted mb-0">Round @Game.Current.CurrentRound • Started @Game.Current.StartedUtc.ToLocalTime().ToString("MMM dd, HH:mm")</p>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary" @onclick="Pause">Pause</button>
+            <button class="btn btn-danger" @onclick="EndGame">End Game</button>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    @foreach (var player in Game.Current.Players)
+    {
+        var total = Game.GetTotal(player.Id);
+        var currentRoundScore = Game.GetRoundScore(player.Id, Game.Current.CurrentRound);
+        var isLeader = IsLeader(player.Id);
+        var isTied = IsTied(player.Id);
+        
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 glass-card player-card @(isLeader ? "leader-card" : "")" style="cursor:pointer" @onclick="(() => OpenScoreDialog(player))">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="card-title mb-0">@player.Name</h5>
+                        @if (isTied)
+                        {
+                            <span class="badge bg-warning text-dark">Tied</span>
+                        }
+                        else if (isLeader)
+                        {
+                            <span class="leader-badge">Leader</span>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <div class="display-6 fw-bold">@total</div>
+                        <div class="small text-muted">
+                            Round @Game.Current.CurrentRound: 
+                            @if (currentRoundScore != 0)
+                            {
+                                <span class="fw-semibold">@(currentRoundScore > 0 ? "+" : "")@currentRoundScore</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">not scored</span>
+                            }
+                        </div>
+                        <div class="text-primary small mt-1">Tap to add score</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (Game.Current.AllPlayersScored())
+{
+    <div class="glass-card p-4 text-center mb-4">
+        <h5 class="mb-3 text-contrast">Round @Game.Current.CurrentRound Complete!</h5>
+        <p class="text-contrast-muted mb-3">All players have scored for this round.</p>
+        <button class="btn btn-primary btn-lg" @onclick="NextRound">
+            <i class="bi bi-arrow-right-circle"></i> Next Round
+        </button>
+    </div>
+}
+else
+{
+    var pendingPlayers = GetPendingPlayers();
+    if (pendingPlayers.Any())
+    {
+        <div class="glass-card p-4 mb-4">
+            <h6 class="mb-3 text-contrast">
+                <i class="bi bi-hourglass-split me-2"></i>
+                Players Still Need to Score (Round @Game.Current.CurrentRound)
+            </h6>
+            <div class="d-flex flex-wrap gap-2">
+                @foreach (var player in pendingPlayers)
+                {
+                    <span class="badge bg-warning text-dark px-3 py-2" style="cursor: pointer;" @onclick="(() => OpenScoreDialog(player))">
+                        <i class="bi bi-person me-1"></i>
+                        @player.Name
+                    </span>
+                }
+            </div>
+            <div class="mt-3">
+                <small class="text-contrast-muted">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Tap a player name to quickly add their score
+                </small>
+            </div>
+        </div>
+    }
+}
+
+@if (showDialog && selectedPlayer is not null)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5)">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-card">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Score for @selectedPlayer!.Name</h5>
+                    <button type="button" class="btn-close" @onclick="CloseDialog"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="mb-4">
+                        <label class="form-label">Round @Game.Current.CurrentRound Score</label>
+                        <div class="d-flex justify-content-center align-items-center gap-3 mb-3">
+                            <button class="btn btn-outline-danger btn-lg" @onclick="(() => AdjustScore(-5))">-5</button>
+                            <button class="btn btn-outline-danger" @onclick="(() => AdjustScore(-1))">-1</button>
+                            <input type="number" class="form-control form-control-lg text-center fw-bold" style="width: 120px;" @bind-value="scoreInput" @bind-value:event="oninput" />
+                            <button class="btn btn-outline-success" @onclick="(() => AdjustScore(1))">+1</button>
+                            <button class="btn btn-outline-success btn-lg" @onclick="(() => AdjustScore(5))">+5</button>
+                        </div>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-sm btn-secondary" @onclick="(() => SetScore(0))">0</button>
+                            <button class="btn btn-sm btn-secondary" @onclick="(() => SetScore(1))">1</button>
+                            <button class="btn btn-sm btn-secondary" @onclick="(() => SetScore(5))">5</button>
+                            <button class="btn btn-sm btn-secondary" @onclick="(() => SetScore(10))">10</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="btn btn-outline-secondary" @onclick="CloseDialog">Cancel</button>
+                    <button class="btn btn-primary" @onclick="SaveScore">Save Score</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private bool showDialog;
+    private bool showWinnerModal;
+    private MyScoreBoard.Models.Player? selectedPlayer;
+    private int scoreInput = 0;
+    private string? winnerBanner;
+
+    protected override void OnInitialized()
+    {
+        // if no game, navigate to setup
+        if (string.IsNullOrWhiteSpace(Game.Current.GameName))
+        {
+            // Try to load active game
+            _ = EnsureActiveAsync();
+        }
+    }
+
+    private void OpenScoreDialog(MyScoreBoard.Models.Player player)
+    {
+        selectedPlayer = player;
+        scoreInput = Game.GetRoundScore(player.Id, Game.Current.CurrentRound);
+        showDialog = true;
+    }
+
+    private void CloseDialog()
+    {
+        showDialog = false;
+        selectedPlayer = null;
+    }
+
+    private void AdjustScore(int delta)
+    {
+        scoreInput += delta;
+    }
+
+    private void SetScore(int score)
+    {
+        scoreInput = score;
+    }
+
+    private void SaveScore()
+    {
+        if (selectedPlayer is null) return;
+        Game.AddRound(selectedPlayer.Id, scoreInput);
+        showDialog = false;
+        selectedPlayer = null;
+        _ = Game.SaveActiveAsync();
+        StateHasChanged();
+    }
+
+    private void NextRound()
+    {
+        Game.NextRound();
+        _ = Game.SaveActiveAsync();
+        StateHasChanged();
+    }
+
+    private bool IsLeader(string playerId)
+    {
+        var totals = Game.GetTotals();
+        if (totals.Count == 0) return false;
+        var max = totals.Max(kv => kv.Value);
+        var leadersCount = totals.Count(kv => kv.Value == max);
+        return totals.TryGetValue(playerId, out var t) && t == max && leadersCount == 1;
+    }
+
+    private bool IsTied(string playerId)
+    {
+        var totals = Game.GetTotals();
+        if (totals.Count == 0) return false;
+        var max = totals.Max(kv => kv.Value);
+        var leadersCount = totals.Count(kv => kv.Value == max);
+        return totals.TryGetValue(playerId, out var t) && t == max && leadersCount > 1;
+    }
+
+    private async Task EndGame()
+    {
+        await Game.EndGameAsync();
+        var totals = Game.GetTotals();
+        if (totals.Count > 0)
+        {
+            var maxScore = totals.Max(kv => kv.Value);
+            var winners = totals.Where(kv => kv.Value == maxScore).ToList();
+            if (winners.Count == 1)
+            {
+                var winnerName = Game.Current.Players.First(p => p.Id == winners[0].Key).Name;
+                winnerBanner = $"🏆 Winner: {winnerName}!";
+            }
+            else
+            {
+                var winnerNames = winners.Select(w => Game.Current.Players.First(p => p.Id == w.Key).Name);
+                winnerBanner = $"🤝 Tied: {string.Join(", ", winnerNames)}!";
+            }
+        }
+        else
+        {
+            winnerBanner = "🎮 Game Complete!";
+        }
+        
+        await Game.ClearActiveAsync();
+        showWinnerModal = true;
+        StateHasChanged();
+    }
+
+    private void GoHome()
+    {
+        showWinnerModal = false;
+        Nav.NavigateTo("/");
+    }
+
+    private void Pause()
+    {
+        _ = Game.SaveActiveAsync();
+        Nav.NavigateTo("/");
+    }
+
+    private async Task EnsureActiveAsync()
+    {
+        var loaded = await Game.LoadActiveAsync();
+        if (!loaded)
+        {
+            Nav.NavigateTo("/setup");
+        }
+        StateHasChanged();
+    }
+
+    private List<MyScoreBoard.Models.Player> GetPendingPlayers()
+    {
+        var currentRound = Game.Current.GetCurrentRoundData();
+        return Game.Current.Players
+            .Where(p => !currentRound.Scores.Any(s => s.PlayerId == p.Id))
+            .ToList();
+    }
+}

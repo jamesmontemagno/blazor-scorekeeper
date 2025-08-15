@@ -1,0 +1,131 @@
+@page "/history"
+@inject MyScoreBoard.Services.GameService Game
+
+<PageTitle>History</PageTitle>
+
+<div class="hero mb-4 glass-card">
+    <h2 class="mb-0">Game History</h2>
+    <p class="text-muted mb-0">Review past games and winners.</p>
+ </div>
+
+@if (history is null)
+{
+    <p>Loading...</p>
+}
+else if (history.Count == 0)
+{
+    <div class="alert alert-info">No games played yet.</div>
+}
+else
+{
+    <div class="row g-3">
+        @foreach (var g in history)
+        {
+            var totals = GetGameTotals(g);
+            var winner = GetWinner(totals, g.Players);
+            
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card glass-card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <div class="fw-semibold text-contrast">@g.GameName</div>
+                                <small class="text-contrast-muted">@g.StartedUtc.ToLocalTime().ToString("MMM dd, HH:mm")</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger" @onclick="(() => Delete(g.Key ?? 0))" disabled="@(g.Key is null)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                        
+                        @if (!string.IsNullOrEmpty(winner))
+                        {
+                            <div class="mb-2">
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-trophy-fill me-1"></i>@winner
+                                </span>
+                            </div>
+                        }
+                        
+                        <div class="mb-2">
+                            <small class="text-contrast-muted">Players & Scores:</small>
+                            @foreach (var player in g.Players.Take(3))
+                            {
+                                var score = totals.TryGetValue(player.Id, out var s) ? s : 0;
+                                <div class="small text-contrast">
+                                    @player.Name: @score
+                                </div>
+                            }
+                            @if (g.Players.Count > 3)
+                            {
+                                <div class="small text-contrast-muted">+@(g.Players.Count - 3) more...</div>
+                            }
+                        </div>
+                        
+                        <div class="mt-auto">
+                            <div class="small text-contrast-muted">
+                                @g.Rounds.Count rounds • @g.Players.Count players
+                            </div>
+                            @if (g.EndedUtc is not null)
+                            {
+                                <div class="small text-contrast-muted">
+                                    Finished: @g.EndedUtc.Value.ToLocalTime().ToString("MMM dd, HH:mm")
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="small text-warning">
+                                    <i class="bi bi-clock me-1"></i>In Progress
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<MyScoreBoard.Models.GameStoreEntry>? history;
+
+    protected override async Task OnInitializedAsync()
+    {
+        history = await Game.GetHistoryAsync();
+    }
+
+    private async Task Delete(int key)
+    {
+        await Game.DeleteGameAsync(key);
+        history = await Game.GetHistoryAsync();
+        StateHasChanged();
+    }
+
+    private Dictionary<string, int> GetGameTotals(MyScoreBoard.Models.GameStoreEntry game)
+    {
+        return game.Rounds
+            .SelectMany(r => r.Scores)
+            .GroupBy(s => s.PlayerId)
+            .ToDictionary(g => g.Key, g => g.Sum(x => x.Score));
+    }
+
+    private string GetWinner(Dictionary<string, int> totals, List<MyScoreBoard.Models.Player> players)
+    {
+        if (totals.Count == 0) return "";
+        
+        var maxScore = totals.Max(kv => kv.Value);
+        var winners = totals.Where(kv => kv.Value == maxScore).ToList();
+        
+        if (winners.Count == 1)
+        {
+            var winnerPlayer = players.First(p => p.Id == winners[0].Key);
+            return $"Winner: {winnerPlayer.Name}";
+        }
+        else if (winners.Count > 1)
+        {
+            var winnerNames = winners.Select(w => players.First(p => p.Id == w.Key).Name);
+            return $"Tied: {string.Join(", ", winnerNames)}";
+        }
+        
+        return "";
+    }
+}

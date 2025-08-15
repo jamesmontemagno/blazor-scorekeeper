@@ -1,0 +1,98 @@
+﻿@page "/"
+@inject MyScoreBoard.Services.GameService Game
+@inject MyScoreBoard.Services.LocalStorageService LocalStorage
+@inject NavigationManager Nav
+
+<PageTitle>Home</PageTitle>
+
+<div class="hero animate-fade-in-up">
+    <h1>🎮 Game Score Keeper</h1>
+    <p>Track scores, compete with friends, and never lose count again!</p>
+    
+    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+        <button class="btn btn-primary btn-lg animate-pulse" @onclick="NewGame">
+            <i class="bi bi-plus-circle-fill me-2"></i>
+            Start New Game
+        </button>
+        
+        @if (hasActive)
+        {
+            <button class="btn btn-success btn-lg" @onclick="Resume">
+                <i class="bi bi-play-fill me-2"></i>
+                Resume Game
+            </button>
+        }
+        
+        <button class="btn btn-secondary btn-lg" @onclick="ViewHistory">
+            <i class="bi bi-clock-history me-2"></i>
+            View History
+        </button>
+    </div>
+</div>
+
+<div class="row g-4 mt-4">
+    <div class="col-md-4">
+        <div class="glass-card p-4 text-center h-100">
+            <i class="bi bi-people-fill fs-1 mb-3" style="color: var(--bs-primary); text-shadow: 0 1px 2px rgba(0,0,0,0.2);"></i>
+            <h4 class="text-contrast">Multiplayer Ready</h4>
+            <p class="text-contrast-muted">Add unlimited players and track everyone's progress</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="glass-card p-4 text-center h-100">
+            <i class="bi bi-arrow-clockwise fs-1 mb-3" style="color: var(--bs-success); text-shadow: 0 1px 2px rgba(0,0,0,0.2);"></i>
+            <h4 class="text-contrast">Round System</h4>
+            <p class="text-contrast-muted">Organize scoring by rounds for better game flow</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="glass-card p-4 text-center h-100">
+            <i class="bi bi-cloud-check-fill fs-1 mb-3" style="color: var(--bs-info); text-shadow: 0 1px 2px rgba(0,0,0,0.2);"></i>
+            <h4 class="text-contrast">Auto Save</h4>
+            <p class="text-contrast-muted">Never lose your game progress with automatic saving</p>
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool hasActive = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Quick check from localStorage first
+            hasActive = await LocalStorage.GetHasActiveGameAsync();
+            StateHasChanged();
+            
+            // Then verify with IndexedDB in the background
+            _ = Task.Run(async () =>
+            {
+                var actualHasActive = await Game.HasActiveGameAsync();
+                if (actualHasActive != hasActive)
+                {
+                    hasActive = actualHasActive;
+                    await InvokeAsync(StateHasChanged);
+                }
+            });
+        }
+    }
+
+    private void NewGame() => Nav.NavigateTo("/setup");
+    
+    private async Task Resume() 
+    {
+        var loaded = await Game.LoadActiveAsync();
+        if (loaded)
+        {
+            Nav.NavigateTo("/play");
+        }
+        else
+        {
+            hasActive = false;
+            StateHasChanged();
+        }
+    }
+    
+    private void ViewHistory() => Nav.NavigateTo("/history");
+}

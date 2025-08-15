@@ -1,0 +1,160 @@
+@page "/setup"
+@inject MyScoreBoard.Services.GameService Game
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+
+<PageTitle>New Game</PageTitle>
+
+<div class="hero mb-4 glass-card">
+    <h2 class="mb-1 text-contrast-white">New Game Setup</h2>
+    <p class="mb-0" style="color: rgba(255, 255, 255, 0.9) !important;">Configure your game and add players.</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="glass-card p-4">
+            <div class="mb-3">
+                <label class="form-label fw-semibold text-contrast">Game Name</label>
+                <input @bind="gameName" class="form-control form-control-lg" placeholder="Enter board game name..." />
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-semibold text-contrast">Players</label>
+                <div class="input-group mb-3">
+                    <input @bind="playerName" @onkeypress="HandleKeyPress" class="form-control" placeholder="Enter player name..." />
+                    <button class="btn btn-primary" @onclick="AddPlayer" disabled="@string.IsNullOrWhiteSpace(playerName)">
+                        <i class="bi bi-plus-lg"></i> Add
+                    </button>
+                </div>
+
+                @if (players.Count > 0)
+                {
+                    <div class="row g-2 mb-3">
+                        @foreach (var p in players)
+                        {
+                            <div class="col-auto">
+                                <div class="badge bg-secondary p-2 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
+                                    <span style="color: white; font-weight: 500;">@p.Name</span>
+                                    <button class="btn-close btn-close-white" style="font-size: 0.7em;" @onclick="(() => RemovePlayer(p.Id))"></button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <span class="badge bg-info text-dark" style="font-size: 0.85rem; font-weight: 600;">@players.Count @(players.Count == 1 ? "player" : "players")</span>
+                    </div>
+                }
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-success btn-lg" @onclick="StartGame" disabled="@(!CanStart)">
+                    <i class="bi bi-play-fill"></i> Start Game
+                </button>
+                @if (hasSavedData)
+                {
+                    <button class="btn btn-outline-primary" @onclick="LoadPreviousData">
+                        <i class="bi bi-arrow-clockwise"></i> Load Previous Setup
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string gameName = string.Empty;
+    private string playerName = string.Empty;
+    private List<MyScoreBoard.Models.Player> players = new();
+    private bool hasSavedData = false;
+
+    private bool CanStart => !string.IsNullOrWhiteSpace(gameName) && players.Count >= 1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CheckForSavedData();
+    }
+
+    private async Task CheckForSavedData()
+    {
+        try
+        {
+            var savedGameName = await JS.InvokeAsync<string>("localStorage.getItem", "lastGameName");
+            var savedPlayersJson = await JS.InvokeAsync<string>("localStorage.getItem", "lastPlayers");
+            hasSavedData = !string.IsNullOrEmpty(savedGameName) || !string.IsNullOrEmpty(savedPlayersJson);
+        }
+        catch { }
+    }
+
+    private async Task LoadPreviousData()
+    {
+        try
+        {
+            var savedGameName = await JS.InvokeAsync<string>("localStorage.getItem", "lastGameName");
+            var savedPlayersJson = await JS.InvokeAsync<string>("localStorage.getItem", "lastPlayers");
+            
+            if (!string.IsNullOrEmpty(savedGameName))
+            {
+                gameName = savedGameName;
+            }
+            
+            if (!string.IsNullOrEmpty(savedPlayersJson))
+            {
+                var savedPlayers = System.Text.Json.JsonSerializer.Deserialize<List<string>>(savedPlayersJson);
+                if (savedPlayers != null)
+                {
+                    players.Clear();
+                    foreach (var name in savedPlayers)
+                    {
+                        var id = Guid.NewGuid().ToString();
+                        players.Add(new(id, name));
+                    }
+                }
+            }
+        }
+        catch { }
+    }
+
+    private void AddPlayer()
+    {
+        if (string.IsNullOrWhiteSpace(playerName)) return;
+        var id = Guid.NewGuid().ToString();
+        if (players.Any(p => p.Name.Equals(playerName.Trim(), StringComparison.OrdinalIgnoreCase))) return;
+        players.Add(new(id, playerName.Trim()));
+        playerName = string.Empty;
+    }
+
+    private void RemovePlayer(string id)
+    {
+        players.RemoveAll(p => p.Id == id);
+    }
+
+    private void HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            AddPlayer();
+        }
+    }
+
+    private async Task StartGame()
+    {
+        Game.NewGame(gameName.Trim());
+        foreach (var p in players)
+            Game.AddPlayer(p.Name);
+        
+        // Save as active game
+        await Game.SaveActiveAsync();
+        
+        // Save to localStorage for next time
+        try
+        {
+            await JS.InvokeVoidAsync("localStorage.setItem", "lastGameName", gameName.Trim());
+            var playerNames = players.Select(p => p.Name).ToList();
+            var playersJson = System.Text.Json.JsonSerializer.Serialize(playerNames);
+            await JS.InvokeVoidAsync("localStorage.setItem", "lastPlayers", playersJson);
+        }
+        catch { }
+        
+        Nav.NavigateTo("/play");
+    }
+}

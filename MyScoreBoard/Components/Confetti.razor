@@ -1,0 +1,21 @@
+@inject IJSRuntime JS
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await StartConfetti();
+        }
+    }
+
+    private async Task StartConfetti()
+    {
+        await JS.InvokeVoidAsync("startConfetti");
+    }
+
+    public async Task StopConfetti()
+    {
+        await JS.InvokeVoidAsync("stopConfetti");
+    }
+}
