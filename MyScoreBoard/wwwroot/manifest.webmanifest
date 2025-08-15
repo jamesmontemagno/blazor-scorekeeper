@@ -1,6 +1,6 @@
 {
-  "name": "MyScoreBoard",
-  "short_name": "ScoreBoard",
+  "name": "My Score Keeper",
+  "short_name": "Score Keeper",
   "description": "Keep score for board games with a fast, friendly Blazor PWA.",
   "lang": "en-US",
   "start_url": "/",
@@ -13,6 +13,17 @@
       "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
+    },
+    {
+      "src": "/icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/icon.svg",
