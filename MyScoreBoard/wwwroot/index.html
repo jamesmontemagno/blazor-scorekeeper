@@ -6,9 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyScoreBoard</title>
     <base href="/" />
+    <!-- PWA manifest and theme -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="MyScoreBoard" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <link rel="mask-icon" href="/icon.svg" color="#000000" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
     <link href="MyScoreBoard.styles.css" rel="stylesheet" />
 </head>
 
@@ -30,7 +40,17 @@
     <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="./js/indexedDb.js"></script>
     <script src="./js/confetti.js"></script>
-    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    <script>
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js');
+            });
+        }
+        // Start Blazor after SW registration to ensure offline assets are cached on first run
+        window.Blazor.start();
+    </script>
 </body>
 
 </html>
