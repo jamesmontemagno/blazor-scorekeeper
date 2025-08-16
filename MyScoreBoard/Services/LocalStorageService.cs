@@ -2,7 +2,7 @@ using Microsoft.JSInterop;
 
 namespace MyScoreBoard.Services;
 
-public class LocalStorageService
+public class LocalStorageService : MyScoreBoardShared.Services.ILocalStorageService
 {
     private readonly IJSRuntime _jsRuntime;
 

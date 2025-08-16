@@ -1,5 +1,6 @@
 @page "/history"
-@inject MyScoreBoard.Services.GameService Game
+@using MyScoreBoardShared.Services
+@inject IGameService Game
 
 <PageTitle>History</PageTitle>
 
@@ -86,7 +87,7 @@ else
 }
 
 @code {
-    private List<MyScoreBoard.Models.GameStoreEntry>? history;
+    private List<MyScoreBoardShared.Models.GameStoreEntry>? history;
 
     protected override async Task OnInitializedAsync()
     {
@@ -100,7 +101,7 @@ else
         StateHasChanged();
     }
 
-    private Dictionary<string, int> GetGameTotals(MyScoreBoard.Models.GameStoreEntry game)
+    private Dictionary<string, int> GetGameTotals(MyScoreBoardShared.Models.GameStoreEntry game)
     {
         return game.Rounds
             .SelectMany(r => r.Scores)
@@ -108,7 +109,7 @@ else
             .ToDictionary(g => g.Key, g => g.Sum(x => x.Score));
     }
 
-    private string GetWinner(Dictionary<string, int> totals, List<MyScoreBoard.Models.Player> players)
+    private string GetWinner(Dictionary<string, int> totals, List<MyScoreBoardShared.Models.Player> players)
     {
         if (totals.Count == 0) return "";
         

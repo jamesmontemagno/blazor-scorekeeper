@@ -1,6 +1,7 @@
 ﻿@page "/"
-@inject MyScoreBoard.Services.GameService Game
-@inject MyScoreBoard.Services.LocalStorageService LocalStorage
+@using MyScoreBoardShared.Services
+@inject IGameService Game
+@inject ILocalStorageService LocalStorage
 @inject NavigationManager Nav
 
 <PageTitle>My Score Keeper</PageTitle>

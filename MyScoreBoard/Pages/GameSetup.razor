@@ -1,5 +1,6 @@
 @page "/setup"
-@inject MyScoreBoard.Services.GameService Game
+@using MyScoreBoardShared.Services
+@inject IGameService Game
 @inject NavigationManager Nav
 @inject IJSRuntime JS
 
@@ -64,7 +65,7 @@
 @code {
     private string gameName = string.Empty;
     private string playerName = string.Empty;
-    private List<MyScoreBoard.Models.Player> players = new();
+    private List<MyScoreBoardShared.Models.Player> players = new();
     private bool hasSavedData = false;
 
     private bool CanStart => !string.IsNullOrWhiteSpace(gameName) && players.Count >= 1;

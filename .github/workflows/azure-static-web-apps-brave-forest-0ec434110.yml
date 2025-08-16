@@ -4,8 +4,14 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'MyScoreBoard/**'
+      - '.github/workflows/azure-static-web-apps-brave-forest-0ec434110.yml'
   pull_request:
     types: [opened, synchronize, reopened, closed]
+    paths:
+      - 'MyScoreBoard/**'
+      - '.github/workflows/azure-static-web-apps-brave-forest-0ec434110.yml'
     branches:
       - main
 

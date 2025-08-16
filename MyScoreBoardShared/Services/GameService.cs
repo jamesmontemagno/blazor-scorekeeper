@@ -1,13 +1,14 @@
-using MyScoreBoard.Models;
+using MyScoreBoardShared.Models;
+using MyScoreBoardShared.Services; 
 
-namespace MyScoreBoard.Services;
+namespace MyScoreBoardShared.Services;
 
-public class GameService
+public class GameService : IGameService
 {
-    private readonly IndexedDbService _db;
-    private readonly LocalStorageService _localStorage;
+    private readonly IIndexedDbService _db;
+    private readonly ILocalStorageService _localStorage;
 
-    public GameService(IndexedDbService db, LocalStorageService localStorage)
+    public GameService(IIndexedDbService db, ILocalStorageService localStorage)
     {
         _db = db;
         _localStorage = localStorage;

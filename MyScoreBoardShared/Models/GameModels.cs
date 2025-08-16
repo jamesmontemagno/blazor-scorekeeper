@@ -1,4 +1,4 @@
-namespace MyScoreBoard.Models;
+namespace MyScoreBoardShared.Models;
 
 public record Player(string Id, string Name);
 

@@ -1,5 +1,6 @@
 @page "/play"
-@inject MyScoreBoard.Services.GameService Game
+@using MyScoreBoardShared.Services
+@inject IGameService Game
 @inject NavigationManager Nav
 @inject IJSRuntime JS
 @using MyScoreBoard.Components
@@ -169,7 +170,7 @@ else
 @code {
     private bool showDialog;
     private bool showWinnerModal;
-    private MyScoreBoard.Models.Player? selectedPlayer;
+    private MyScoreBoardShared.Models.Player? selectedPlayer;
     private int scoreInput = 0;
     private string? winnerBanner;
 
@@ -183,7 +184,7 @@ else
         }
     }
 
-    private void OpenScoreDialog(MyScoreBoard.Models.Player player)
+    private void OpenScoreDialog(MyScoreBoardShared.Models.Player player)
     {
         selectedPlayer = player;
         scoreInput = Game.GetRoundScore(player.Id, Game.Current.CurrentRound);
@@ -292,7 +293,7 @@ else
         StateHasChanged();
     }
 
-    private List<MyScoreBoard.Models.Player> GetPendingPlayers()
+    private List<MyScoreBoardShared.Models.Player> GetPendingPlayers()
     {
         var currentRound = Game.Current.GetCurrentRoundData();
         return Game.Current.Players
