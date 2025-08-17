@@ -35,4 +35,47 @@ public class LocalStorageService : ILocalStorageService
         Preferences.Remove(key);
         return Task.CompletedTask;
     }
+
+    public Task<string?> GetLastGameNameAsync()
+    {
+        var value = Preferences.Get("lastGameName", string.Empty);
+        return Task.FromResult(string.IsNullOrWhiteSpace(value) ? null : value);
+    }
+
+    public Task SetLastGameNameAsync(string gameName)
+    {
+        Preferences.Set("lastGameName", gameName ?? string.Empty);
+        return Task.CompletedTask;
+    }
+
+    public Task<List<string>?> GetLastPlayersAsync()
+    {
+        try
+        {
+            var playersJson = Preferences.Get("lastPlayers", string.Empty);
+            if (string.IsNullOrWhiteSpace(playersJson))
+                return Task.FromResult<List<string>?>(null);
+            
+            var players = System.Text.Json.JsonSerializer.Deserialize<List<string>>(playersJson);
+            return Task.FromResult<List<string>?>(players);
+        }
+        catch
+        {
+            return Task.FromResult<List<string>?>(null);
+        }
+    }
+
+    public Task SetLastPlayersAsync(List<string> playerNames)
+    {
+        try
+        {
+            var playersJson = System.Text.Json.JsonSerializer.Serialize(playerNames);
+            Preferences.Set("lastPlayers", playersJson);
+        }
+        catch
+        {
+            // Ignore serialization errors
+        }
+        return Task.CompletedTask;
+    }
 }

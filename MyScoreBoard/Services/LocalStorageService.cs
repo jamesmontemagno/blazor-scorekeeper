@@ -71,4 +71,57 @@ public class LocalStorageService : MyScoreBoardShared.Services.ILocalStorageServ
             // Ignore localStorage errors
         }
     }
+
+    public async Task<string?> GetLastGameNameAsync()
+    {
+        try
+        {
+            return await _jsRuntime.InvokeAsync<string?>("localStorage.getItem", "lastGameName");
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public async Task SetLastGameNameAsync(string gameName)
+    {
+        try
+        {
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", "lastGameName", gameName);
+        }
+        catch
+        {
+            // Ignore localStorage errors
+        }
+    }
+
+    public async Task<List<string>?> GetLastPlayersAsync()
+    {
+        try
+        {
+            var playersJson = await _jsRuntime.InvokeAsync<string?>("localStorage.getItem", "lastPlayers");
+            if (string.IsNullOrEmpty(playersJson))
+                return null;
+            
+            return System.Text.Json.JsonSerializer.Deserialize<List<string>>(playersJson);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public async Task SetLastPlayersAsync(List<string> playerNames)
+    {
+        try
+        {
+            var playersJson = System.Text.Json.JsonSerializer.Serialize(playerNames);
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", "lastPlayers", playersJson);
+        }
+        catch
+        {
+            // Ignore localStorage errors
+        }
+    }
 }

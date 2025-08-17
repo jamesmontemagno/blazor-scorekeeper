@@ -1,8 +1,8 @@
 @page "/setup"
 @using MyScoreBoardShared.Services
 @inject IGameService Game
+@inject ILocalStorageService LocalStorage
 @inject NavigationManager Nav
-@inject IJSRuntime JS
 
 <PageTitle>New Game</PageTitle>
 
@@ -79,9 +79,9 @@
     {
         try
         {
-            var savedGameName = await JS.InvokeAsync<string>("localStorage.getItem", "lastGameName");
-            var savedPlayersJson = await JS.InvokeAsync<string>("localStorage.getItem", "lastPlayers");
-            hasSavedData = !string.IsNullOrEmpty(savedGameName) || !string.IsNullOrEmpty(savedPlayersJson);
+            var savedGameName = await LocalStorage.GetLastGameNameAsync();
+            var savedPlayers = await LocalStorage.GetLastPlayersAsync();
+            hasSavedData = !string.IsNullOrEmpty(savedGameName) || (savedPlayers != null && savedPlayers.Count > 0);
         }
         catch { }
     }
@@ -90,25 +90,21 @@
     {
         try
         {
-            var savedGameName = await JS.InvokeAsync<string>("localStorage.getItem", "lastGameName");
-            var savedPlayersJson = await JS.InvokeAsync<string>("localStorage.getItem", "lastPlayers");
+            var savedGameName = await LocalStorage.GetLastGameNameAsync();
+            var savedPlayers = await LocalStorage.GetLastPlayersAsync();
             
             if (!string.IsNullOrEmpty(savedGameName))
             {
                 gameName = savedGameName;
             }
             
-            if (!string.IsNullOrEmpty(savedPlayersJson))
+            if (savedPlayers != null && savedPlayers.Count > 0)
             {
-                var savedPlayers = System.Text.Json.JsonSerializer.Deserialize<List<string>>(savedPlayersJson);
-                if (savedPlayers != null)
+                players.Clear();
+                foreach (var name in savedPlayers)
                 {
-                    players.Clear();
-                    foreach (var name in savedPlayers)
-                    {
-                        var id = Guid.NewGuid().ToString();
-                        players.Add(new(id, name));
-                    }
+                    var id = Guid.NewGuid().ToString();
+                    players.Add(new(id, name));
                 }
             }
         }
@@ -149,10 +145,9 @@
         // Save to localStorage for next time
         try
         {
-            await JS.InvokeVoidAsync("localStorage.setItem", "lastGameName", gameName.Trim());
+            await LocalStorage.SetLastGameNameAsync(gameName.Trim());
             var playerNames = players.Select(p => p.Name).ToList();
-            var playersJson = System.Text.Json.JsonSerializer.Serialize(playerNames);
-            await JS.InvokeVoidAsync("localStorage.setItem", "lastPlayers", playersJson);
+            await LocalStorage.SetLastPlayersAsync(playerNames);
         }
         catch { }
         
