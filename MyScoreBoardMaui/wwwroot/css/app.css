@@ -1,27 +1,175 @@
-﻿/*#if (SampleContent)*/
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+﻿@import url('./bootstrap-icons.css');
+
+:root {
+    /* System font stack */
+    --app-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    
+    /* Fun, vibrant color scheme */
+    --bs-primary: #ff6b6b;
+    --bs-primary-rgb: 255, 107, 107;
+    --bs-secondary: #4ecdc4;
+    --bs-secondary-rgb: 78, 205, 196;
+    --bs-success: #45b7d1;
+    --bs-success-rgb: 69, 183, 209;
+    --bs-info: #96ceb4;
+    --bs-info-rgb: 150, 206, 180;
+    --bs-warning: #feca57;
+    --bs-warning-rgb: 254, 202, 87;
+    --bs-danger: #ff7675;
+    --bs-danger-rgb: 255, 118, 117;
+    --bs-light: #f8f9fa;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark: #2d3436;
+    --bs-dark-rgb: 45, 52, 54;
+    
+    /* Custom colors */
+    --accent-purple: #a29bfe;
+    --accent-purple-rgb: 162, 155, 254;
+    --accent-orange: #fd79a8;
+    --accent-orange-rgb: 253, 121, 168;
+    --accent-mint: #00b894;
+    --accent-mint-rgb: 0, 184, 148;
+    
+    /* Glass effect */
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --backdrop-blur: 16px;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+    --gradient-secondary: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%);
+    --gradient-success: linear-gradient(135deg, #45b7d1 0%, #96ceb4 100%);
+    --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+    
+    /* Animation */
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-a, .btn-link {
-    color: #006bb7;
+html, body {
+    font-family: var(--app-font, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif);
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
+    background-attachment: fixed;
+}
+
+#app {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Glass card effects */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--backdrop-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-base);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Button styles */
+.btn {
+    border-radius: 15px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: none;
+    transition: var(--transition-base);
+    font-size: 16px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background: var(--gradient-primary);
+    color: white;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.btn-secondary {
+    background: var(--gradient-secondary);
+    color: white;
 }
 
-.content {
-    padding-top: 1.1rem;
+.btn-success {
+    background: var(--gradient-success);
+    color: white;
 }
 
-/*#endif*/
+.btn-lg {
+    padding: 16px 32px;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+/* Input styles */
+.form-control {
+    border-radius: 15px;
+    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px 16px;
+    font-size: 16px;
+    transition: var(--transition-base);
+}
+
+.form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.25);
+    background: rgba(255, 255, 255, 1);
+}
+
+/* Page container */
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main {
+    flex: 1;
+}
+
+/* Status bar handling for mobile */
+.status-bar-safe-area {
+    display: block;
+    height: env(safe-area-inset-top);
+    background-color: var(--bs-primary);
+}
+
+/* Error UI */
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
 h1:focus {
     outline: none;
 }
