@@ -11,55 +11,53 @@ This repo hosts a .NET 9 Blazor WebAssembly app for a board‑game scorekeeper. 
   - `LocalStorageService.cs` mirrors a quick boolean `hasActiveGame` for fast UI (Home) and preferences (saved setup values).
 - Celebrations/UI polish: `Components/Confetti.razor` and `wwwroot/js/confetti.js`.
 
-## Key patterns and conventions
-- Game lifecycle
-  - Create via `GameSetup.razor` → `GameService.NewGame()` + `GameService.SaveActiveAsync()`.
-  - Play in `GamePlay.razor` using `Game.AddRound`, `Game.NextRound`, totals from `Game.GetTotals()`.
-  - End with `Game.EndGameAsync()` which writes a `GameStoreEntry` to `games` and clears `active`.
-- Resume flow
-  - Home (`Home.razor`) checks `LocalStorageService.GetHasActiveGameAsync()` first, then verifies with `Game.HasActiveGameAsync()` (IndexedDB) and shows “Resume Game”.
-- IndexedDB specifics
-  - DB name `myscoreboard`, version defined at top of `indexedDb.js`. On schema changes, bump the version.
-  - Stores:
-    - `games`: `{ autoIncrement: true }`. Use `addItem/putItem` without passing a key.
-    - `active`: no keyPath; always use explicit key `'current'` for `putItem/getFirst/clearStore`.
-  - `getAll()` attaches a `Key` property to returned items for delete operations in History.
-- Styling
-  - Bootstrap 5 + custom glass look. Navbar uses `navbar-dark`; hamburger icon overridden to white in `Layout/MainLayout.razor.css`.
-  - Text contrast is white across glass cards; prefer `text-contrast` and `text-contrast-muted` helpers.
+```instructions
+# AI Agent Quickstart for MyScoreBoard (Blazor + MAUI)
 
-## Build/run/debug
-- Preferred run location: `MyScoreBoard/`
-- Commands:
-  - Build: `dotnet build`
-  - Run: `dotnet run` (from `MyScoreBoard` folder)
-- Browser assets are under `wwwroot/`. Ensure `bootstrap.bundle.min.js` is referenced in `wwwroot/index.html` for navbar collapse.
-- If IndexedDB issues occur during dev: delete the `myscoreboard` DB via DevTools → Application → IndexedDB, or bump `DB_VERSION` in `indexedDb.js`.
+This monorepo contains a Blazor WebAssembly web app (`MyScoreBoard`), a MAUI host (`MyScoreBoardMaui`) and a shared library (`MyScoreBoardShared`) with models and service interfaces. Agents should prefer end-to-end edits, use DI interfaces from `MyScoreBoardShared`, and verify via local builds (web and MAUI Android for CI-free verification).
 
-## Examples for common edits
-- Add a field to `GameSession`:
-  1) Update `Models/GameModels.cs`.
-  2) Reflect in UI (e.g., `GameSetup.razor`/`GamePlay.razor`).
-  3) If persisted, ensure `GameService.EndGameAsync()` includes it in `GameStoreEntry`.
-  4) Bump `DB_VERSION` if schema for stored objects changes materially.
-- Add a history card detail:
-  - Use `GetGameTotals()` logic in `Pages/GameHistory.razor` to compute totals; avoid re‑computing in services.
-- Confetti on events:
-  - Drop `<Confetti />` where needed; JS functions are `startConfetti()` / `stopConfetti()`.
+Architecture & big picture
+- Projects: `MyScoreBoard` (Blazor), `MyScoreBoardMaui` (MAUI), `MyScoreBoardShared` (models + interfaces).
+- Shared types: `MyScoreBoardShared/Models` holds `Player`, `Round`, `GameSession`, `GameStoreEntry`.
+- Service interfaces: `MyScoreBoardShared/Services` includes `IGameService`, `IIndexedDbService`, `ILocalStorageService` — prefer these for edits and DI wiring.
+- Data flow: `GameService` (web) is the app state orchestrator; it calls `IIndexedDbService` + `ILocalStorageService` for persistence.
 
-## Gotchas
-- Do not pass a key to `put()` on the `games` store (auto‑increment). Do pass `'current'` when writing to `active`.
-- `OnInitializedAsync` can run before browser APIs are ready; use `OnAfterRenderAsync(firstRender)` for checks that hit IndexedDB/localStorage.
-- Keep UI copy short, accessible, and high contrast.
+Persistence backends (important)
+- Web: `wwwroot/js/indexedDb.js` + `MyScoreBoard/Services/IndexedDbService.cs` (JS interop). Stores: `active` (explicit key `current`) and `games` (auto-increment).
+- MAUI: sqlite-backed `IIndexedDbService` implementation (uses `sqlite-net-pcl` and `SQLiteAsyncConnection`) at `MyScoreBoardMaui/Services/IndexedDbService.cs` and `ILocalStorageService` implemented using `Preferences` at `MyScoreBoardMaui/Services/LocalStorageService.cs`.
 
-## Directory pointers
-- `MyScoreBoard/Pages/Home.razor` – Resume logic.
-- `MyScoreBoard/Pages/GameSetup.razor` – New game + save defaults.
-- `MyScoreBoard/Pages/GamePlay.razor` – Round entry, winner modal, confetti.
-- `MyScoreBoard/Pages/GameHistory.razor` – History list, delete items (uses `Key`).
-- `MyScoreBoard/Services/*` – Game/IndexedDB/localStorage services.
-- `MyScoreBoard/wwwroot/js/indexedDb.js` – DB versioning and store helpers.
-- `MyScoreBoard/Layout/MainLayout.razor(.css)` – Navbar + hamburger styles.
+Dependency injection & lifetimes
+- Web DI registrations live in `MyScoreBoard/Program.cs` (scoped): bind `IGameService`, `IIndexedDbService`, `ILocalStorageService` to Blazor implementations.
+- MAUI DI registrations live in `MyScoreBoardMaui/MauiProgram.cs` (singleton for platform services): bind shared interfaces to MAUI implementations.
+- When editing services, update both registration locations and prefer constructor injection of the shared interfaces.
 
----
-If anything here feels incomplete or you want additional patterns (e.g., testing, deployment), tell me and I’ll extend this doc.
+Build / dev workflow (practical)
+- Web: cd `MyScoreBoard` → `dotnet build` / `dotnet run` (serves the Blazor app).
+- MAUI: prefer Android target for local CI-free checks: `dotnet build MyScoreBoardMaui/MyScoreBoardMaui.csproj -f net9.0-android`.
+- Full solution: `dotnet build MyScoreBoard.sln` (note: iOS/MacCatalyst builds may fail locally if Xcode version mismatch; see note below).
+
+Key files to inspect for edits
+- UI: `MyScoreBoard/Pages/*` (`Home.razor`, `GameSetup.razor`, `GamePlay.razor`, `GameHistory.razor`).
+- State/persistence: `MyScoreBoard/Services/GameService.cs`, `MyScoreBoard/Services/IndexedDbService.cs`, `MyScoreBoard/Services/LocalStorageService.cs`.
+- Shared contracts: `MyScoreBoardShared/Models/GameModels.cs`, `MyScoreBoardShared/Services/*`.
+- MAUI implementations: `MyScoreBoardMaui/Services/*` and `MyScoreBoardMaui/MauiProgram.cs`.
+
+Examples & small contracts
+- Adding a field to `GameSession`:
+  - Update `MyScoreBoardShared/Models/GameModels.cs`.
+  - Update `GameService.EndGameAsync()` to persist the new field (both web and MAUI storage representations).
+  - If web persistence shape changed, bump DB schema version in `wwwroot/js/indexedDb.js` for dev iterations.
+
+Gotchas & project-specific conventions
+- IndexedDB `games` store is auto-increment; do not pass a key when adding. Use explicit key `'current'` for the `active` store.
+- `OnInitializedAsync` may run before browser APIs are ready — use `OnAfterRenderAsync(firstRender)` for IndexedDB/localStorage access.
+- Shared project exposes models and interfaces; concrete implementations live in each host (web vs MAUI). Prefer editing the shared interfaces when adding capabilities, then implement per-host.
+
+Troubleshooting / environment notes
+- MAUI iOS/MacCatalyst builds often require matching Xcode (example: Xcode 16.4 required by some .NET workloads). If a solution build fails with Xcode errors, either update Xcode or build only Android and Blazor locally.
+- Android build warnings may appear from native sqlite binaries (page-size warnings); these are non-blocking but worth tracking when upgrading native libs.
+
+If anything here is unclear or you want more patterns (testing, deployments, CI config), say which area to expand and include any preferred conventions.
+
+```
+

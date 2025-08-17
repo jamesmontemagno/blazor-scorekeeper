@@ -19,6 +19,9 @@ public static class MauiProgram
 		// Register platform-specific LocalStorage implementation
 		builder.Services.AddSingleton<MyScoreBoardShared.Services.ILocalStorageService, MyScoreBoardMaui.Services.LocalStorageService>();
 
+		// Register platform-specific IndexedDb implementation (sqlite)
+		builder.Services.AddSingleton<MyScoreBoardShared.Services.IIndexedDbService, MyScoreBoardMaui.Services.IndexedDbService>();
+
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
