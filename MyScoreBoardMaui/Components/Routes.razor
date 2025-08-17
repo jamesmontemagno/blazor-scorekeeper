@@ -1,0 +1,6 @@
+﻿<Router AppAssembly="@typeof(MauiProgram).Assembly" AdditionalAssemblies="new[] { typeof(MyScoreBoardShared.Layout.MainLayout).Assembly }">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MyScoreBoardShared.Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+</Router>

@@ -18,6 +18,8 @@ A modern, mobile-friendly board game scorekeeper. Built with .NET 9 Blazor WebAs
 - Bootstrap 5 styling (with custom glass theme)
 - IndexedDB for durable storage (custom JS interop)
 - localStorage for quick flags and preferences
+ - sqlite-net-pcl for local persistence on MAUI
+ - Shared models and service interfaces in `MyScoreBoardShared` to enable code sharing between Blazor and MAUI
 
 ## 🚀 Getting Started
 
@@ -64,10 +66,23 @@ MyScoreBoard/
 
 ## 💾 Data Persistence
 
-- Active games are saved to the `active` store in IndexedDB for resume.
+Web (Blazor) persistence
+- Active games are saved to the `active` store in IndexedDB (via `wwwroot/js/indexedDb.js`).
 - Completed games are appended to the `games` store.
 - A quick `hasActiveGame` boolean is mirrored in `localStorage` for snappy UI.
-- Schema upgrades are handled by bumping a DB version in `wwwroot/js/indexedDb.js`.
+- The web `IndexedDbService` wraps JS interop and exposes async store helpers.
+
+MAUI persistence
+- MAUI platforms use `sqlite-net-pcl` and a sqlite-backed `IndexedDbService` implementation that persists `GameStoreEntry` records in a local database file (`myscoreboard.db3`).
+- `ILocalStorageService` on MAUI is implemented with `Preferences` for quick flags.
+
+Shared architecture
+- Models (Player, Round, GameSession, GameStoreEntry) live in `MyScoreBoardShared/Models` so both apps share types.
+- Service interfaces (`IGameService`, `IIndexedDbService`, `ILocalStorageService`) live in `MyScoreBoardShared/Services`.
+- The Blazor app registers JS-backed services; the MAUI app registers platform-backed implementations; both consume the shared interfaces via DI.
+
+If you ever hit an IndexedDB schema issue in dev:
+- Clear site data or delete the `myscoreboard` DB (Application tab → IndexedDB), then refresh.
 
 If you ever hit an IndexedDB schema issue in dev:
 - Clear site data or delete the `myscoreboard` DB (Application tab → IndexedDB), then refresh.

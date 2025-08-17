@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 
 namespace MyScoreBoard.Services;
 
-public class IndexedDbService : IAsyncDisposable
+public class IndexedDbService : MyScoreBoardShared.Services.IIndexedDbService
 {
     private readonly Lazy<Task<IJSObjectReference>> _moduleTask;
 

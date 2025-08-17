@@ -12,8 +12,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="My Score Keeper" />
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="_content/MyScoreBoardShared/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
+    <!-- shared styles from MyScoreBoardShared -->
+    <link rel="stylesheet" href="_content/MyScoreBoardShared/css/app.css" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -38,9 +40,9 @@
         <span class="dismiss">🗙</span>
     </div>
     <!-- Bootstrap JS (required for navbar collapse/toggler) -->
-    <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="_content/MyScoreBoardShared/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="./js/indexedDb.js"></script>
-    <script src="./js/confetti.js"></script>
+    <script src="_content/MyScoreBoardShared/js/confetti.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
         // Register service worker for PWA

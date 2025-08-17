@@ -1,86 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css');
+/* Web-specific CSS - styles unique to the Blazor WebAssembly app */
+/* All shared styles are imported from the shared project */
 
-:root {
-    /* Fun, vibrant color scheme */
-    --bs-primary: #ff6b6b;
-    --bs-primary-rgb: 255, 107, 107;
-    --bs-secondary: #4ecdc4;
-    --bs-secondary-rgb: 78, 205, 196;
-    --bs-success: #45b7d1;
-    --bs-success-rgb: 69, 183, 209;
-    --bs-info: #96ceb4;
-    --bs-info-rgb: 150, 206, 180;
-    --bs-warning: #feca57;
-    --bs-warning-rgb: 254, 202, 87;
-    --bs-danger: #ff7675;
-    --bs-danger-rgb: 255, 118, 117;
-    --bs-light: #f8f9fa;
-    --bs-light-rgb: 248, 249, 250;
-    --bs-dark: #2d3436;
-    --bs-dark-rgb: 45, 52, 54;
-    
-    /* Custom colors */
-    --accent-purple: #a29bfe;
-    --accent-purple-rgb: 162, 155, 254;
-    --accent-orange: #fd79a8;
-    --accent-orange-rgb: 253, 121, 168;
-    --accent-mint: #00b894;
-    --accent-mint-rgb: 0, 184, 148;
-    
-    /* Glass effect */
-    --glass-bg: rgba(255, 255, 255, 0.25);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --backdrop-blur: 16px;
-    
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
-    --gradient-secondary: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%);
-    --gradient-success: linear-gradient(135deg, #45b7d1 0%, #96ceb4 100%);
-    --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    
-    /* Shadows */
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
-    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-    --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
-    
-    /* Animation */
-    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
+/* Web-specific base layout */
 html, body {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: var(--app-font, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif);
     height: 100%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
     background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 #app {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh; /* Changed from height: 100vh to min-height: 100vh */
 }
 
-/* Glass card improvements with better contrast */
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--backdrop-blur));
-    -webkit-backdrop-filter: blur(var(--backdrop-blur));
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    box-shadow: var(--shadow-lg);
-    transition: var(--transition-base);
-    color: white; /* White text for better contrast */
-}
-
-.glass-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-xl);
-}
-
-/* Better contrast for glass card content */
+/* Web-specific enhancements to shared glass card styles */
 .glass-card .card-title,
 .glass-card h1, .glass-card h2, .glass-card h3, 
 .glass-card h4, .glass-card h5, .glass-card h6 {
@@ -95,28 +34,25 @@ html, body {
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-/* Improved text-muted for glass cards */
 .glass-card .text-muted {
     color: rgba(255, 255, 255, 0.9) !important;
     font-weight: 500;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-/* Better contrast for small text */
 .glass-card .small {
     color: white !important;
     font-weight: 500;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-/* Enhanced primary text on glass */
 .glass-card .text-primary {
     color: var(--bs-warning) !important;
     font-weight: 600;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Navbar styles with improved contrast */
+/* Web-specific navbar enhancements */
 .navbar {
     background: var(--glass-bg) !important;
     backdrop-filter: blur(var(--backdrop-blur));
@@ -146,17 +82,7 @@ html, body {
     transform: translateY(-1px);
 }
 
-/* Hero section with improved text contrast */
-.hero {
-    padding: 2rem;
-    margin-bottom: 2rem;
-    background: var(--gradient-hero);
-    color: white;
-    text-align: center;
-    border-radius: 20px;
-    box-shadow: var(--shadow-xl);
-}
-
+/* Web-specific hero enhancements */
 .hero h1 {
     font-size: 3rem;
     font-weight: 700;
@@ -186,41 +112,7 @@ html, body {
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
-/* Button styles */
-.btn {
-    border-radius: 12px;
-    font-weight: 500;
-    padding: 0.75rem 1.5rem;
-    transition: var(--transition-base);
-    border: none;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-primary {
-    background: var(--gradient-primary);
-    color: white;
-    box-shadow: var(--shadow-md);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-    filter: brightness(1.1);
-}
-
-.btn-secondary {
-    background: var(--gradient-secondary);
-    color: white;
-    box-shadow: var(--shadow-md);
-}
-
-.btn-success {
-    background: var(--gradient-success);
-    color: white;
-    box-shadow: var(--shadow-md);
-}
-
+/* Web-specific button enhancements */
 .btn-outline-primary {
     border: 2px solid var(--bs-primary);
     color: var(--bs-primary);
@@ -245,37 +137,12 @@ html, body {
     background: rgba(255, 118, 117, 0.1);
 }
 
-/* Card styles with improved contrast */
-.card {
-    border: none;
-    border-radius: 16px;
-    transition: var(--transition-base);
-}
-
-.player-card {
-    cursor: pointer;
-    transition: var(--transition-base);
-    background: rgba(255, 255, 255, 0.4) !important; /* More opaque background */
-    border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-.player-card:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: var(--shadow-xl);
-    background: rgba(255, 255, 255, 0.5) !important; /* Even more opaque on hover */
-}
-
+/* Web-specific card enhancements */
 .player-card .card-body {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
     border-radius: 12px;
     padding: 1.25rem;
-}
-
-.leader-card {
-    background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-orange) 100%) !important;
-    color: white !important;
-    border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
 .leader-card .card-body {
@@ -298,31 +165,13 @@ html, body {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.leader-badge {
-    background: var(--gradient-success);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    box-shadow: var(--shadow-sm);
-}
-
-/* Form styles with better contrast */
+/* Web-specific form enhancements */
 .form-control {
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.4);
     background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    transition: var(--transition-base);
-    padding: 0.75rem 1rem;
     color: var(--bs-dark);
-    font-weight: 500;
 }
 
 .form-control:focus {
-    border-color: var(--bs-primary);
-    box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.25);
     background: rgba(255, 255, 255, 0.4);
     color: var(--bs-dark);
 }
@@ -331,33 +180,7 @@ html, body {
     color: rgba(45, 52, 54, 0.6);
 }
 
-.form-label {
-    font-weight: 600;
-    color: white !important;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-/* Modal styles */
-.modal-content {
-    border: none;
-    border-radius: 20px;
-    box-shadow: var(--shadow-xl);
-}
-
-.modal-header {
-    background: var(--gradient-primary);
-    color: white;
-    border-radius: 20px 20px 0 0;
-    border-bottom: none;
-}
-
-.modal-footer {
-    border-top: none;
-    border-radius: 0 0 20px 20px;
-}
-
-/* Alert styles with better contrast */
+/* Web-specific alert enhancements */
 .alert {
     border: none;
     border-radius: 12px;
@@ -373,90 +196,14 @@ html, body {
     text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-/* Badge styles with better contrast */
-.badge {
-    border-radius: 8px;
-    padding: 0.4rem 0.8rem;
-    font-weight: 600;
-    font-size: 0.75rem;
-    text-shadow: none;
-}
-
+/* Web-specific badge enhancements */
 .badge.bg-warning {
     background-color: var(--bs-warning) !important;
     color: var(--bs-dark) !important;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Utility classes with improved contrast */
-.text-gradient-primary {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-}
-
-.bg-gradient-primary {
-    background: var(--gradient-primary);
-}
-
-.bg-gradient-secondary {
-    background: var(--gradient-secondary);
-}
-
-.bg-gradient-success {
-    background: var(--gradient-success);
-}
-
-/* High contrast text utilities */
-.text-contrast {
-    color: white !important;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.text-contrast-white {
-    color: white !important;
-    font-weight: 600;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.text-contrast-muted {
-    color: rgba(255, 255, 255, 0.9) !important;
-    font-weight: 500;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Animation keyframes */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-.animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.animate-pulse {
-    animation: pulse 2s infinite;
-}
-
+/* Legacy button styles for compatibility */
 h1:focus { outline: none; }
 
 a, .btn-link { color: var(--bs-primary); }
@@ -471,18 +218,7 @@ a, .btn-link { color: var(--bs-primary); }
 
 .content { padding-top: 1.1rem; }
 
-.valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
-}
-
-.invalid {
-    outline: 1px solid red;
-}
-
-.validation-message {
-    color: red;
-}
-
+/* Web-specific Blazor error UI */
 #blazor-error-ui {
     color-scheme: light only;
     background: lightyellow;
@@ -497,23 +233,14 @@ a, .btn-link { color: var(--bs-primary); }
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
-
-.blazor-error-boundary {
-    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
-    padding: 1rem 1rem 1rem 3.7rem;
-    color: white;
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
 }
 
-    .blazor-error-boundary::after {
-        content: "An error has occurred."
-    }
-
+/* Web-specific loading progress */
 .loading-progress {
     position: relative;
     display: block;
@@ -522,19 +249,19 @@ a, .btn-link { color: var(--bs-primary); }
     margin: 20vh auto 1rem auto;
 }
 
-    .loading-progress circle {
-        fill: none;
-        stroke: #e0e0e0;
-        stroke-width: 0.6rem;
-        transform-origin: 50% 50%;
-        transform: rotate(-90deg);
-    }
+.loading-progress circle {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 0.6rem;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+}
 
-        .loading-progress circle:last-child {
-            stroke: #1b6ec2;
-            stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
-            transition: stroke-dasharray 0.05s ease-in-out;
-        }
+.loading-progress circle:last-child {
+    stroke: #1b6ec2;
+    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+    transition: stroke-dasharray 0.05s ease-in-out;
+}
 
 .loading-progress-text {
     position: absolute;
@@ -543,10 +270,11 @@ a, .btn-link { color: var(--bs-primary); }
     inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
 }
 
-    .loading-progress-text:after {
-        content: var(--blazor-load-percentage-text, "Loading");
-    }
+.loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "Loading");
+}
 
+/* Web-specific form floating labels */
 code {
     color: #c02d76;
 }
@@ -560,21 +288,7 @@ code {
     text-align: start;
 }
 
-/* Modern UI helpers */
-.hero h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.hero p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-}
-
-/* Responsive design */
+/* Web-specific responsive design */
 @media (max-width: 768px) {
     .hero h1 {
         font-size: 2rem;
@@ -591,9 +305,26 @@ code {
     .display-6 {
         font-size: 1.5rem;
     }
+    
+    /* Ensure no horizontal overflow on mobile */
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Prevent content from extending beyond viewport */
+    .row {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    
+    .row > * {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
 
-/* Dark mode support */
+/* Web-specific accessibility and dark mode */
 @media (prefers-color-scheme: dark) {
     :root {
         --glass-bg: rgba(0, 0, 0, 0.3);
@@ -601,7 +332,6 @@ code {
     }
 }
 
-/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;

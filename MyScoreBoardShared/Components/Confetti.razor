@@ -1,0 +1,30 @@
+@namespace MyScoreBoardShared.Components
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<!-- Confetti effect component - uses JavaScript for visual effects -->
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await StartWinnerCelebration();
+        }
+    }
+
+    private async Task StartConfetti()
+    {
+        await JS.InvokeVoidAsync("startConfetti");
+    }
+
+    public async Task StartWinnerCelebration()
+    {
+        await JS.InvokeVoidAsync("startWinnerCelebration");
+    }
+
+    public async Task StopConfetti()
+    {
+        await JS.InvokeVoidAsync("stopConfetti");
+    }
+}
