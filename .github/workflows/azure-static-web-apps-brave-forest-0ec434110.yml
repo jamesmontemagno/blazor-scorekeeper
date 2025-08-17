@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'MyScoreBoard/**'
+      - 'MyScoreBoardShared/**'
       - '.github/workflows/azure-static-web-apps-brave-forest-0ec434110.yml'
   pull_request:
     types: [opened, synchronize, reopened, closed]
