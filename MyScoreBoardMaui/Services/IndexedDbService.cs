@@ -4,6 +4,7 @@ using MyScoreBoardShared.Services;
 using SQLite;
 using System.IO;
 using MyScoreBoardShared.Models;
+using MyScoreBoardMaui.Models;
 
 namespace MyScoreBoardMaui.Services;
 
@@ -23,139 +24,119 @@ public class IndexedDbService : IIndexedDbService
         if (_db != null) return Task.CompletedTask;
 
         _db = new SQLiteAsyncConnection(_dbPath);
-        // Ensure tables exist. We'll create a simple table for GameStoreEntry JSON storage.
-        return _db.CreateTableAsync<GameStoreEntry>();
+        return _db.CreateTableAsync<DatabaseEntity>();
     }
 
     public async Task<int> AddAsync<T>(string storeName, T value)
     {
         await InitAsync();
-        if (typeof(T) == typeof(GameStoreEntry) && value is GameStoreEntry entry)
+        
+        var entity = new DatabaseEntity
         {
-            // SQLite-net auto-increments integer primary key if property named 'Key' and decorated, but our model has nullable Key.
-            // Use InsertAsync which will set the object's Key if it's an [PrimaryKey, AutoIncrement] property.
-            await _db!.InsertAsync(entry);
-            return entry.Key ?? 0;
-        }
-
-        // For other types, serialize into a generic table if needed (not implemented). Return -1 to indicate unsupported.
-        return -1;
+            StoreName = storeName,
+            Key = string.Empty // Auto-increment store, no specific key
+        };
+        entity.SetData(value);
+        
+        await _db!.InsertAsync(entity);
+        return entity.ID;
     }
 
     public async Task<List<T>> GetAllAsync<T>(string storeName)
     {
         await InitAsync();
-        if (typeof(T) == typeof(GameStoreEntry))
+        
+        var entities = await _db!.Table<DatabaseEntity>()
+            .Where(e => e.StoreName == storeName)
+            .ToListAsync();
+        
+        var results = new List<T>();
+        foreach (var entity in entities)
         {
-            var list = await _db!.Table<GameStoreEntry>().ToListAsync();
-            return list.Cast<T>().ToList();
+            var data = entity.GetData<T>();
+            if (data != null)
+                results.Add(data);
         }
-
-        return new List<T>();
+        
+        return results;
     }
 
     public async Task DeleteAsync(string storeName, int key)
     {
         await InitAsync();
-        var item = await _db!.FindAsync<GameStoreEntry>(key);
-        if (item != null)
+        
+        // For auto-increment stores, key is the ID
+        var entity = await _db!.Table<DatabaseEntity>()
+            .Where(e => e.StoreName == storeName && e.ID == key)
+            .FirstOrDefaultAsync();
+            
+        if (entity != null)
         {
-            await _db.DeleteAsync(item);
+            await _db.DeleteAsync(entity);
         }
     }
 
     public async Task UpsertAsync<T>(string storeName, T value)
     {
         await InitAsync();
-        if (typeof(T) == typeof(GameSession) && value is GameSession session)
+        
+        // For "active" store, use fixed key "current"
+        string key = storeName == "active" ? "current" : string.Empty;
+        
+        var existing = await _db!.Table<DatabaseEntity>()
+            .Where(e => e.StoreName == storeName && e.Key == key)
+            .FirstOrDefaultAsync();
+        
+        if (existing != null)
         {
-            // active store uses a single entry with a fixed key concept; we'll store GameSession in GameStoreEntry with special SessionId 'active'
-            // But existing code expects UpsertAsync("active", Current) where Current is a GameSession. We'll implement a simple active table.
-            // For simplicity, upsert into GameStoreEntry table using SessionId as unique key.
-            var existing = await _db!.Table<GameStoreEntry>().Where(g => g.SessionId == session.Id).FirstOrDefaultAsync();
-            if (existing == null)
-            {
-                var entry = new GameStoreEntry
-                {
-                    SessionId = session.Id,
-                    GameName = session.GameName,
-                    StartedUtc = session.StartedUtc,
-                    EndedUtc = session.EndedUtc,
-                    Players = session.Players,
-                    Rounds = session.Rounds,
-                    CurrentRound = session.CurrentRound
-                };
-                await _db.InsertAsync(entry);
-            }
-            else
-            {
-                existing.GameName = session.GameName;
-                existing.StartedUtc = session.StartedUtc;
-                existing.EndedUtc = session.EndedUtc;
-                existing.Players = session.Players;
-                existing.Rounds = session.Rounds;
-                existing.CurrentRound = session.CurrentRound;
-                await _db.UpdateAsync(existing);
-            }
-            return;
+            existing.SetData(value);
+            await _db.UpdateAsync(existing);
         }
-
-        if (typeof(T) == typeof(GameStoreEntry) && value is GameStoreEntry entryVal)
+        else
         {
-            if (entryVal.Key.HasValue && entryVal.Key.Value > 0)
+            var entity = new DatabaseEntity
             {
-                await _db!.UpdateAsync(entryVal);
-            }
-            else
-            {
-                await _db!.InsertAsync(entryVal);
-            }
-            return;
+                StoreName = storeName,
+                Key = key
+            };
+            entity.SetData(value);
+            await _db.InsertAsync(entity);
         }
-
-        // unsupported types: no-op
     }
 
     public async Task<T?> GetFirstAsync<T>(string storeName)
     {
         await InitAsync();
-        if (typeof(T) == typeof(GameSession))
-        {
-            // Look for an entry in GameStoreEntry with SessionId 'active' or return first
-            var first = await _db!.Table<GameStoreEntry>().FirstOrDefaultAsync();
-            if (first == null) return default;
-            var session = new GameSession
-            {
-                Id = first.SessionId,
-                GameName = first.GameName,
-                StartedUtc = first.StartedUtc,
-                EndedUtc = first.EndedUtc,
-                Players = first.Players,
-                Rounds = first.Rounds,
-                CurrentRound = first.CurrentRound
-            };
-            return (T?)(object)session;
-        }
-
-        if (typeof(T) == typeof(GameStoreEntry))
-        {
-            var first = await _db!.Table<GameStoreEntry>().FirstOrDefaultAsync();
-            return (T?)(object?)first;
-        }
-
-        return default;
+        
+        // For "active" store, look for "current" key
+        string key = storeName == "active" ? "current" : string.Empty;
+        
+        var entity = await _db!.Table<DatabaseEntity>()
+            .Where(e => e.StoreName == storeName && e.Key == key)
+            .FirstOrDefaultAsync();
+        
+        if (entity == null)
+            return default(T);
+            
+        return entity.GetData<T>();
     }
 
     public async Task ClearAsync(string storeName)
     {
         await InitAsync();
-        // Clear GameStoreEntry table
-        await _db!.DeleteAllAsync<GameStoreEntry>();
+        
+        var entities = await _db!.Table<DatabaseEntity>()
+            .Where(e => e.StoreName == storeName)
+            .ToListAsync();
+        
+        foreach (var entity in entities)
+        {
+            await _db.DeleteAsync(entity);
+        }
     }
 
     public ValueTask DisposeAsync()
     {
-        // SQLiteAsyncConnection doesn't implement IAsyncDisposable; close DB if necessary
         if (_db != null)
         {
             _db.GetConnection().Close();

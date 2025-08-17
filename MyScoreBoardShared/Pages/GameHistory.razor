@@ -91,7 +91,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        history = await Game.GetHistoryAsync();
+        try
+        {
+            history = await Game.GetHistoryAsync();
+        }
+        catch(Exception ex)
+        {
+            // Handle exceptions
+        }
     }
 
     private async Task Delete(int key)
