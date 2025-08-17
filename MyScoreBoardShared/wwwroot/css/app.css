@@ -24,24 +24,39 @@
     --bs-light-rgb: 248, 249, 250;
     --bs-dark: #2d3436;
     --bs-dark-rgb: 45, 52, 54;
+    
+    /* Custom colors */
     --accent-purple: #a29bfe;
     --accent-purple-rgb: 162, 155, 254;
     --accent-orange: #fd79a8;
     --accent-orange-rgb: 253, 121, 168;
     --accent-mint: #00b894;
     --accent-mint-rgb: 0, 184, 148;
+    
+    /* Glass effect */
     --glass-bg: rgba(255, 255, 255, 0.25);
     --glass-border: rgba(255, 255, 255, 0.18);
     --backdrop-blur: 16px;
+    
+    /* Gradients */
     --gradient-primary: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
     --gradient-secondary: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%);
     --gradient-success: linear-gradient(135deg, #45b7d1 0%, #96ceb4 100%);
     --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    
+    /* Shadows */
     --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
     --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
     --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
     --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+    
+    /* Animation */
     --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global font family using system font stack */
+html, body {
+    font-family: var(--app-font);
 }
 
 /* Glass card used across shared pages */
@@ -50,10 +65,15 @@
     backdrop-filter: blur(var(--backdrop-blur));
     -webkit-backdrop-filter: blur(var(--backdrop-blur));
     border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-base);
     color: white;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
 }
 
 .hero {
@@ -66,29 +86,157 @@
     box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
 }
 
+/* Text contrast utilities */
 .text-contrast { color: white !important; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 .text-contrast-muted { color: rgba(255,255,255,0.9) !important; font-weight:500; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
 .text-contrast-white { color: white !important; font-weight:600; }
 
+/* Player card styling */
 .player-card { cursor:pointer; transition: all 0.3s; background: rgba(255,255,255,0.4) !important; border:2px solid rgba(255,255,255,0.3);} 
 .player-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 25px rgba(0,0,0,0.15); background: rgba(255,255,255,0.5) !important; }
 
 .leader-card { background: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%) !important; color:white !important; border:2px solid rgba(255,255,255,0.6);} 
 .leader-badge { background: linear-gradient(135deg, #45b7d1 0%, #96ceb4 100%); color: white; padding:0.25rem 0.75rem; border-radius:20px; font-size:0.75rem; font-weight:600; }
 
-.form-control { border-radius:12px; border:2px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); padding:0.75rem 1rem; color: #2d3436; font-weight:500; }
-.form-label { font-weight:600; color:white !important; margin-bottom:0.5rem; }
+/* Enhanced button styles */
+.btn {
+    border-radius: 15px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border: none;
+    transition: var(--transition-base);
+    font-size: 16px;
+}
 
-.modal-content { border:none; border-radius:20px; box-shadow: 0 20px 25px rgba(0,0,0,0.15); }
-.modal-header { background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%); color:white; border-radius:20px 20px 0 0; }
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
 
-.badge { border-radius:8px; padding:0.4rem 0.8rem; font-weight:600; font-size:0.75rem; }
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+}
 
+.btn-secondary {
+    background: var(--gradient-secondary);
+    color: white;
+}
+
+.btn-success {
+    background: var(--gradient-success);
+    color: white;
+}
+
+.btn-lg {
+    padding: 16px 32px;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+/* Enhanced form styling */
+.form-control { 
+    border-radius:15px; 
+    border:2px solid rgba(255,255,255,0.4); 
+    background: rgba(255,255,255,0.9); 
+    backdrop-filter: blur(10px); 
+    padding:12px 16px; 
+    color: #2d3436; 
+    font-weight:500;
+    font-size: 16px;
+    transition: var(--transition-base);
+}
+
+.form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.25);
+    background: rgba(255, 255, 255, 1);
+}
+
+.form-control-lg {
+    padding: 16px 20px;
+    font-size: 18px;
+}
+
+.form-label { 
+    font-weight:600; 
+    color:white !important; 
+    margin-bottom:0.5rem; 
+}
+
+/* Modal styling */
+.modal-content { 
+    border:none; 
+    border-radius:20px; 
+    box-shadow: 0 20px 25px rgba(0,0,0,0.15); 
+}
+
+.modal-header { 
+    background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%); 
+    color:white; 
+    border-radius:20px 20px 0 0; 
+}
+
+/* Badge styling */
+.badge { 
+    border-radius:8px; 
+    padding:0.4rem 0.8rem; 
+    font-weight:600; 
+    font-size:0.75rem; 
+}
+
+/* Animations */
 @keyframes fadeInUp { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform: translateY(0);} }
 .animate-fade-in-up { animation: fadeInUp 0.6s ease-out; }
 
 @keyframes pulse { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.05);} }
 .animate-pulse { animation: pulse 2s infinite; }
+
+/* Layout-specific styles moved from web project */
+/* Ensure hamburger toggler is visible (white) on glass background */
+.navbar.navbar-dark .navbar-toggler {
+    border-color: rgba(255,255,255,0.55);
+}
+.navbar.navbar-dark .navbar-toggler .navbar-toggler-icon {
+    /* Force white hamburger bars */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Optional: tweak brand and nav link contrast */
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #fff !important;
+}
+.navbar .nav-link:hover { color: #f8f9fa !important; }
+
+/* Ensure confetti canvas is always on top */
+canvas[style*="z-index"] {
+    z-index: 99999 !important;
+}
+
+/* Validation styles */
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid #e50000;
+}
+
+.validation-message {
+    color: #e50000;
+}
+
+/* Error boundary styling */
+.blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: white;
+}
+
+.blazor-error-boundary::after {
+    content: "An error has occurred."
+}
 
 /* Layout-specific styles moved from web project */
 /* Ensure hamburger toggler is visible (white) on glass background */

@@ -22,7 +22,7 @@
         <Nullable>enable</Nullable>
 
         <!-- Display name -->
-        <ApplicationTitle>MyScoreBoardMaui</ApplicationTitle>
+        <ApplicationTitle>My Score Keeper</ApplicationTitle>
 
         <!-- App Identifier -->
         <ApplicationId>com.companyname.myscoreboardmaui</ApplicationId>
