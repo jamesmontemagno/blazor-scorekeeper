@@ -106,3 +106,8 @@
     color: #fff !important;
 }
 .navbar .nav-link:hover { color: #f8f9fa !important; }
+
+/* Ensure confetti canvas is always on top */
+canvas[style*="z-index"] {
+    z-index: 99999 !important;
+}

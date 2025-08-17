@@ -7,13 +7,18 @@
     {
         if (firstRender)
         {
-            await StartConfetti();
+            await StartWinnerCelebration();
         }
     }
 
     private async Task StartConfetti()
     {
         await JS.InvokeVoidAsync("startConfetti");
+    }
+
+    public async Task StartWinnerCelebration()
+    {
+        await JS.InvokeVoidAsync("startWinnerCelebration");
     }
 
     public async Task StopConfetti()
