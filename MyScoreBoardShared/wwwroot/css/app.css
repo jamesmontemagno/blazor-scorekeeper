@@ -1,0 +1,108 @@
+/* Shared styles for components/pages moved from web app */
+/* Use system font stack to avoid external Google Fonts dependency */
+/* Use local bootstrap-icons for offline support */
+@import url('./bootstrap-icons.css');
+
+:root {
+    /* system font stack */
+    --app-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+    /* color tokens shared between hosts */
+    --bs-primary: #ff6b6b;
+    --bs-primary-rgb: 255, 107, 107;
+    --bs-secondary: #4ecdc4;
+    --bs-secondary-rgb: 78, 205, 196;
+    --bs-success: #45b7d1;
+    --bs-success-rgb: 69, 183, 209;
+    --bs-info: #96ceb4;
+    --bs-info-rgb: 150, 206, 180;
+    --bs-warning: #feca57;
+    --bs-warning-rgb: 254, 202, 87;
+    --bs-danger: #ff7675;
+    --bs-danger-rgb: 255, 118, 117;
+    --bs-light: #f8f9fa;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark: #2d3436;
+    --bs-dark-rgb: 45, 52, 54;
+    --accent-purple: #a29bfe;
+    --accent-purple-rgb: 162, 155, 254;
+    --accent-orange: #fd79a8;
+    --accent-orange-rgb: 253, 121, 168;
+    --accent-mint: #00b894;
+    --accent-mint-rgb: 0, 184, 148;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --backdrop-blur: 16px;
+    --gradient-primary: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+    --gradient-secondary: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%);
+    --gradient-success: linear-gradient(135deg, #45b7d1 0%, #96ceb4 100%);
+    --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glass card used across shared pages */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: white;
+}
+
+.hero {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+.text-contrast { color: white !important; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+.text-contrast-muted { color: rgba(255,255,255,0.9) !important; font-weight:500; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.text-contrast-white { color: white !important; font-weight:600; }
+
+.player-card { cursor:pointer; transition: all 0.3s; background: rgba(255,255,255,0.4) !important; border:2px solid rgba(255,255,255,0.3);} 
+.player-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 25px rgba(0,0,0,0.15); background: rgba(255,255,255,0.5) !important; }
+
+.leader-card { background: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%) !important; color:white !important; border:2px solid rgba(255,255,255,0.6);} 
+.leader-badge { background: linear-gradient(135deg, #45b7d1 0%, #96ceb4 100%); color: white; padding:0.25rem 0.75rem; border-radius:20px; font-size:0.75rem; font-weight:600; }
+
+.form-control { border-radius:12px; border:2px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.3); backdrop-filter: blur(10px); padding:0.75rem 1rem; color: #2d3436; font-weight:500; }
+.form-label { font-weight:600; color:white !important; margin-bottom:0.5rem; }
+
+.modal-content { border:none; border-radius:20px; box-shadow: 0 20px 25px rgba(0,0,0,0.15); }
+.modal-header { background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%); color:white; border-radius:20px 20px 0 0; }
+
+.badge { border-radius:8px; padding:0.4rem 0.8rem; font-weight:600; font-size:0.75rem; }
+
+@keyframes fadeInUp { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform: translateY(0);} }
+.animate-fade-in-up { animation: fadeInUp 0.6s ease-out; }
+
+@keyframes pulse { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.05);} }
+.animate-pulse { animation: pulse 2s infinite; }
+
+/* Layout-specific styles moved from web project */
+/* Ensure hamburger toggler is visible (white) on glass background */
+.navbar.navbar-dark .navbar-toggler {
+    border-color: rgba(255,255,255,0.55);
+}
+.navbar.navbar-dark .navbar-toggler .navbar-toggler-icon {
+    /* Force white hamburger bars */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Optional: tweak brand and nav link contrast */
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #fff !important;
+}
+.navbar .nav-link:hover { color: #f8f9fa !important; }
