@@ -7,13 +7,16 @@ html, body {
     height: 100%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
     background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 #app {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh; /* Changed from height: 100vh to min-height: 100vh */
 }
 
 /* Web-specific enhancements to shared glass card styles */
@@ -215,7 +218,7 @@ a, .btn-link { color: var(--bs-primary); }
 
 .content { padding-top: 1.1rem; }
 
-./* Web-specific Blazor error UI */
+/* Web-specific Blazor error UI */
 #blazor-error-ui {
     color-scheme: light only;
     background: lightyellow;
@@ -301,6 +304,23 @@ code {
     
     .display-6 {
         font-size: 1.5rem;
+    }
+    
+    /* Ensure no horizontal overflow on mobile */
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Prevent content from extending beyond viewport */
+    .row {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    
+    .row > * {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 
