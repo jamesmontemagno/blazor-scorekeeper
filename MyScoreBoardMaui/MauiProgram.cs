@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using MyScoreBoardMaui.Services;
+using MyScoreBoardShared.Services;
 
 namespace MyScoreBoardMaui;
 
@@ -16,11 +18,13 @@ public static class MauiProgram
 
 		builder.Services.AddMauiBlazorWebView();
 
+		builder.Services.AddSingleton<IGameService, GameService>();
+
 		// Register platform-specific LocalStorage implementation
-		builder.Services.AddSingleton<MyScoreBoardShared.Services.ILocalStorageService, MyScoreBoardMaui.Services.LocalStorageService>();
+		builder.Services.AddSingleton<ILocalStorageService, LocalStorageService>();
 
 		// Register platform-specific IndexedDb implementation (sqlite)
-		builder.Services.AddSingleton<MyScoreBoardShared.Services.IIndexedDbService, MyScoreBoardMaui.Services.IndexedDbService>();
+		builder.Services.AddSingleton<IIndexedDbService, IndexedDbService>();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
