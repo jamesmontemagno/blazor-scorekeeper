@@ -21,6 +21,10 @@ on:
         default: 'false'
         type: choice
         options: ['false','true']
+      base_version:
+        description: 'Base ApplicationDisplayVersion (e.g. 2.0)'
+        required: false
+        default: '2.0'
 
 permissions:
   contents: read
@@ -81,6 +85,30 @@ jobs:
 
       - name: NuGet Restore
         run: dotnet restore MyScoreBoard.sln
+
+      - name: Compute Version Numbers
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        id: ver
+        run: |
+          BASE=${{ inputs.base_version }}
+          RUN=${{ github.run_number }}
+          DISPLAY_VERSION="$BASE.$RUN"
+          APP_VERSION=$((50 + RUN))
+          echo "display_version=$DISPLAY_VERSION" >> $GITHUB_OUTPUT
+          echo "app_version=$APP_VERSION" >> $GITHUB_OUTPUT
+          echo "Computed DISPLAY_VERSION=$DISPLAY_VERSION APP_VERSION=$APP_VERSION"
+
+      - name: Patch csproj with Version
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          FILE=${{ env.PROJECT_PATH }}
+          echo "Patching $FILE with Display=${{ steps.ver.outputs.display_version }} Version=${{ steps.ver.outputs.app_version }}"
+          # Replace ApplicationDisplayVersion value
+          sed -i '' -E "s#<ApplicationDisplayVersion>[^<]+</ApplicationDisplayVersion>#<ApplicationDisplayVersion>${{ steps.ver.outputs.display_version }}</ApplicationDisplayVersion>#" "$FILE"
+          # Replace ApplicationVersion value
+          sed -i '' -E "s#<ApplicationVersion>[^<]+</ApplicationVersion>#<ApplicationVersion>${{ steps.ver.outputs.app_version }}</ApplicationVersion>#" "$FILE"
+          echo 'Resulting version lines:'
+          grep -E 'ApplicationDisplayVersion|ApplicationVersion' "$FILE"
 
       - name: Build iOS
         if: ${{ github.event_name != 'workflow_dispatch' }}
