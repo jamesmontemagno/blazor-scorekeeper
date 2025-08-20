@@ -85,7 +85,7 @@ jobs:
       - name: Build iOS
         if: ${{ github.event_name != 'workflow_dispatch' }}
         run: >-
-          dotnet build ${{ env.PROJECT_PATH }} -c ${{ env.CONFIGURATION }} -f ${{ env.DOTNET_VERSION }}-ios
+          dotnet build ${{ env.PROJECT_PATH }} -c Debug -f ${{ env.DOTNET_VERSION }}-ios
 
       - name: Publish iOS
         if: ${{ github.event_name == 'workflow_dispatch' }}
