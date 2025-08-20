@@ -82,7 +82,7 @@ jobs:
       - name: NuGet Restore
         run: dotnet restore MyScoreBoard.sln
 
-      - name: Publish iOS
+      - name: Build iOS
         run: >-
           dotnet build ${{ env.PROJECT_PATH }}
 
