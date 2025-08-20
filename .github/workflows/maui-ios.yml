@@ -39,7 +39,7 @@ jobs:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
       DOTNET_VERSION: net9.0
       PROJECT_PATH: MyScoreBoardMaui/MyScoreBoardMaui.csproj
-      BUNDLE_ID: com.companyname.myscoreboardmaui
+      BUNDLE_ID: com.refractored.scoreboard
       CONFIGURATION: Release
       RUNTIME_ID: ios-arm64
       CODESIGN_KEY: ${{ secrets.APPSTORE_CODESIGN_KEY }} # e.g. Apple Distribution: Your Company, Inc. (TEAMID)
@@ -52,7 +52,7 @@ jobs:
       - name: Select Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.3'
+          xcode-version: '16.4'
 
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4

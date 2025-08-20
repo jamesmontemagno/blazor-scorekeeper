@@ -25,7 +25,7 @@
         <ApplicationTitle>My Score Keeper</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.companyname.myscoreboardmaui</ApplicationId>
+    <ApplicationId>com.refractored.scoreboard</ApplicationId>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
