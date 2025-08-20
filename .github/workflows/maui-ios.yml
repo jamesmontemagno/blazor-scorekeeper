@@ -66,7 +66,6 @@ jobs:
         run: dotnet restore MyScoreBoard.sln
 
       - name: Import Signing Certificate
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.upload_testflight == 'true' }}
         uses: apple-actions/import-codesign-certs@v4
         with:
           create-keychain: true
@@ -75,7 +74,6 @@ jobs:
           p12-password: ${{ secrets.APPSTORE_CERTIFICATE_P12_PASSWORD }}
 
       - name: Download Provisioning Profiles
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.upload_testflight == 'true' }}
         uses: apple-actions/download-provisioning-profiles@v4
         with:
           bundle-id: ${{ env.BUNDLE_ID }}
@@ -86,10 +84,16 @@ jobs:
 
       - name: Publish iOS
         run: >-
+          dotnet build ${{ env.PROJECT_PATH }}
+
+      - name: Publish iOS
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: >-
           dotnet publish ${{ env.PROJECT_PATH }} -c ${{ env.CONFIGURATION }} -f ${{ env.DOTNET_VERSION }}-ios -p:ArchiveOnBuild=true -p:RuntimeIdentifier=${{ env.RUNTIME_ID }}
           ${{ env.CODESIGN_KEY != '' && format('"/p:CodesignKey={0}"', env.CODESIGN_KEY) || '' }}
 
       - name: Locate IPA
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         id: findipa
         run: |
           IPA_PATH=$(find MyScoreBoardMaui/bin/${{ env.CONFIGURATION }}/${{ env.DOTNET_VERSION }}-ios/${{ env.RUNTIME_ID }}/publish -maxdepth 1 -name '*.ipa' | head -n1)
@@ -100,7 +104,7 @@ jobs:
           echo "ipa=$IPA_PATH" >> $GITHUB_OUTPUT
 
       - name: Upload to TestFlight
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.upload_testflight == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         uses: apple-actions/upload-testflight-build@v1
         with:
           app-type: ios
@@ -108,11 +112,3 @@ jobs:
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
-
-      - name: Artifact - IPA
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-ipa
-          path: ${{ steps.findipa.outputs.ipa }}
-          if-no-files-found: error
