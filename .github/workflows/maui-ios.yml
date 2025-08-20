@@ -83,8 +83,9 @@ jobs:
         run: dotnet restore MyScoreBoard.sln
 
       - name: Build iOS
+        if: ${{ github.event_name != 'workflow_dispatch' }}
         run: >-
-          dotnet build ${{ env.PROJECT_PATH }} -c ${{ env.CONFIGURATION }} -f ${{ env.DOTNET_VERSION }}-ios
+          dotnet build ${{ env.PROJECT_PATH }} -c Debug -f ${{ env.DOTNET_VERSION }}-ios
 
       - name: Publish iOS
         if: ${{ github.event_name == 'workflow_dispatch' }}
@@ -104,7 +105,7 @@ jobs:
           echo "ipa=$IPA_PATH" >> $GITHUB_OUTPUT
 
       - name: Upload to TestFlight
-        if: ${{ github.event_name == 'workflow_dispatch' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.upload_testflight == 'true' }}
         uses: apple-actions/upload-testflight-build@v1
         with:
           app-type: ios
