@@ -24,12 +24,15 @@ html, body {
 }
 
 /* Status bar safe area for notched devices */
+/* Commented out as safe area handling is not needed */
+/*
 .status-bar-safe-area {
     height: env(safe-area-inset-top);
     background: var(--glass-bg);
     backdrop-filter: blur(var(--backdrop-blur));
     -webkit-backdrop-filter: blur(var(--backdrop-blur));
 }
+*/
 
 /* MAUI-specific enhancements to shared glass card styles */
 .glass-card .card-title,
@@ -73,7 +76,7 @@ html, body {
     box-shadow: var(--shadow-md);
     /* Mobile-specific navbar */
     position: sticky;
-    top: env(safe-area-inset-top);
+    top: 0; /* Removed safe area inset */
     z-index: 1020;
 }
 
@@ -337,10 +340,12 @@ html, body {
         border-radius: 15px;
     }
     
-    /* Fix iOS safe area */
+    /* Removed iOS safe area padding */
+    /*
     .navbar {
         padding-top: env(safe-area-inset-top);
     }
+    */
 }
 
 /* Android-specific optimizations */
