@@ -83,10 +83,11 @@ html, body {
 .navbar-brand {
     font-weight: 700;
     font-size: 1.5rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    background-clip: initial !important;
+    color: white !important;
 }
 
 .navbar .nav-link {
@@ -323,6 +324,60 @@ html, body {
     /* Better mobile form layout */
     .form-control {
         font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* Mobile-optimized score input modal */
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: none;
+    }
+    
+    .modal-content {
+        border-radius: 16px;
+    }
+    
+    /* Ensure score buttons are properly sized on mobile */
+    .modal-body .btn {
+        min-width: 48px;
+        min-height: 48px;
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    /* Better spacing for score input on mobile */
+    .modal-body .d-flex.gap-2 > .btn {
+        flex: 1;
+        max-width: 60px;
+    }
+    
+    .modal-body .form-control {
+        min-width: 80px;
+        max-width: 100px;
+    }
+    
+    /* Mobile-friendly badges for pending players */
+    .badge {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        font-size: 14px;
+        padding: 8px 12px;
+        margin: 2px;
+        border-radius: 12px;
+        touch-action: manipulation;
+    }
+    
+    /* Ensure pending player badges are easily tappable */
+    .glass-card .badge.bg-warning {
+        background: var(--bs-warning) !important;
+        color: var(--bs-dark) !important;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
+    }
+    
+    .glass-card .badge.bg-warning:active {
+        transform: scale(0.95);
+        background: rgba(254, 202, 87, 0.8) !important;
     }
 }
 

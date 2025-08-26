@@ -195,12 +195,47 @@ html, body {
     font-size:0.75rem; 
 }
 
-/* Animations */
-@keyframes fadeInUp { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform: translateY(0);} }
-.animate-fade-in-up { animation: fadeInUp 0.6s ease-out; }
+/* Score status indicators */
+.score-pending {
+    color: var(--bs-warning) !important;
+    font-weight: 600;
+    animation: pulse-warning 2s infinite;
+    background: linear-gradient(90deg, transparent 0%, rgba(254, 202, 87, 0.3) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: pulse-warning 2s infinite, shimmer 3s infinite;
+    padding: 2px 6px;
+    border-radius: 8px;
+    display: inline-block;
+}
 
-@keyframes pulse { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.05);} }
-.animate-pulse { animation: pulse 2s infinite; }
+.score-entered {
+    color: var(--bs-success) !important;
+    font-weight: 700;
+    background: rgba(69, 183, 209, 0.2);
+    padding: 2px 6px;
+    border-radius: 8px;
+    border: 1px solid rgba(69, 183, 209, 0.4);
+}
+
+.score-hint {
+    animation: fade-pulse 3s infinite;
+}
+
+/* Animations for score indicators */
+@keyframes pulse-warning {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes fade-pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
 
 /* Layout-specific styles moved from web project */
 /* Ensure hamburger toggler is visible (white) on glass background */
@@ -268,4 +303,47 @@ canvas[style*="z-index"] {
 /* Ensure confetti canvas is always on top */
 canvas[style*="z-index"] {
     z-index: 99999 !important;
+}
+
+
+/* Enhanced navbar brand styling */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: var(--transition-base);
+}
+
+.navbar-brand:hover {
+    transform: scale(1.02);
+}
+
+.trophy-icon {
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 25%, #ffd700 50%, #ffb347 75%, #ffd700 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: trophy-shimmer 3s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+}
+
+.brand-text {
+    color: white !important;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5px;
+}
+
+/* Trophy shimmer animation */
+@keyframes trophy-shimmer {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }

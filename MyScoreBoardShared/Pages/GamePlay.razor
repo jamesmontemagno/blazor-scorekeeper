@@ -93,12 +93,12 @@
 }
 
 <div class="hero mb-4 glass-card">
-    <div class="d-flex align-items-center justify-content-between">
-        <div>
+    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-3">
+        <div class="flex-fill">
             <h2 class="mb-1">@Game.Current.GameName</h2>
             <p class="text-muted mb-0">Round @Game.Current.CurrentRound • Started @Game.Current.StartedUtc.ToLocalTime().ToString("MMM dd, HH:mm")</p>
         </div>
-        <div class="d-flex gap-2">
+        <div class="d-flex flex-column flex-sm-row gap-2 align-self-stretch align-self-sm-auto">
             <button class="btn btn-outline-secondary" @onclick="ShowPauseModal">
                 <i class="bi bi-pause-fill me-1"></i> Pause
             </button>
@@ -159,14 +159,17 @@
                             Round @Game.Current.CurrentRound: 
                             @if (currentRoundScore != 0)
                             {
-                                <span class="fw-semibold">@(currentRoundScore > 0 ? "+" : "")@currentRoundScore</span>
+                                <span class="fw-semibold score-entered">@(currentRoundScore > 0 ? "+" : "")@currentRoundScore</span>
                             }
                             else
                             {
-                                <span class="text-muted">not scored</span>
+                                <span class="score-pending">not scored</span>
                             }
                         </div>
-                        <div class="text-primary small mt-1">Tap to add score</div>
+                        @if (currentRoundScore == 0)
+                        {
+                            <div class="text-primary small mt-1 score-hint">Tap to add score</div>
+                        }
                     </div>
                 </div>
             </div>
@@ -230,12 +233,16 @@ else
                 <div class="modal-body text-center">
                     <div class="mb-4">
                         <label class="form-label">Round @Game.Current.CurrentRound Score</label>
-                        <div class="d-flex justify-content-center align-items-center gap-3 mb-3">
-                            <button class="btn btn-outline-danger btn-lg" @onclick="(() => AdjustScore(-5))">-5</button>
-                            <button class="btn btn-outline-danger" @onclick="(() => AdjustScore(-1))">-1</button>
-                            <input type="number" class="form-control form-control-lg text-center fw-bold" style="width: 120px;" @bind-value="scoreInput" @bind-value:event="oninput" />
-                            <button class="btn btn-outline-success" @onclick="(() => AdjustScore(1))">+1</button>
-                            <button class="btn btn-outline-success btn-lg" @onclick="(() => AdjustScore(5))">+5</button>
+                        <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2 gap-sm-3 mb-3">
+                            <div class="d-flex gap-2 mb-2 mb-sm-0">
+                                <button class="btn btn-outline-danger btn-lg" @onclick="(() => AdjustScore(-5))">-5</button>
+                                <button class="btn btn-outline-danger" @onclick="(() => AdjustScore(-1))">-1</button>
+                            </div>
+                            <input type="number" class="form-control form-control-lg text-center fw-bold flex-fill" style="max-width: 120px;" @bind-value="scoreInput" @bind-value:event="oninput" />
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-success" @onclick="(() => AdjustScore(1))">+1</button>
+                                <button class="btn btn-outline-success btn-lg" @onclick="(() => AdjustScore(5))">+5</button>
+                            </div>
                         </div>
                         <div class="d-flex justify-content-center gap-2">
                             <button class="btn btn-sm btn-secondary" @onclick="(() => SetScore(0))">0</button>
