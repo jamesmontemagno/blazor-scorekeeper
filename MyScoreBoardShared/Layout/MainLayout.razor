@@ -1,4 +1,8 @@
 @inherits LayoutComponentBase
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+
+<div class="status-bar-safe-area"></div>
 
 <div class="app-container">
     <nav class="navbar navbar-expand-md sticky-top glass-card navbar-dark">
@@ -53,3 +57,39 @@
         <a class="dismiss">🗙</a>
     </div>
 </div>
+
+@code {
+    private bool _subscribed;
+
+    protected override void OnInitialized()
+    {
+        // Subscribe once to navigation changes to auto-close the mobile menu
+        if (!_subscribed)
+        {
+            Nav.LocationChanged += OnLocationChanged;
+            _subscribed = true;
+        }
+    }
+
+    private async void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        try
+        {
+            // Ask JS to close the Bootstrap navbar if open
+            await JS.InvokeVoidAsync("myMenu.closeNav");
+        }
+        catch
+        {
+            // No-op: don't block navigation if JS isn't ready yet
+        }
+    }
+
+    public void Dispose()
+    {
+        if (_subscribed)
+        {
+            Nav.LocationChanged -= OnLocationChanged;
+            _subscribed = false;
+        }
+    }
+}

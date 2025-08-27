@@ -22,9 +22,9 @@ on:
         type: choice
         options: ['false','true']
       base_version:
-        description: 'Base ApplicationDisplayVersion (e.g. 2.0)'
+        description: 'Base ApplicationDisplayVersion (e.g. 3.0)'
         required: false
-        default: '2.0'
+        default: '3.0'
 
 permissions:
   contents: read

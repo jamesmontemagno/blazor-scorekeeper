@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build solution (web + shared)",
+			"type": "shell",
+			"command": "dotnet build MyScoreBoard.sln -c Debug",
+			"args": []
+		}
+	]
+}
