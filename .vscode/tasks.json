@@ -6,6 +6,12 @@
 			"type": "shell",
 			"command": "dotnet build MyScoreBoard.sln -c Debug",
 			"args": []
+		},
+		{
+			"label": "Build solution (all)",
+			"type": "shell",
+			"command": "dotnet build MyScoreBoard.sln -c Debug",
+			"args": []
 		}
 	]
 }
