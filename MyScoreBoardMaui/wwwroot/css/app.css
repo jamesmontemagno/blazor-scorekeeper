@@ -164,8 +164,6 @@ html, body {
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(3px);
-        -webkit-backdrop-filter: blur(3px);
         z-index: 1015; /* beneath navbar (1020) */
         opacity: 0;
         visibility: hidden;
