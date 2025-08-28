@@ -24,7 +24,7 @@ on:
       base_version:
         description: 'Base ApplicationDisplayVersion (e.g. 3.0)'
         required: false
-        default: '3.0'
+        default: '3.1.0'
 
 permissions:
   contents: read
@@ -92,7 +92,7 @@ jobs:
         run: |
           BASE=${{ inputs.base_version }}
           RUN=${{ github.run_number }}
-          DISPLAY_VERSION="$BASE.$RUN"
+          DISPLAY_VERSION="$BASE"
           APP_VERSION=$((50 + RUN))
           echo "display_version=$DISPLAY_VERSION" >> $GITHUB_OUTPUT
           echo "app_version=$APP_VERSION" >> $GITHUB_OUTPUT
