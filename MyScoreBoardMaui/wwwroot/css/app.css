@@ -320,10 +320,40 @@ html, body {
     user-select: none;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
+    /* Ensure proper touch handling */
+    touch-action: manipulation;
 }
 
 .btn:active {
     transform: scale(0.98);
+}
+
+/* Ensure btn-sm also has adequate touch targets */
+.btn.btn-sm {
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+}
+
+/* Override Bootstrap's disabled button pointer-events for enabled buttons */
+.btn:not(:disabled):not(.disabled) {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Specific fix for delete buttons in history page */
+.btn-outline-danger:not(:disabled):not(.disabled) {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Force enabled buttons to be clickable - highest specificity override */
+button.btn:not([disabled]):not(.disabled),
+.btn:not([disabled]):not(.disabled):not([aria-disabled="true"]) {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
 }
 
 .btn-outline-primary {

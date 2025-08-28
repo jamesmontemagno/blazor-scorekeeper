@@ -55,7 +55,14 @@ public class IndexedDbService : IIndexedDbService
         {
             var data = entity.GetData<T>();
             if (data != null)
+            {
+                // For GameStoreEntry objects, set the Key property from database ID
+                if (data is GameStoreEntry gameEntry)
+                {
+                    gameEntry.Key = entity.ID;
+                }
                 results.Add(data);
+            }
         }
         
         return results;
