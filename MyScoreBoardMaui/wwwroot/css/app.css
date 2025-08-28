@@ -470,5 +470,3 @@ button.btn:not([disabled]):not(.disabled),
         border-width: 2px;
     }
 }
-
-.content { padding-top: 1.1rem; }

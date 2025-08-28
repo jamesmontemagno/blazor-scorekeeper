@@ -541,3 +541,8 @@ a, .btn-link { color: var(--bs-primary); }
         transition-duration: 0.01ms !important;
     }
 }
+
+/* Layout content padding - consolidated from platform-specific files */
+.content { 
+    padding-top: 1.1rem; 
+}
