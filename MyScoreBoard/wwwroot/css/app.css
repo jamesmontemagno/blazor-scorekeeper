@@ -19,37 +19,11 @@ html, body {
     min-height: 100vh; /* Changed from height: 100vh to min-height: 100vh */
 }
 
-/* Web-specific enhancements to shared glass card styles */
-.glass-card .card-title,
-.glass-card h1, .glass-card h2, .glass-card h3, 
-.glass-card h4, .glass-card h5, .glass-card h6 {
-    color: white !important;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.glass-card .display-6 {
-    color: white !important;
-    font-weight: 700;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-}
-
-.glass-card .text-muted {
-    color: rgba(255, 255, 255, 0.9) !important;
-    font-weight: 500;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.glass-card .small {
-    color: white !important;
-    font-weight: 500;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.glass-card .text-primary {
-    color: var(--bs-warning) !important;
-    font-weight: 600;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+/* Web-specific custom property overrides */
+:root {
+    --hero-h1-size: 3rem;
+    --hero-h2-size: 2rem;
+    --hero-p-size: 1.2rem;
 }
 
 /* Web-specific navbar enhancements */
@@ -110,110 +84,6 @@ html, body {
 .hero .text-muted {
     color: rgba(255, 255, 255, 0.8) !important;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-
-/* Web-specific button enhancements */
-.btn-outline-primary {
-    border: 2px solid var(--bs-primary);
-    color: var(--bs-primary);
-    background: rgba(255, 107, 107, 0.1);
-}
-
-.btn-outline-secondary {
-    border: 2px solid var(--bs-secondary);
-    color: var(--bs-secondary);
-    background: rgba(78, 205, 196, 0.1);
-}
-
-.btn-outline-success {
-    border: 2px solid var(--bs-success);
-    color: var(--bs-success);
-    background: rgba(69, 183, 209, 0.1);
-}
-
-.btn-outline-danger {
-    border: 2px solid var(--bs-danger);
-    color: var(--bs-danger);
-    background: rgba(255, 118, 117, 0.1);
-}
-
-/* Web-specific card enhancements */
-.player-card .card-body {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    border-radius: 12px;
-    padding: 1.25rem;
-}
-
-.leader-card .card-body {
-    background: rgba(255, 255, 255, 0.2) !important;
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    margin: 0.5rem;
-}
-
-.leader-card .card-title,
-.leader-card .display-6,
-.leader-card .small,
-.leader-card .text-primary {
-    color: white !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.leader-card .text-muted {
-    color: rgba(255, 255, 255, 0.8) !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Web-specific form enhancements */
-.form-control {
-    background: rgba(255, 255, 255, 0.3);
-    color: var(--bs-dark);
-}
-
-.form-control:focus {
-    background: rgba(255, 255, 255, 0.4);
-    color: var(--bs-dark);
-}
-
-.form-control::placeholder {
-    color: rgba(45, 52, 54, 0.6);
-}
-
-/* Web-specific alert enhancements */
-.alert {
-    border: none;
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    font-weight: 500;
-    border: 2px solid transparent;
-}
-
-.alert-success {
-    background: rgba(69, 183, 209, 0.3);
-    color: var(--bs-dark) !important;
-    border-color: rgba(69, 183, 209, 0.5);
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-}
-
-/* Web-specific badge enhancements */
-.badge.bg-warning {
-    background-color: var(--bs-warning) !important;
-    color: var(--bs-dark) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Legacy button styles for compatibility */
-h1:focus { outline: none; }
-
-a, .btn-link { color: var(--bs-primary); }
-
-.btn-primary { color: var(--primary-foreground); background-color: var(--bs-primary); border-color: var(--bs-primary); }
-.btn-outline-secondary { color: var(--foreground); border-color: var(--border); }
-.btn-warning { color: var(--accent-foreground); background-color: var(--accent); border-color: var(--accent); }
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--ring);
 }
 
 .content { padding-top: 1.1rem; }
@@ -321,21 +191,5 @@ code {
     .row > * {
         padding-left: 10px;
         padding-right: 10px;
-    }
-}
-
-/* Web-specific accessibility and dark mode */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --glass-bg: rgba(0, 0, 0, 0.3);
-        --glass-border: rgba(255, 255, 255, 0.1);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
     }
 }
