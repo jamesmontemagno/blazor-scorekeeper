@@ -114,6 +114,29 @@ html, body {
 .player-card { cursor:pointer; transition: all 0.3s; background: rgba(255,255,255,0.4) !important; border:2px solid rgba(255,255,255,0.3);} 
 .player-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 25px rgba(0,0,0,0.15); background: rgba(255,255,255,0.5) !important; }
 
+/* Higher contrast styling for players needing a score this round */
+.player-card.needs-score {
+    background: rgba(255,255,255,0.9) !important;
+    border:2px solid rgba(255,255,255,0.95) !important;
+    color: #2d3436 !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+.player-card.needs-score .card-title,
+.player-card.needs-score .display-6,
+.player-card.needs-score .score-pending,
+.player-card.needs-score .score-hint {
+    color: #2d3436 !important;
+    text-shadow: none;
+}
+.player-card.needs-score .score-pending {
+    background: rgba(254, 202, 87, 0.25);
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+.player-card.needs-score:hover {
+    background: #ffffff !important;
+}
+
 .leader-card { background: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%) !important; color:white !important; border:2px solid rgba(255,255,255,0.6);} 
 .leader-badge { background: linear-gradient(135deg, #45b7d1 0%, #96ceb4 100%); color: white; padding:0.25rem 0.75rem; border-radius:20px; font-size:0.75rem; font-weight:600; }
 

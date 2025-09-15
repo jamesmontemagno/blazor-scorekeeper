@@ -138,9 +138,14 @@
         var currentRoundScore = Game.GetRoundScore(player.Id, Game.Current.CurrentRound);
         var isLeader = IsLeader(player.Id);
         var isTied = IsTied(player.Id);
+        // Determine if this player has an explicit score recorded for the current round (different from score=0 which could be intentional)
+        var currentRound = Game.Current.Rounds.FirstOrDefault(r => r.Number == Game.Current.CurrentRound);
+        var hasScoreThisRound = currentRound?.Scores.Any(s => s.PlayerId == player.Id) == true;
+        var needsScore = !hasScoreThisRound; // highlight for better contrast
+        var cardClass = $"card h-100 glass-card player-card {(isLeader ? "leader-card" : string.Empty)} {(needsScore && !isLeader ? "needs-score" : string.Empty)}";
         
         <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card h-100 glass-card player-card @(isLeader ? "leader-card" : "")" style="cursor:pointer" @onclick="(() => OpenScoreDialog(player))">
+            <div class="@cardClass" style="cursor:pointer" @onclick="(() => OpenScoreDialog(player))">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h5 class="card-title mb-0">@player.Name</h5>
