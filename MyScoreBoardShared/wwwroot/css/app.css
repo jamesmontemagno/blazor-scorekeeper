@@ -52,6 +52,15 @@
     
     /* Animation */
     --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Platform-customizable hero sizing */
+    --hero-h1-size: 3rem;
+    --hero-h2-size: 2rem;
+    --hero-p-size: 1.2rem;
+    
+    /* Platform-customizable form control sizing */
+    --form-control-min-height: auto;
+    --form-control-font-size: 16px;
 }
 
 /* Global font family using system font stack */
@@ -104,6 +113,29 @@ html, body {
 /* Player card styling */
 .player-card { cursor:pointer; transition: all 0.3s; background: rgba(255,255,255,0.4) !important; border:2px solid rgba(255,255,255,0.3);} 
 .player-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 25px rgba(0,0,0,0.15); background: rgba(255,255,255,0.5) !important; }
+
+/* Higher contrast styling for players needing a score this round */
+.player-card.needs-score {
+    background: rgba(255,255,255,0.9) !important;
+    border:2px solid rgba(255,255,255,0.95) !important;
+    color: #2d3436 !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+.player-card.needs-score .card-title,
+.player-card.needs-score .display-6,
+.player-card.needs-score .score-pending,
+.player-card.needs-score .score-hint {
+    color: #2d3436 !important;
+    text-shadow: none;
+}
+.player-card.needs-score .score-pending {
+    background: rgba(254, 202, 87, 0.25);
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+.player-card.needs-score:hover {
+    background: #ffffff !important;
+}
 
 .leader-card { background: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%) !important; color:white !important; border:2px solid rgba(255,255,255,0.6);} 
 .leader-badge { background: linear-gradient(135deg, #45b7d1 0%, #96ceb4 100%); color: white; padding:0.25rem 0.75rem; border-radius:20px; font-size:0.75rem; font-weight:600; }
@@ -237,22 +269,79 @@ html, body {
     50% { opacity: 1; }
 }
 
-/* Layout-specific styles moved from web project */
-/* Ensure hamburger toggler is visible (white) on glass background */
-.navbar.navbar-dark .navbar-toggler {
-    border-color: rgba(255,255,255,0.55);
-}
-.navbar.navbar-dark .navbar-toggler .navbar-toggler-icon {
-    /* Force white hamburger bars */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+/* Shared navbar styling (web + MAUI) */
+.navbar {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-base);
 }
 
-/* Optional: tweak brand and nav link contrast */
-.navbar .navbar-brand,
+/* Toggler (hamburger) consistent styling */
+.navbar.navbar-dark .navbar-toggler {
+    border-color: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.08);
+    border-radius: 14px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+}
+.navbar.navbar-dark .navbar-toggler:focus,
+.navbar.navbar-dark .navbar-toggler:hover {
+    outline: none;
+    background: rgba(255,255,255,0.15);
+}
+.navbar.navbar-dark .navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+}
+
+/* Brand & links */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #ffffff !important; /* Force white brand text */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    letter-spacing: .5px;
+    text-decoration: none;
+}
+.navbar-brand:hover { transform: scale(1.02); }
+
 .navbar .nav-link {
     color: #fff !important;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    transition: var(--transition-base);
 }
-.navbar .nav-link:hover { color: #f8f9fa !important; }
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: var(--bs-warning) !important;
+    transform: translateY(-1px);
+}
+
+/* Mobile collapse panel refinement (shared) */
+@media (max-width: 767.98px) {
+    .navbar .navbar-collapse.collapse.show {
+        /* Use standard Bootstrap collapse panel (transparent so body bg shows) */
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        border-radius: 0;
+        padding: 0.5rem 0;
+        margin-top: 0; /* flush under navbar */
+        box-shadow: none;
+    }
+    .navbar .nav-link { text-shadow: none; }
+}
 
 /* Ensure confetti canvas is always on top */
 canvas[style*="z-index"] {
@@ -306,19 +395,7 @@ canvas[style*="z-index"] {
 }
 
 
-/* Enhanced navbar brand styling */
-.navbar-brand {
-    font-weight: 700;
-    font-size: 1.25rem;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: var(--transition-base);
-}
-
-.navbar-brand:hover {
-    transform: scale(1.02);
-}
+/* (navbar-brand styles consolidated above) */
 
 .trophy-icon {
     font-size: 1.5rem;
@@ -346,4 +423,194 @@ canvas[style*="z-index"] {
     50% {
         background-position: 100% 50%;
     }
+}
+
+/* Button outline styles - consolidated from platform-specific files */
+.btn-outline-primary {
+    border: 2px solid var(--bs-primary);
+    color: var(--bs-primary);
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.btn-outline-secondary {
+    border: 2px solid var(--bs-secondary);
+    color: var(--bs-secondary);
+    background: rgba(78, 205, 196, 0.1);
+}
+
+.btn-outline-success {
+    border: 2px solid var(--bs-success);
+    color: var(--bs-success);
+    background: rgba(69, 183, 209, 0.1);
+}
+
+.btn-outline-danger {
+    border: 2px solid var(--bs-danger);
+    color: var(--bs-danger);
+    background: rgba(255, 118, 117, 0.1);
+}
+
+/* Legacy button styles - consolidated from platform-specific files */
+h1:focus { outline: none; }
+
+a, .btn-link { color: var(--bs-primary); }
+
+.btn-primary { color: var(--primary-foreground); background-color: var(--bs-primary); border-color: var(--bs-primary); }
+.btn-outline-secondary { color: var(--foreground); border-color: var(--border); }
+.btn-warning { color: var(--accent-foreground); background-color: var(--accent); border-color: var(--accent); }
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--ring);
+}
+
+/* Glass card text styling - consolidated from platform-specific files */
+.glass-card .card-title,
+.glass-card h1, .glass-card h2, .glass-card h3, 
+.glass-card h4, .glass-card h5, .glass-card h6 {
+    color: white !important;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card .display-6 {
+    color: white !important;
+    font-weight: 700;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.glass-card .text-muted {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.glass-card .small {
+    color: white !important;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.glass-card .text-primary {
+    color: var(--bs-warning) !important;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Form control styling - consolidated from platform-specific files */
+.form-control {
+    background: rgba(255, 255, 255, 0.3);
+    color: var(--bs-dark);
+    min-height: var(--form-control-min-height);
+    font-size: var(--form-control-font-size);
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.4);
+    color: var(--bs-dark);
+}
+
+.form-control::placeholder {
+    color: rgba(45, 52, 54, 0.6);
+}
+
+/* Hero styling - consolidated with CSS custom properties */
+.hero h1 {
+    font-size: var(--hero-h1-size);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    color: white !important;
+}
+
+.hero h2 {
+    font-size: var(--hero-h2-size);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    color: white !important;
+}
+
+.hero p {
+    font-size: var(--hero-p-size);
+    opacity: 0.95;
+    margin-bottom: 2rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    color: white !important;
+}
+
+.hero .text-muted {
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Alert styling - consolidated from platform-specific files */
+.alert {
+    border: none;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    font-weight: 500;
+    border: 2px solid transparent;
+}
+
+.alert-success {
+    background: rgba(69, 183, 209, 0.3);
+    color: var(--bs-dark) !important;
+    border-color: rgba(69, 183, 209, 0.5);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Badge styling - consolidated from platform-specific files */
+.badge.bg-warning {
+    background-color: var(--bs-warning) !important;
+    color: var(--bs-dark) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Card body styling - consolidated from platform-specific files */
+.player-card .card-body {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.leader-card .card-body {
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    margin: 0.5rem;
+}
+
+.leader-card .card-title,
+.leader-card .display-6,
+.leader-card .small,
+.leader-card .text-primary {
+    color: white !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.leader-card .text-muted {
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Accessibility and performance - consolidated from platform-specific files */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --glass-bg: rgba(0, 0, 0, 0.3);
+        --glass-border: rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Layout content padding - consolidated from platform-specific files */
+.content { 
+    padding-top: 1.1rem; 
 }
