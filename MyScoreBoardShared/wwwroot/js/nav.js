@@ -12,15 +12,6 @@ window.myMenu.closeNav = function () {
         if (el.classList.contains('show')) {
             collapse.hide();
         }
-        // Hide optional mobile backdrop if present
-        var backdrop = document.getElementById('nav-backdrop');
-        if (backdrop) {
-            backdrop.classList.remove('show');
-        }
-        // Restore body scroll if it was locked
-        if (document && document.body) {
-            document.body.style.overflow = '';
-        }
     } catch (e) {
         // Swallow to avoid breaking navigation
         // console.debug('myMenu.closeNav error', e);

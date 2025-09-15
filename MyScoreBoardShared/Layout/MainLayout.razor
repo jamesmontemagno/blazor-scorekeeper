@@ -1,44 +1,43 @@
 @inherits LayoutComponentBase
 @inject NavigationManager Nav
-@inject IJSRuntime JS
 
 <div class="status-bar-safe-area"></div>
 
 <div class="app-container">
     <nav class="navbar navbar-expand-md sticky-top glass-card navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <NavLink class="navbar-brand" href="/" Match="NavLinkMatch.All">
                 <i class="bi bi-trophy-fill trophy-icon me-2"></i>
                 <span class="brand-text">My Score Keeper</span>
-            </a>
+            </NavLink>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/">
+                        <NavLink class="nav-link text-white" href="/" Match="NavLinkMatch.All">
                             <i class="bi bi-house-fill me-1"></i>
                             Home
-                        </a>
+                        </NavLink>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/setup">
+                        <NavLink class="nav-link text-white" href="/setup">
                             <i class="bi bi-plus-circle-fill me-1"></i>
                             Setup
-                        </a>
+                        </NavLink>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/play">
+                        <NavLink class="nav-link text-white" href="/play">
                             <i class="bi bi-play-fill me-1"></i>
                             Play
-                        </a>
+                        </NavLink>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/history">
+                        <NavLink class="nav-link text-white" href="/history">
                             <i class="bi bi-clock-history me-1"></i>
                             History
-                        </a>
+                        </NavLink>
                     </li>
                 </ul>
             </div>
@@ -59,37 +58,5 @@
 </div>
 
 @code {
-    private bool _subscribed;
-
-    protected override void OnInitialized()
-    {
-        // Subscribe once to navigation changes to auto-close the mobile menu
-        if (!_subscribed)
-        {
-            Nav.LocationChanged += OnLocationChanged;
-            _subscribed = true;
-        }
-    }
-
-    private async void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
-    {
-        try
-        {
-            // Ask JS to close the Bootstrap navbar if open
-            await JS.InvokeVoidAsync("myMenu.closeNav");
-        }
-        catch
-        {
-            // No-op: don't block navigation if JS isn't ready yet
-        }
-    }
-
-    public void Dispose()
-    {
-        if (_subscribed)
-        {
-            Nav.LocationChanged -= OnLocationChanged;
-            _subscribed = false;
-        }
-    }
+    // Pure Bootstrap navigation - no custom JavaScript needed
 }
