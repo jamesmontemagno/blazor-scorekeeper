@@ -85,3 +85,120 @@ If anything here is unclear or you want more patterns (testing, deployments, CI 
 
 ```
 
+
+## Extended CSS Architecture & Contribution Guide
+
+This section defines exactly where new styles belong, how to evolve existing ones, and how to avoid fragmentation now that most UI has been unified.
+
+### Layering Model (Load Order & Responsibility)
+1. Bootstrap base (from shared static assets)
+2. Platform CSS (Web: `MyScoreBoard/wwwroot/css/app.css`, MAUI: `MyScoreBoardMaui/wwwroot/css/app.css`)
+3. Shared CSS (`MyScoreBoardShared/wwwroot/css/app.css`) – PRIMARY layer for nearly all component & theme styling
+4. Generated / component-scoped CSS (e.g., `Component.razor.css`) – only for true one-off visual tweaks that should not cascade
+
+Rule of thumb: If more than one component could reuse a style, it belongs in the shared CSS. If only one component needs it temporarily, put it in a `.razor.css` file (then promote later if reused).
+
+### Ownership by File
+| File | Purpose | Add Here When |
+|------|---------|---------------|
+`MyScoreBoardShared/wwwroot/css/app.css` | Design system tokens (variables), reusable utility classes, component base styles (`.glass-card`, buttons, player cards, navbar, animations) | 90% of new styles, any cross-platform element | 
+`MyScoreBoard/wwwroot/css/app.css` | Web-only experiential chrome: initial page background, loading UI, minor contrast tweaks | The effect is visual-only on Web OR would degrade MAUI perf/clarity | 
+`MyScoreBoardMaui/wwwroot/css/app.css` | Mobile-only ergonomics: safe areas, touch target scaling, platform gesture edge cases | The rule depends on device viewport constraints or safe-area insets | 
+`*.razor.css` | Truly component-local micro-adjustments not yet generalized | A tweak is experimental or not proven reusable |
+
+### Tokens & Variables
+Defined centrally in `:root` inside shared CSS. Always try a variable before inventing a hard-coded color/size. If a new semantic is needed:
+1. Add variable to `:root` (choose semantic name: `--score-warning-bg`, not `--yellowish-bg`).
+2. Use it in styles.
+3. Avoid per-platform overrides unless absolutely needed—prefer adaptable base values.
+
+### Adding a New Component Style
+1. Create component in `MyScoreBoardShared/Components`.
+2. Add its class block(s) to shared CSS (group near similar domains, use a section comment header).
+3. If mobile requires spacing or tap tweaks, layer a media query inside shared CSS first (`@media (max-width: 767.98px)`), only move to MAUI CSS if it causes desktop regression.
+4. If web needs large-screen layout improvements, add a desktop media query in shared CSS or put in web CSS if it’s purely decorative.
+
+### Navbar & Global Layout
+- Unified styling now lives in shared CSS.
+- Do NOT reintroduce host-specific navbar styles unless there is a platform accessibility issue.
+- Mobile collapse should rely on default Bootstrap structure; any future variation must remain accessible (focusable toggler, visible focus outline).
+
+### Player Card States
+- Base: `.player-card` (glass aesthetic)
+- Leader: `.leader-card` (gradient champion style)
+- Pending (no explicit round score yet): `.player-card.needs-score` (high contrast; only adjust here if readability regressions appear)
+- Avoid creating additional ad-hoc modifier classes; reuse or extend with a BEM-like suffix (`.player-card--alert`) only if semantically distinct.
+
+### Modifier & Utility Naming
+Use short, semantic, non-presentational names:
+- Good: `.needs-score`, `.score-pending`, `.text-contrast-muted`
+- Avoid: `.yellow-bg`, `.big-shadow2`, `.mobile-only-box`
+
+### Media Query Standards
+- Mobile breakpoint: `max-width: 767.98px` (Bootstrap md threshold)
+- Prefer feature queries (e.g., `@supports(backdrop-filter: blur(10px)) {}`) only if a degradation would look broken; otherwise allow graceful fallback.
+
+### Animations
+- Place keyframes once in shared CSS near the bottom under an `/* Animations */` comment.
+- Reuse existing ones (`fade-pulse`, `trophy-shimmer`) before adding new.
+- New animation? Prefix with domain if specific (e.g., `@keyframes player-card-attn`).
+
+### Performance & Specificity Guidelines
+- Keep selectors shallow: `.glass-card h2` acceptable; avoid long descendant chains.
+- Do not use `!important` unless overriding 3rd-party (Bootstrap) or providing a required state override (already used sparingly in glass theme). If you need it repeatedly, restructure the cascade instead.
+- Avoid inline styles except for dynamic values that are hard to express via classes (we now have very few, keep it that way).
+
+### Promoting a Local Style to Shared
+When a pattern appears in a second component:
+1. Move declarations into shared CSS under an appropriate section.
+2. Replace component-local declarations with the new class name.
+3. Delete obsolete local rules.
+
+### Refactoring / Cleanup Workflow
+1. Identify duplication (search for a distinctive token across css files).
+2. Consolidate into shared.
+3. Remove host copies.
+4. Build (web + MAUI) and manually smoke test: navbar toggle, player cards, modals, forms.
+5. Commit with message: `css: consolidate <area> into shared`.
+
+### Accessibility Considerations
+- Maintain minimum 4.5:1 contrast for body text on non-decorative surfaces; use the `.needs-score` pattern as reference for high contrast.
+- Interactive elements must show a visible focus ring (Bootstrap default + any custom outlines). If a custom style suppresses outline, reintroduce `:focus-visible` styling.
+
+### When NOT to Touch Shared CSS
+- A change is experimental or you’re unsure about cross-platform impact → put it in a component `.razor.css` temporarily.
+- A style is purely for a loading screen placeholder (web only) → keep it in web CSS.
+- Platform-specific safe area/resizing concerns → MAUI CSS only.
+
+### Quick Decision Tree
+Adding style for a reusable component? → Shared CSS.
+Tweak only for phone ergonomics? → Try media query in shared first; if conflict, MAUI CSS.
+Visual polish for web loading boot UI? → Web CSS.
+One-off experiment? → Component `.razor.css` (promote later).
+
+### Example: Adding a New Badge Variant
+1. Add variable (if needed) to shared `:root` (e.g., `--badge-accent-bg`).
+2. Add `.badge-accent { background: var(--gradient-secondary); color:#fff; }` to shared CSS near existing badge styles.
+3. Use `<span class="badge badge-accent">…</span>` in any Razor page.
+4. If mobile needs larger tap target, extend with `.badge-accent { padding: .55rem .85rem; }` inside mobile breakpoint media query.
+
+### Example: Creating a Responsive Grid Utility
+Add to shared CSS:
+```
+.grid-auto-fill {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+```
+Then apply `<div class="grid-auto-fill">…</div>` anywhere; no platform override unless a device perf issue emerges.
+
+### Style Review Checklist (Before Commit)
+1. Is this reusable? If yes → shared.
+2. Did I duplicate an existing pattern? If yes → unify instead.
+3. Any new `!important`? Justify or remove.
+4. Built both hosts? (web + MAUI Android or iOS) Ensure no layout regressions.
+5. Checked dark/light contrast on glass surfaces.
+
+Following this guide keeps styling consistent, maintainable, and reduces future refactors.
+
