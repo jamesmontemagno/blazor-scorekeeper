@@ -246,22 +246,79 @@ html, body {
     50% { opacity: 1; }
 }
 
-/* Layout-specific styles moved from web project */
-/* Ensure hamburger toggler is visible (white) on glass background */
-.navbar.navbar-dark .navbar-toggler {
-    border-color: rgba(255,255,255,0.55);
-}
-.navbar.navbar-dark .navbar-toggler .navbar-toggler-icon {
-    /* Force white hamburger bars */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+/* Shared navbar styling (web + MAUI) */
+.navbar {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-base);
 }
 
-/* Optional: tweak brand and nav link contrast */
-.navbar .navbar-brand,
+/* Toggler (hamburger) consistent styling */
+.navbar.navbar-dark .navbar-toggler {
+    border-color: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.08);
+    border-radius: 14px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+}
+.navbar.navbar-dark .navbar-toggler:focus,
+.navbar.navbar-dark .navbar-toggler:hover {
+    outline: none;
+    background: rgba(255,255,255,0.15);
+}
+.navbar.navbar-dark .navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+}
+
+/* Brand & links */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #ffffff !important; /* Force white brand text */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    letter-spacing: .5px;
+    text-decoration: none;
+}
+.navbar-brand:hover { transform: scale(1.02); }
+
 .navbar .nav-link {
     color: #fff !important;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    transition: var(--transition-base);
 }
-.navbar .nav-link:hover { color: #f8f9fa !important; }
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: var(--bs-warning) !important;
+    transform: translateY(-1px);
+}
+
+/* Mobile collapse panel refinement (shared) */
+@media (max-width: 767.98px) {
+    .navbar .navbar-collapse.collapse.show {
+        /* Use standard Bootstrap collapse panel (transparent so body bg shows) */
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+        border-radius: 0;
+        padding: 0.5rem 0;
+        margin-top: 0; /* flush under navbar */
+        box-shadow: none;
+    }
+    .navbar .nav-link { text-shadow: none; }
+}
 
 /* Ensure confetti canvas is always on top */
 canvas[style*="z-index"] {
@@ -315,19 +372,7 @@ canvas[style*="z-index"] {
 }
 
 
-/* Enhanced navbar brand styling */
-.navbar-brand {
-    font-weight: 700;
-    font-size: 1.25rem;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: var(--transition-base);
-}
-
-.navbar-brand:hover {
-    transform: scale(1.02);
-}
+/* (navbar-brand styles consolidated above) */
 
 .trophy-icon {
     font-size: 1.5rem;
