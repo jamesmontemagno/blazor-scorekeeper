@@ -2,6 +2,7 @@
 @using MyScoreBoardShared.Services
 @inject IGameService Game
 @inject ILocalStorageService LocalStorage
+@inject IPlatformService Platform
 @inject NavigationManager Nav
 
 <PageTitle>My Score Keeper</PageTitle>
@@ -54,6 +55,27 @@
         </div>
     </div>
 </div>
+
+@if (Platform.IsWebAssembly)
+{
+    <div class="row g-4 mt-1">
+        <div class="col-12">
+            <div class="glass-card p-4 d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <div class="d-flex align-items-center mb-3 mb-md-0">
+                    <i class="bi bi-apple fs-1 me-3" style="color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.4);"></i>
+                    <div>
+                        <h4 class="mb-1 text-contrast">Download for iOS</h4>
+                        <p class="mb-0 text-contrast-muted">Get the native iOS app for the best mobile experience.</p>
+                    </div>
+                </div>
+                <a class="btn btn-primary" href="https://apps.apple.com/us/app/my-score-keeper-scoreboard/id1191033523" target="_blank" rel="noopener noreferrer" role="button">
+                    <i class="bi bi-download me-2"></i>
+                    Get iOS App
+                </a>
+            </div>
+        </div>
+    </div>
+}
 
 <div class="row g-4 mt-1">
     <div class="col-12">
