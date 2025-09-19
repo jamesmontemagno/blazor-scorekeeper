@@ -25,6 +25,9 @@ public static class MauiProgram
 
 		// Register platform-specific IndexedDb implementation (sqlite)
 		builder.Services.AddSingleton<IIndexedDbService, IndexedDbService>();
+		
+		// Register platform detection service
+		builder.Services.AddSingleton<IPlatformService, PlatformService>();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
