@@ -1,0 +1,2743 @@
+{
+  "settings": {
+    "components": {
+      "code": false,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2026-01-03T15:02:02.773553Z",
+  "analysisEndTime": "2026-01-03T15:02:08.259402Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 3,
+      "issues": 5,
+      "incidents": 107,
+      "effort": 107
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 8,
+        "Optional": 0,
+        "Potential": 99,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 4,
+        "Project": 3,
+        "Api": 100
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "MyScoreBoard/MyScoreBoard.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 6,
+      "properties": {
+        "appName": "MyScoreBoard",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 25,
+        "numberOfCodeFiles": 4,
+        "linesTotal": 5531,
+        "linesOfCode": 223,
+        "totalApiScanned": 218,
+        "minLinesOfCodeToChange": 3,
+        "maxLinesOfCodeToChange": 3
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "436af22b-d170-4457-8dac-d3334cbf6b6e",
+          "ruleId": "NuGet.0002",
+          "projectPath": "MyScoreBoard/MyScoreBoard.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Components.WebAssembly, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly, and replace with new package Microsoft.AspNetCore.Components.WebAssembly 10.0.1",
+              "protected": "Microsoft.AspNetCore.Components.WebAssembly, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly, and replace with new package Microsoft.AspNetCore.Components.WebAssembly 10.0.1"
+            },
+            "kind": "File",
+            "path": "MyScoreBoard/MyScoreBoard.csproj",
+            "snippet": "Microsoft.AspNetCore.Components.WebAssembly, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly, and replace with new package Microsoft.AspNetCore.Components.WebAssembly 10.0.1",
+            "protectedSnippet": "Microsoft.AspNetCore.Components.WebAssembly, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly, and replace with new package Microsoft.AspNetCore.Components.WebAssembly 10.0.1",
+            "label": "Microsoft.AspNetCore.Components.WebAssembly 9.0.6",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Components.WebAssembly",
+              "PackageVersion": "9.0.6",
+              "PackageNewVersion": "10.0.1",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "7a67d4d2-2436-43d9-8ef0-b73b509b0dc5",
+          "ruleId": "NuGet.0002",
+          "projectPath": "MyScoreBoard/MyScoreBoard.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Components.WebAssembly.DevServer, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly.DevServer, and replace with new package Microsoft.AspNetCore.Components.WebAssembly.DevServer 10.0.1",
+              "protected": "Microsoft.AspNetCore.Components.WebAssembly.DevServer, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly.DevServer, and replace with new package Microsoft.AspNetCore.Components.WebAssembly.DevServer 10.0.1"
+            },
+            "kind": "File",
+            "path": "MyScoreBoard/MyScoreBoard.csproj",
+            "snippet": "Microsoft.AspNetCore.Components.WebAssembly.DevServer, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly.DevServer, and replace with new package Microsoft.AspNetCore.Components.WebAssembly.DevServer 10.0.1",
+            "protectedSnippet": "Microsoft.AspNetCore.Components.WebAssembly.DevServer, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.WebAssembly.DevServer, and replace with new package Microsoft.AspNetCore.Components.WebAssembly.DevServer 10.0.1",
+            "label": "Microsoft.AspNetCore.Components.WebAssembly.DevServer 9.0.6",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Components.WebAssembly.DevServer",
+              "PackageVersion": "9.0.6",
+              "PackageNewVersion": "10.0.1",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "64dd759a-e4a0-435d-94d6-50148dd617f6",
+          "ruleId": "Project.0002",
+          "projectPath": "MyScoreBoard/MyScoreBoard.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "MyScoreBoard/MyScoreBoard.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "93cac6d1-2e1d-4341-8b9f-2cb0f4c40e9a",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "MyScoreBoard/MyScoreBoard.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "MyScoreBoard/Program.cs",
+            "snippet": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 10,
+            "column": 0
+          }
+        },
+        {
+          "incidentId": "70449151-c989-492f-af76-57e81d8896c7",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "MyScoreBoard/MyScoreBoard.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoard/Program.cs",
+            "snippet": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 10,
+            "column": 0
+          }
+        },
+        {
+          "incidentId": "84269120-2ed2-4094-bb69-49a6a3230d0d",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "MyScoreBoard/MyScoreBoard.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "MyScoreBoard/Program.cs",
+            "snippet": "builder.Services.AddScoped(sp =\u003E new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 10,
+            "column": 0
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 99,
+      "properties": {
+        "appName": "MyScoreBoardMaui",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0-android",
+          "net9.0-ios",
+          "net9.0-maccatalyst"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 0,
+        "numberOfCodeFiles": 0,
+        "linesTotal": 0,
+        "linesOfCode": 0,
+        "totalApiScanned": 436,
+        "minLinesOfCodeToChange": 97,
+        "maxLinesOfCodeToChange": 97
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "4a3d45ab-8c6d-4e8f-ba82-77b5ba07f43e",
+          "ruleId": "NuGet.0002",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Logging.Debug, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Debug, and replace with new package Microsoft.Extensions.Logging.Debug 10.0.1",
+              "protected": "Microsoft.Extensions.Logging.Debug, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Debug, and replace with new package Microsoft.Extensions.Logging.Debug 10.0.1"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+            "snippet": "Microsoft.Extensions.Logging.Debug, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Debug, and replace with new package Microsoft.Extensions.Logging.Debug 10.0.1",
+            "protectedSnippet": "Microsoft.Extensions.Logging.Debug, 9.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Debug, and replace with new package Microsoft.Extensions.Logging.Debug 10.0.1",
+            "label": "Microsoft.Extensions.Logging.Debug 9.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Logging.Debug",
+              "PackageVersion": "9.0.0",
+              "PackageNewVersion": "10.0.1",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "1d709f59-5ba3-4c13-8955-9563773977ee",
+          "ruleId": "Project.0002",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0-android;net9.0-ios;net9.0-maccatalyst\nRecommended target framework: net9.0-android;net9.0-ios;net9.0-maccatalyst;net10.0-ios;net10.0-android;net10.0-maccatalyst",
+              "protected": "Current target framework: net9.0-android;net9.0-ios;net9.0-maccatalyst\nRecommended target framework: net9.0-android;net9.0-ios;net9.0-maccatalyst;net10.0-ios;net10.0-android;net10.0-maccatalyst"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+            "snippet": "Current target framework: net9.0-android;net9.0-ios;net9.0-maccatalyst\nRecommended target framework: net9.0-android;net9.0-ios;net9.0-maccatalyst;net10.0-ios;net10.0-android;net10.0-maccatalyst",
+            "protectedSnippet": "Current target framework: net9.0-android;net9.0-ios;net9.0-maccatalyst\nRecommended target framework: net9.0-android;net9.0-ios;net9.0-maccatalyst;net10.0-ios;net10.0-android;net10.0-maccatalyst",
+            "properties": {
+              "CurrentTargetFramework": "net9.0-android;net9.0-ios;net9.0-maccatalyst",
+              "RecommendedTargetFramework": "net9.0-android;net9.0-ios;net9.0-maccatalyst;net10.0-ios;net10.0-android;net10.0-maccatalyst"
+            }
+          }
+        },
+        {
+          "incidentId": "2da87f54-1e66-420e-9b16-b6649ff57792",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "private static bool ShouldUseSetter(BindingMode mode)",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "private static bool ShouldUseSetter(BindingMode mode)",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 24,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "e219d1e0-f460-412e-a1f9-75c343880485",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.Default",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.Default",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 27,
+            "column": 15
+          }
+        },
+        {
+          "incidentId": "751391e2-886e-46e1-8a93-e8204b75ef88",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.Default",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.Default",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 27,
+            "column": 15
+          }
+        },
+        {
+          "incidentId": "7bf347ec-0305-44a0-8b8d-fd23ffd66ff7",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.Default",
+              "protected": "F:Microsoft.Maui.Controls.BindingMode.Default"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.Default",
+            "protectedSnippet": "F:Microsoft.Maui.Controls.BindingMode.Default",
+            "label": "F:Microsoft.Maui.Controls.BindingMode.Default",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 27,
+            "column": 15
+          }
+        },
+        {
+          "incidentId": "75e3bf25-9ab8-412f-84ce-9cf8d2c1e11a",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.TwoWay",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.TwoWay",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 26,
+            "column": 15
+          }
+        },
+        {
+          "incidentId": "4a579818-4fd9-42e0-afa8-ffd750c23bb0",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.TwoWay",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.TwoWay",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 26,
+            "column": 15
+          }
+        },
+        {
+          "incidentId": "e4a399cd-d7d8-4c1a-982b-4d76ee2bcea3",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.TwoWay",
+              "protected": "F:Microsoft.Maui.Controls.BindingMode.TwoWay"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.TwoWay",
+            "protectedSnippet": "F:Microsoft.Maui.Controls.BindingMode.TwoWay",
+            "label": "F:Microsoft.Maui.Controls.BindingMode.TwoWay",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 26,
+            "column": 15
+          }
+        },
+        {
+          "incidentId": "81027817-1fc6-4de5-890b-b7edfc2ff90a",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.OneWayToSource",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.OneWayToSource",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 25,
+            "column": 14
+          }
+        },
+        {
+          "incidentId": "319f1e06-9406-4247-98aa-af78e2f76ef3",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.OneWayToSource",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.OneWayToSource",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 25,
+            "column": 14
+          }
+        },
+        {
+          "incidentId": "66f2b944-4557-4103-88b6-a312ea71f3df",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.OneWayToSource",
+              "protected": "F:Microsoft.Maui.Controls.BindingMode.OneWayToSource"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.OneWayToSource",
+            "protectedSnippet": "F:Microsoft.Maui.Controls.BindingMode.OneWayToSource",
+            "label": "F:Microsoft.Maui.Controls.BindingMode.OneWayToSource",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 25,
+            "column": 14
+          }
+        },
+        {
+          "incidentId": "1dce635d-fcad-428a-90b9-dd68fb71a1f9",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "private static bool ShouldUseSetter(BindingMode mode, BindableProperty bindableProperty)",
+              "protected": "T:Microsoft.Maui.Controls.BindableProperty"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "private static bool ShouldUseSetter(BindingMode mode, BindableProperty bindableProperty)",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindableProperty",
+            "label": "T:Microsoft.Maui.Controls.BindableProperty",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 17,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "5e9299e0-9827-4078-a4d1-a8b4b1df9885",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "private static bool ShouldUseSetter(BindingMode mode, BindableProperty bindableProperty)",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "private static bool ShouldUseSetter(BindingMode mode, BindableProperty bindableProperty)",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 17,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "91d7d16e-343e-4bb3-8034-b5f3ff57df6f",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.TwoWay",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.TwoWay",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 22,
+            "column": 48
+          }
+        },
+        {
+          "incidentId": "d77b1f4c-64f8-4b8e-8aeb-997d10d2ca08",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.TwoWay",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.TwoWay",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 22,
+            "column": 48
+          }
+        },
+        {
+          "incidentId": "947545a3-54e7-438e-a3c1-bc957a0a6290",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.TwoWay",
+              "protected": "F:Microsoft.Maui.Controls.BindingMode.TwoWay"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.TwoWay",
+            "protectedSnippet": "F:Microsoft.Maui.Controls.BindingMode.TwoWay",
+            "label": "F:Microsoft.Maui.Controls.BindingMode.TwoWay",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 22,
+            "column": 48
+          }
+        },
+        {
+          "incidentId": "cf31ded4-f266-4fac-ad52-43db9e19e0a2",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "bindableProperty.DefaultBindingMode",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "bindableProperty.DefaultBindingMode",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 22,
+            "column": 9
+          }
+        },
+        {
+          "incidentId": "03cb99b5-bea1-47f4-a3e8-4427ec049734",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "bindableProperty.DefaultBindingMode",
+              "protected": "P:Microsoft.Maui.Controls.BindableProperty.DefaultBindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "bindableProperty.DefaultBindingMode",
+            "protectedSnippet": "P:Microsoft.Maui.Controls.BindableProperty.DefaultBindingMode",
+            "label": "P:Microsoft.Maui.Controls.BindableProperty.DefaultBindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 22,
+            "column": 9
+          }
+        },
+        {
+          "incidentId": "780d5aa7-cecf-4730-b0b8-15ee7e221003",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.OneWayToSource",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.OneWayToSource",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 21,
+            "column": 48
+          }
+        },
+        {
+          "incidentId": "8f6bdf8b-4686-4c42-9ed5-0686bb177efc",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.OneWayToSource",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.OneWayToSource",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 21,
+            "column": 48
+          }
+        },
+        {
+          "incidentId": "a4164dd9-1c85-4083-bb7b-535227989585",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.OneWayToSource",
+              "protected": "F:Microsoft.Maui.Controls.BindingMode.OneWayToSource"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.OneWayToSource",
+            "protectedSnippet": "F:Microsoft.Maui.Controls.BindingMode.OneWayToSource",
+            "label": "F:Microsoft.Maui.Controls.BindingMode.OneWayToSource",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 21,
+            "column": 48
+          }
+        },
+        {
+          "incidentId": "ae472e99-f307-4a1d-a4c7-13d9065d234d",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "bindableProperty.DefaultBindingMode",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "bindableProperty.DefaultBindingMode",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 21,
+            "column": 9
+          }
+        },
+        {
+          "incidentId": "7f6bf5af-b8b5-43c4-94f5-8c4c7e3c4497",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "bindableProperty.DefaultBindingMode",
+              "protected": "P:Microsoft.Maui.Controls.BindableProperty.DefaultBindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "bindableProperty.DefaultBindingMode",
+            "protectedSnippet": "P:Microsoft.Maui.Controls.BindableProperty.DefaultBindingMode",
+            "label": "P:Microsoft.Maui.Controls.BindableProperty.DefaultBindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 21,
+            "column": 9
+          }
+        },
+        {
+          "incidentId": "095d4340-37ec-433a-8eb8-8e42d5ebb5fe",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.Default",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.Default",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 20,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "0e721068-bf78-49e4-8db9-1590964021dc",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.Default",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.Default",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 20,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "0438008b-23e3-45f7-b708-4285f4c44cb8",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.Default",
+              "protected": "F:Microsoft.Maui.Controls.BindingMode.Default"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.Default",
+            "protectedSnippet": "F:Microsoft.Maui.Controls.BindingMode.Default",
+            "label": "F:Microsoft.Maui.Controls.BindingMode.Default",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 20,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "ce69d65e-5387-4cae-9f32-eb6b5459d2cd",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.TwoWay",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.TwoWay",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 19,
+            "column": 15
+          }
+        },
+        {
+          "incidentId": "cff3e7ce-b1e2-43d7-8cb4-1ca3d2a3d241",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.TwoWay",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.TwoWay",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 19,
+            "column": 15
+          }
+        },
+        {
+          "incidentId": "ab113cab-9b87-4320-8e2b-3a732d41151c",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.TwoWay",
+              "protected": "F:Microsoft.Maui.Controls.BindingMode.TwoWay"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.TwoWay",
+            "protectedSnippet": "F:Microsoft.Maui.Controls.BindingMode.TwoWay",
+            "label": "F:Microsoft.Maui.Controls.BindingMode.TwoWay",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 19,
+            "column": 15
+          }
+        },
+        {
+          "incidentId": "a4acd674-6151-4688-bcad-2a05c416cc2f",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.OneWayToSource",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.OneWayToSource",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 18,
+            "column": 14
+          }
+        },
+        {
+          "incidentId": "10f887ea-0c19-41f3-924a-982fdffdc8d4",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.OneWayToSource",
+              "protected": "T:Microsoft.Maui.Controls.BindingMode"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.OneWayToSource",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.BindingMode",
+            "label": "T:Microsoft.Maui.Controls.BindingMode",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 18,
+            "column": 14
+          }
+        },
+        {
+          "incidentId": "4262a916-8a83-4e6e-924e-8757154f9232",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "BindingMode.OneWayToSource",
+              "protected": "F:Microsoft.Maui.Controls.BindingMode.OneWayToSource"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.BindingSourceGen/Microsoft.Maui.Controls.BindingSourceGen.BindingSourceGenerator/GeneratedBindingInterceptorsCommon.g.cs",
+            "snippet": "BindingMode.OneWayToSource",
+            "protectedSnippet": "F:Microsoft.Maui.Controls.BindingMode.OneWayToSource",
+            "label": "F:Microsoft.Maui.Controls.BindingMode.OneWayToSource",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 18,
+            "column": 14
+          }
+        },
+        {
+          "incidentId": "e37a7548-1f2e-4d63-818a-1279f1cfd370",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Preferences.Set(\u0022lastPlayers\u0022, playersJson);",
+              "protected": "T:Microsoft.Maui.Storage.Preferences"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "Preferences.Set(\u0022lastPlayers\u0022, playersJson);",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.Preferences",
+            "label": "T:Microsoft.Maui.Storage.Preferences",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 72,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "686ab429-12c1-4597-a56b-c0fdb1342d9a",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Preferences.Set(\u0022lastPlayers\u0022, playersJson);",
+              "protected": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.String)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "Preferences.Set(\u0022lastPlayers\u0022, playersJson);",
+            "protectedSnippet": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.String)",
+            "label": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.String)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 72,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "533adf25-a486-495a-9a23-ce2cd0ba66d1",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var playersJson = Preferences.Get(\u0022lastPlayers\u0022, string.Empty);",
+              "protected": "T:Microsoft.Maui.Storage.Preferences"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "var playersJson = Preferences.Get(\u0022lastPlayers\u0022, string.Empty);",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.Preferences",
+            "label": "T:Microsoft.Maui.Storage.Preferences",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 54,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "4b406626-c20b-4866-9cc9-58a90725c2bd",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var playersJson = Preferences.Get(\u0022lastPlayers\u0022, string.Empty);",
+              "protected": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.String)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "var playersJson = Preferences.Get(\u0022lastPlayers\u0022, string.Empty);",
+            "protectedSnippet": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.String)",
+            "label": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.String)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 54,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "e8936322-4355-4249-b4cb-05da53ec7533",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Preferences.Set(\u0022lastGameName\u0022, gameName ?? string.Empty);",
+              "protected": "T:Microsoft.Maui.Storage.Preferences"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "Preferences.Set(\u0022lastGameName\u0022, gameName ?? string.Empty);",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.Preferences",
+            "label": "T:Microsoft.Maui.Storage.Preferences",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 46,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "8fef87e3-71ae-4fe1-9665-5d97f51004b7",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Preferences.Set(\u0022lastGameName\u0022, gameName ?? string.Empty);",
+              "protected": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.String)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "Preferences.Set(\u0022lastGameName\u0022, gameName ?? string.Empty);",
+            "protectedSnippet": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.String)",
+            "label": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.String)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 46,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "72474ea2-74e7-424d-be39-10ede85c9e5c",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var value = Preferences.Get(\u0022lastGameName\u0022, string.Empty);",
+              "protected": "T:Microsoft.Maui.Storage.Preferences"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "var value = Preferences.Get(\u0022lastGameName\u0022, string.Empty);",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.Preferences",
+            "label": "T:Microsoft.Maui.Storage.Preferences",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 40,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "1544ffc0-dfcd-4e3d-a480-8d4991032de9",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var value = Preferences.Get(\u0022lastGameName\u0022, string.Empty);",
+              "protected": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.String)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "var value = Preferences.Get(\u0022lastGameName\u0022, string.Empty);",
+            "protectedSnippet": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.String)",
+            "label": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.String)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 40,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "a6492bc3-1612-4a8d-b294-8b849da24549",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Preferences.Remove(key);",
+              "protected": "T:Microsoft.Maui.Storage.Preferences"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "Preferences.Remove(key);",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.Preferences",
+            "label": "T:Microsoft.Maui.Storage.Preferences",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 34,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "ac9f5854-c0de-4f9b-a79c-5fe0e2eb8396",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Preferences.Remove(key);",
+              "protected": "M:Microsoft.Maui.Storage.Preferences.Remove(System.String)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "Preferences.Remove(key);",
+            "protectedSnippet": "M:Microsoft.Maui.Storage.Preferences.Remove(System.String)",
+            "label": "M:Microsoft.Maui.Storage.Preferences.Remove(System.String)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 34,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "278ecd11-16b8-40ca-bc4f-a698e18d326e",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Preferences.Set(key, value ?? string.Empty);",
+              "protected": "T:Microsoft.Maui.Storage.Preferences"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "Preferences.Set(key, value ?? string.Empty);",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.Preferences",
+            "label": "T:Microsoft.Maui.Storage.Preferences",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 28,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "3a7a2958-e304-48bc-b60a-040bc0efaf95",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Preferences.Set(key, value ?? string.Empty);",
+              "protected": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.String)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "Preferences.Set(key, value ?? string.Empty);",
+            "protectedSnippet": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.String)",
+            "label": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.String)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 28,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "9f0f4da7-27cc-4f83-a620-1fb41667b5e7",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var value = Preferences.Get(key, string.Empty);",
+              "protected": "T:Microsoft.Maui.Storage.Preferences"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "var value = Preferences.Get(key, string.Empty);",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.Preferences",
+            "label": "T:Microsoft.Maui.Storage.Preferences",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 22,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "1a47693b-77af-4341-832b-745de21a2d32",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var value = Preferences.Get(key, string.Empty);",
+              "protected": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.String)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "var value = Preferences.Get(key, string.Empty);",
+            "protectedSnippet": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.String)",
+            "label": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.String)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 22,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "241153b5-aec8-4ddd-bb05-eb2efd6f6cb7",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Preferences.Set(\u0022hasActiveGame\u0022, hasActive);",
+              "protected": "T:Microsoft.Maui.Storage.Preferences"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "Preferences.Set(\u0022hasActiveGame\u0022, hasActive);",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.Preferences",
+            "label": "T:Microsoft.Maui.Storage.Preferences",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 16,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "b8708263-a536-4e77-b284-acb90687f7c6",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Preferences.Set(\u0022hasActiveGame\u0022, hasActive);",
+              "protected": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.Boolean)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "Preferences.Set(\u0022hasActiveGame\u0022, hasActive);",
+            "protectedSnippet": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.Boolean)",
+            "label": "M:Microsoft.Maui.Storage.Preferences.Set(System.String,System.Boolean)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 16,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "32cad716-b470-4a1a-9e8a-f8125a92f128",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var value = Preferences.Get(\u0022hasActiveGame\u0022, false);",
+              "protected": "T:Microsoft.Maui.Storage.Preferences"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "var value = Preferences.Get(\u0022hasActiveGame\u0022, false);",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.Preferences",
+            "label": "T:Microsoft.Maui.Storage.Preferences",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 10,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "e5ccff97-e129-4768-87e9-cb124766adb5",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var value = Preferences.Get(\u0022hasActiveGame\u0022, false);",
+              "protected": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.Boolean)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/LocalStorageService.cs",
+            "snippet": "var value = Preferences.Get(\u0022hasActiveGame\u0022, false);",
+            "protectedSnippet": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.Boolean)",
+            "label": "M:Microsoft.Maui.Storage.Preferences.Get(System.String,System.Boolean)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 10,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "32fa899c-d74c-4616-b097-639db9b7689e",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var folder = FileSystem.AppDataDirectory;",
+              "protected": "T:Microsoft.Maui.Storage.FileSystem"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/IndexedDbService.cs",
+            "snippet": "var folder = FileSystem.AppDataDirectory;",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.FileSystem",
+            "label": "T:Microsoft.Maui.Storage.FileSystem",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 17,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "1e2a4aba-bd8a-415b-958d-681ee67c2ae5",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var folder = FileSystem.AppDataDirectory;",
+              "protected": "P:Microsoft.Maui.Storage.FileSystem.AppDataDirectory"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/IndexedDbService.cs",
+            "snippet": "var folder = FileSystem.AppDataDirectory;",
+            "protectedSnippet": "P:Microsoft.Maui.Storage.FileSystem.AppDataDirectory",
+            "label": "P:Microsoft.Maui.Storage.FileSystem.AppDataDirectory",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 17,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "952c4786-4a3f-442a-b0bc-3415d20ecef5",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var folder = FileSystem.AppDataDirectory;",
+              "protected": "T:Microsoft.Maui.Storage.FileSystem"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/IndexedDbService.cs",
+            "snippet": "var folder = FileSystem.AppDataDirectory;",
+            "protectedSnippet": "T:Microsoft.Maui.Storage.FileSystem",
+            "label": "T:Microsoft.Maui.Storage.FileSystem",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 17,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "5f2af59f-2895-445a-acdc-89224d12fa24",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Essentials, 8.0.40. Add package reference to Microsoft.Maui.Essentials, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var folder = FileSystem.AppDataDirectory;",
+              "protected": "P:Microsoft.Maui.Storage.FileSystem.AppDataDirectory"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Services/IndexedDbService.cs",
+            "snippet": "var folder = FileSystem.AppDataDirectory;",
+            "protectedSnippet": "P:Microsoft.Maui.Storage.FileSystem.AppDataDirectory",
+            "label": "P:Microsoft.Maui.Storage.FileSystem.AppDataDirectory",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Essentials",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 17,
+            "column": 8
+          }
+        },
+        {
+          "incidentId": "e3abc520-cc04-4b4b-bbe0-6bcfd3c1faa9",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "protected override MauiApp CreateMauiApp()",
+              "protected": "T:Microsoft.Maui.Hosting.MauiApp"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Platforms/Android/MainApplication.cs",
+            "snippet": "protected override MauiApp CreateMauiApp()",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.MauiApp",
+            "label": "T:Microsoft.Maui.Hosting.MauiApp",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 13,
+            "column": 1
+          }
+        },
+        {
+          "incidentId": "ab9f6a95-1998-4613-aa4d-7848c1305fb6",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "MauiProgram.CreateMauiApp()",
+              "protected": "T:Microsoft.Maui.Hosting.MauiApp"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Platforms/Android/MainApplication.cs",
+            "snippet": "MauiProgram.CreateMauiApp()",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.MauiApp",
+            "label": "T:Microsoft.Maui.Hosting.MauiApp",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 13,
+            "column": 47
+          }
+        },
+        {
+          "incidentId": "8504d202-f8a3-4cb6-aa5d-585cd6d919c9",
+          "ruleId": "Api.0001",
+          "description": "API is unavailable in net8.0 ",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(handle, ownership)",
+              "protected": "M:Microsoft.Maui.MauiApplication.#ctor(System.IntPtr,Android.Runtime.JniHandleOwnership)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Platforms/Android/MainApplication.cs",
+            "snippet": ": base(handle, ownership)",
+            "protectedSnippet": "M:Microsoft.Maui.MauiApplication.#ctor(System.IntPtr,Android.Runtime.JniHandleOwnership)",
+            "label": "M:Microsoft.Maui.MauiApplication.#ctor(System.IntPtr,Android.Runtime.JniHandleOwnership)",
+            "line": 9,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "72495499-ccca-4fd8-ae16-ddc01976013e",
+          "ruleId": "Api.0001",
+          "description": "API is unavailable in net8.0 ",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(handle, ownership)",
+              "protected": "M:Microsoft.Maui.MauiApplication.#ctor(System.IntPtr,Android.Runtime.JniHandleOwnership)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Platforms/Android/MainApplication.cs",
+            "snippet": ": base(handle, ownership)",
+            "protectedSnippet": "M:Microsoft.Maui.MauiApplication.#ctor(System.IntPtr,Android.Runtime.JniHandleOwnership)",
+            "label": "M:Microsoft.Maui.MauiApplication.#ctor(System.IntPtr,Android.Runtime.JniHandleOwnership)",
+            "line": 9,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "7816b740-0940-4aa9-ad0a-e345b8428ab8",
+          "ruleId": "Api.0001",
+          "description": "API is unavailable in net8.0 ",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "MauiApplication",
+              "protected": "T:Microsoft.Maui.MauiApplication"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Platforms/Android/MainApplication.cs",
+            "snippet": "MauiApplication",
+            "protectedSnippet": "T:Microsoft.Maui.MauiApplication",
+            "label": "T:Microsoft.Maui.MauiApplication",
+            "line": 6,
+            "column": 31
+          }
+        },
+        {
+          "incidentId": "78a06f0c-4ee8-4dfd-be6f-a952b43c3084",
+          "ruleId": "Api.0001",
+          "description": "API is unavailable in net8.0 ",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "MauiAppCompatActivity",
+              "protected": "M:Microsoft.Maui.MauiAppCompatActivity.#ctor"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Platforms/Android/MainActivity.cs",
+            "snippet": "MauiAppCompatActivity",
+            "protectedSnippet": "M:Microsoft.Maui.MauiAppCompatActivity.#ctor",
+            "label": "M:Microsoft.Maui.MauiAppCompatActivity.#ctor",
+            "line": 7,
+            "column": 28
+          }
+        },
+        {
+          "incidentId": "ab0420db-dc26-4d0b-abd6-78d8ab227092",
+          "ruleId": "Api.0001",
+          "description": "API is unavailable in net8.0 ",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "MauiAppCompatActivity",
+              "protected": "T:Microsoft.Maui.MauiAppCompatActivity"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/Platforms/Android/MainActivity.cs",
+            "snippet": "MauiAppCompatActivity",
+            "protectedSnippet": "T:Microsoft.Maui.MauiAppCompatActivity",
+            "label": "T:Microsoft.Maui.MauiAppCompatActivity",
+            "line": 7,
+            "column": 28
+          }
+        },
+        {
+          "incidentId": "a2c6085b-f28a-40d4-860c-177a322ed117",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "public static MauiApp CreateMauiApp()",
+              "protected": "T:Microsoft.Maui.Hosting.MauiApp"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "public static MauiApp CreateMauiApp()",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.MauiApp",
+            "label": "T:Microsoft.Maui.Hosting.MauiApp",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 8,
+            "column": 1
+          }
+        },
+        {
+          "incidentId": "205834b1-e80b-4a6e-985a-af408eae161e",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return builder.Build();",
+              "protected": "T:Microsoft.Maui.Hosting.MauiApp"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "return builder.Build();",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.MauiApp",
+            "label": "T:Microsoft.Maui.Hosting.MauiApp",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 36,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "a6c18460-10d6-45b9-a3ea-7c028100f0f3",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return builder.Build();",
+              "protected": "M:Microsoft.Maui.Hosting.MauiAppBuilder.Build"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "return builder.Build();",
+            "protectedSnippet": "M:Microsoft.Maui.Hosting.MauiAppBuilder.Build",
+            "label": "M:Microsoft.Maui.Hosting.MauiAppBuilder.Build",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 36,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "0b6f937a-6206-435c-8b6a-a6a6fa7117ae",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Logging.AddDebug();",
+              "protected": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Logging"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder.Logging.AddDebug();",
+            "protectedSnippet": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Logging",
+            "label": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Logging",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 33,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "a66a03c1-0049-42a9-8431-62bc2eb58ab6",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddBlazorWebViewDeveloperTools();",
+              "protected": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder.Services.AddBlazorWebViewDeveloperTools();",
+            "protectedSnippet": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "label": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 32,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "9f00a690-88ad-4eb6-a320-00be657eb30a",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddSingleton\u003CIPlatformService, PlatformService\u003E();",
+              "protected": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder.Services.AddSingleton\u003CIPlatformService, PlatformService\u003E();",
+            "protectedSnippet": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "label": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 29,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "d04ccec5-1c6a-4f29-9d67-1c41bf9f1e63",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddSingleton\u003CIIndexedDbService, IndexedDbService\u003E();",
+              "protected": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder.Services.AddSingleton\u003CIIndexedDbService, IndexedDbService\u003E();",
+            "protectedSnippet": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "label": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 26,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "06e4265c-b4e2-4ae7-a85c-af773ff4cd08",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddSingleton\u003CILocalStorageService, LocalStorageService\u003E();",
+              "protected": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder.Services.AddSingleton\u003CILocalStorageService, LocalStorageService\u003E();",
+            "protectedSnippet": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "label": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 23,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "5991bfc6-c83b-40ad-b599-8140a86c3c8f",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddSingleton\u003CIGameService, GameService\u003E();",
+              "protected": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder.Services.AddSingleton\u003CIGameService, GameService\u003E();",
+            "protectedSnippet": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "label": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 20,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "a8040824-dab5-4bad-b8d8-d07fb97ac65e",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddMauiBlazorWebView();",
+              "protected": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder.Services.AddMauiBlazorWebView();",
+            "protectedSnippet": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "label": "P:Microsoft.Maui.Hosting.MauiAppBuilder.Services",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 18,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "14a489f3-953f-457e-8f0f-5ba53f5e793f",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "fonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);",
+              "protected": "T:Microsoft.Maui.Hosting.FontCollectionExtensions"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "fonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.FontCollectionExtensions",
+            "label": "T:Microsoft.Maui.Hosting.FontCollectionExtensions",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 15,
+            "column": 4
+          }
+        },
+        {
+          "incidentId": "bd4cf695-62e3-4df0-a3e8-89d557081910",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "fonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);",
+              "protected": "T:Microsoft.Maui.Hosting.IFontCollection"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "fonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.IFontCollection",
+            "label": "T:Microsoft.Maui.Hosting.IFontCollection",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 15,
+            "column": 4
+          }
+        },
+        {
+          "incidentId": "c712fcf7-68db-41e5-accc-0475527f5776",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "fonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);",
+              "protected": "M:Microsoft.Maui.Hosting.FontCollectionExtensions.AddFont(Microsoft.Maui.Hosting.IFontCollection,System.String,System.String)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "fonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);",
+            "protectedSnippet": "M:Microsoft.Maui.Hosting.FontCollectionExtensions.AddFont(Microsoft.Maui.Hosting.IFontCollection,System.String,System.String)",
+            "label": "M:Microsoft.Maui.Hosting.FontCollectionExtensions.AddFont(Microsoft.Maui.Hosting.IFontCollection,System.String,System.String)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 15,
+            "column": 4
+          }
+        },
+        {
+          "incidentId": "031c3631-96c0-41c9-a641-ac349ae9ce28",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+              "protected": "T:Microsoft.Maui.Controls.Hosting.AppHostBuilderExtensions"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.Hosting.AppHostBuilderExtensions",
+            "label": "T:Microsoft.Maui.Controls.Hosting.AppHostBuilderExtensions",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 11,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "5bf7aaa0-ab6a-493c-b4e2-f2330d69e0d9",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+              "protected": "T:Microsoft.Maui.Hosting.MauiAppBuilder"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.MauiAppBuilder",
+            "label": "T:Microsoft.Maui.Hosting.MauiAppBuilder",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 11,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "60d3ed5d-a987-4f43-a510-85ac766a74e4",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Xaml, 8.0.40. Add package reference to Microsoft.Maui.Controls.Xaml, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+              "protected": "M:Microsoft.Maui.Controls.Hosting.AppHostBuilderExtensions.UseMauiApp\u0060\u00601(Microsoft.Maui.Hosting.MauiAppBuilder)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+            "protectedSnippet": "M:Microsoft.Maui.Controls.Hosting.AppHostBuilderExtensions.UseMauiApp\u0060\u00601(Microsoft.Maui.Hosting.MauiAppBuilder)",
+            "label": "M:Microsoft.Maui.Controls.Hosting.AppHostBuilderExtensions.UseMauiApp\u0060\u00601(Microsoft.Maui.Hosting.MauiAppBuilder)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Xaml",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 11,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "51f1d757-ce60-4af3-9b86-011a1d8b0fcb",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+              "protected": "T:Microsoft.Maui.Hosting.FontsMauiAppBuilderExtensions"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.FontsMauiAppBuilderExtensions",
+            "label": "T:Microsoft.Maui.Hosting.FontsMauiAppBuilderExtensions",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 11,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "1ea8f7b3-1b69-4db1-b86f-c9068536c2b8",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+              "protected": "T:Microsoft.Maui.Hosting.MauiAppBuilder"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.MauiAppBuilder",
+            "label": "T:Microsoft.Maui.Hosting.MauiAppBuilder",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 11,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "0a252c66-ad34-40f8-a886-763a33ca609c",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+              "protected": "M:Microsoft.Maui.Hosting.FontsMauiAppBuilderExtensions.ConfigureFonts(Microsoft.Maui.Hosting.MauiAppBuilder,System.Action{Microsoft.Maui.Hosting.IFontCollection})"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "builder\r\n\t\t\t.UseMauiApp\u003CApp\u003E()\r\n\t\t\t.ConfigureFonts(fonts =\u003E\r\n\t\t\t{\r\n\t\t\t\tfonts.AddFont(\u0022OpenSans-Regular.ttf\u0022, \u0022OpenSansRegular\u0022);\r\n\t\t\t});",
+            "protectedSnippet": "M:Microsoft.Maui.Hosting.FontsMauiAppBuilderExtensions.ConfigureFonts(Microsoft.Maui.Hosting.MauiAppBuilder,System.Action{Microsoft.Maui.Hosting.IFontCollection})",
+            "label": "M:Microsoft.Maui.Hosting.FontsMauiAppBuilderExtensions.ConfigureFonts(Microsoft.Maui.Hosting.MauiAppBuilder,System.Action{Microsoft.Maui.Hosting.IFontCollection})",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 11,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "6e0d7702-5a29-41bc-b0e8-e04301d30ecc",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var builder = MauiApp.CreateBuilder();",
+              "protected": "T:Microsoft.Maui.Hosting.MauiApp"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "var builder = MauiApp.CreateBuilder();",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.MauiApp",
+            "label": "T:Microsoft.Maui.Hosting.MauiApp",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 10,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "23c8f27d-57a9-4502-8e10-24d2c43162d5",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var builder = MauiApp.CreateBuilder();",
+              "protected": "T:Microsoft.Maui.Hosting.MauiAppBuilder"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "var builder = MauiApp.CreateBuilder();",
+            "protectedSnippet": "T:Microsoft.Maui.Hosting.MauiAppBuilder",
+            "label": "T:Microsoft.Maui.Hosting.MauiAppBuilder",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 10,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "8b6f4d1a-bac8-4a68-bf59-be0f30527529",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var builder = MauiApp.CreateBuilder();",
+              "protected": "M:Microsoft.Maui.Hosting.MauiApp.CreateBuilder(System.Boolean)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MauiProgram.cs",
+            "snippet": "var builder = MauiApp.CreateBuilder();",
+            "protectedSnippet": "M:Microsoft.Maui.Hosting.MauiApp.CreateBuilder(System.Boolean)",
+            "label": "M:Microsoft.Maui.Hosting.MauiApp.CreateBuilder(System.Boolean)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 10,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "aa0b0fd9-a9fa-4a2e-9121-d884dbe382f2",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "blazorWebView = global::Microsoft.Maui.Controls.NameScopeExtensions.FindByName\u003Cglobal::Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView\u003E(this, \u0022blazorWebView\u0022);",
+              "protected": "T:Microsoft.Maui.Controls.NameScopeExtensions"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.SourceGen/Microsoft.Maui.Controls.SourceGen.CodeBehindGenerator/MainPage.xaml.sg.cs",
+            "snippet": "blazorWebView = global::Microsoft.Maui.Controls.NameScopeExtensions.FindByName\u003Cglobal::Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView\u003E(this, \u0022blazorWebView\u0022);",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.NameScopeExtensions",
+            "label": "T:Microsoft.Maui.Controls.NameScopeExtensions",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 27,
+            "column": 3
+          }
+        },
+        {
+          "incidentId": "9885560e-4d1a-4a04-94f8-0d1c302c3af7",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "blazorWebView = global::Microsoft.Maui.Controls.NameScopeExtensions.FindByName\u003Cglobal::Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView\u003E(this, \u0022blazorWebView\u0022);",
+              "protected": "M:Microsoft.Maui.Controls.NameScopeExtensions.FindByName\u0060\u00601(Microsoft.Maui.Controls.Element,System.String)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.SourceGen/Microsoft.Maui.Controls.SourceGen.CodeBehindGenerator/MainPage.xaml.sg.cs",
+            "snippet": "blazorWebView = global::Microsoft.Maui.Controls.NameScopeExtensions.FindByName\u003Cglobal::Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView\u003E(this, \u0022blazorWebView\u0022);",
+            "protectedSnippet": "M:Microsoft.Maui.Controls.NameScopeExtensions.FindByName\u0060\u00601(Microsoft.Maui.Controls.Element,System.String)",
+            "label": "M:Microsoft.Maui.Controls.NameScopeExtensions.FindByName\u0060\u00601(Microsoft.Maui.Controls.Element,System.String)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 27,
+            "column": 3
+          }
+        },
+        {
+          "incidentId": "a8b90231-5fe8-4a73-8f29-ab3cd81e272c",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Xaml, 8.0.40. Add package reference to Microsoft.Maui.Controls.Xaml, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "global::Microsoft.Maui.Controls.Xaml.Extensions.LoadFromXaml(this, typeof(MainPage));",
+              "protected": "T:Microsoft.Maui.Controls.Xaml.Extensions"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.SourceGen/Microsoft.Maui.Controls.SourceGen.CodeBehindGenerator/MainPage.xaml.sg.cs",
+            "snippet": "global::Microsoft.Maui.Controls.Xaml.Extensions.LoadFromXaml(this, typeof(MainPage));",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.Xaml.Extensions",
+            "label": "T:Microsoft.Maui.Controls.Xaml.Extensions",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Xaml",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 26,
+            "column": 3
+          }
+        },
+        {
+          "incidentId": "9cdabaea-c81b-4c4f-adc4-da247a78cc0b",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "public MainPage()\r\n\t{\r\n\t\tInitializeComponent();\r\n\t}",
+              "protected": "M:Microsoft.Maui.Controls.ContentPage.#ctor"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MainPage.xaml.cs",
+            "snippet": "public MainPage()\r\n\t{\r\n\t\tInitializeComponent();\r\n\t}",
+            "protectedSnippet": "M:Microsoft.Maui.Controls.ContentPage.#ctor",
+            "label": "M:Microsoft.Maui.Controls.ContentPage.#ctor",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 4,
+            "column": 1
+          }
+        },
+        {
+          "incidentId": "d58dd4b5-5c42-49e5-9e98-f01d3c2e82bf",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "public MainPage()\r\n\t{\r\n\t\tInitializeComponent();\r\n\t}",
+              "protected": "M:Microsoft.Maui.Controls.ContentPage.#ctor"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MainPage.xaml.cs",
+            "snippet": "public MainPage()\r\n\t{\r\n\t\tInitializeComponent();\r\n\t}",
+            "protectedSnippet": "M:Microsoft.Maui.Controls.ContentPage.#ctor",
+            "label": "M:Microsoft.Maui.Controls.ContentPage.#ctor",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 4,
+            "column": 1
+          }
+        },
+        {
+          "incidentId": "2020d5f2-11d2-4234-9f9e-2acace0830f6",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "ContentPage",
+              "protected": "T:Microsoft.Maui.Controls.ContentPage"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/MainPage.xaml.cs",
+            "snippet": "ContentPage",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.ContentPage",
+            "label": "T:Microsoft.Maui.Controls.ContentPage",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 2,
+            "column": 32
+          }
+        },
+        {
+          "incidentId": "3ac88b7e-4998-40b0-9445-f1435dc3b5e0",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Xaml, 8.0.40. Add package reference to Microsoft.Maui.Controls.Xaml, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "global::Microsoft.Maui.Controls.Xaml.Extensions.LoadFromXaml(this, typeof(App));",
+              "protected": "T:Microsoft.Maui.Controls.Xaml.Extensions"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/obj/Debug/net9.0-android/Microsoft.Maui.Controls.SourceGen/Microsoft.Maui.Controls.SourceGen.CodeBehindGenerator/App.xaml.sg.cs",
+            "snippet": "global::Microsoft.Maui.Controls.Xaml.Extensions.LoadFromXaml(this, typeof(App));",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.Xaml.Extensions",
+            "label": "T:Microsoft.Maui.Controls.Xaml.Extensions",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Xaml",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 22,
+            "column": 3
+          }
+        },
+        {
+          "incidentId": "2db4a6c4-813f-44f3-8592-6cce4b0ea5b3",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Core, 8.0.40. Add package reference to Microsoft.Maui.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "protected override Window CreateWindow(IActivationState? activationState)",
+              "protected": "T:Microsoft.Maui.IActivationState"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/App.xaml.cs",
+            "snippet": "protected override Window CreateWindow(IActivationState? activationState)",
+            "protectedSnippet": "T:Microsoft.Maui.IActivationState",
+            "label": "T:Microsoft.Maui.IActivationState",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 9,
+            "column": 1
+          }
+        },
+        {
+          "incidentId": "0e73ad21-25f4-4015-8807-375f479b2bd3",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "protected override Window CreateWindow(IActivationState? activationState)",
+              "protected": "T:Microsoft.Maui.Controls.Window"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/App.xaml.cs",
+            "snippet": "protected override Window CreateWindow(IActivationState? activationState)",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.Window",
+            "label": "T:Microsoft.Maui.Controls.Window",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 9,
+            "column": 1
+          }
+        },
+        {
+          "incidentId": "68dc63c5-8de9-44d7-83bf-19f1143f3847",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new Window(new MainPage()) { Title = \u0022MyScoreBoardMaui\u0022 };",
+              "protected": "P:Microsoft.Maui.Controls.Window.Title"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/App.xaml.cs",
+            "snippet": "return new Window(new MainPage()) { Title = \u0022MyScoreBoardMaui\u0022 };",
+            "protectedSnippet": "P:Microsoft.Maui.Controls.Window.Title",
+            "label": "P:Microsoft.Maui.Controls.Window.Title",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 11,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "21134213-1e93-4c9a-b628-9fe58c0b3af8",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new Window(new MainPage()) { Title = \u0022MyScoreBoardMaui\u0022 };",
+              "protected": "T:Microsoft.Maui.Controls.Window"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/App.xaml.cs",
+            "snippet": "return new Window(new MainPage()) { Title = \u0022MyScoreBoardMaui\u0022 };",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.Window",
+            "label": "T:Microsoft.Maui.Controls.Window",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 11,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "ca8cb558-90e4-4dfa-bebf-26ac2f9d5dd5",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new Window(new MainPage()) { Title = \u0022MyScoreBoardMaui\u0022 };",
+              "protected": "M:Microsoft.Maui.Controls.Window.#ctor(Microsoft.Maui.Controls.Page)"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/App.xaml.cs",
+            "snippet": "return new Window(new MainPage()) { Title = \u0022MyScoreBoardMaui\u0022 };",
+            "protectedSnippet": "M:Microsoft.Maui.Controls.Window.#ctor(Microsoft.Maui.Controls.Page)",
+            "label": "M:Microsoft.Maui.Controls.Window.#ctor(Microsoft.Maui.Controls.Page)",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 11,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "98fa3461-d33c-4968-a5ec-5961770ee70a",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "public App()\r\n\t{\r\n\t\tInitializeComponent();\r\n\t}",
+              "protected": "M:Microsoft.Maui.Controls.Application.#ctor"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/App.xaml.cs",
+            "snippet": "public App()\r\n\t{\r\n\t\tInitializeComponent();\r\n\t}",
+            "protectedSnippet": "M:Microsoft.Maui.Controls.Application.#ctor",
+            "label": "M:Microsoft.Maui.Controls.Application.#ctor",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 4,
+            "column": 1
+          }
+        },
+        {
+          "incidentId": "61cbc3ba-f790-4bbf-82bf-77768b19a25d",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "public App()\r\n\t{\r\n\t\tInitializeComponent();\r\n\t}",
+              "protected": "M:Microsoft.Maui.Controls.Application.#ctor"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/App.xaml.cs",
+            "snippet": "public App()\r\n\t{\r\n\t\tInitializeComponent();\r\n\t}",
+            "protectedSnippet": "M:Microsoft.Maui.Controls.Application.#ctor",
+            "label": "M:Microsoft.Maui.Controls.Application.#ctor",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 4,
+            "column": 1
+          }
+        },
+        {
+          "incidentId": "c51b33e7-2b15-4658-a5db-d6aa29dd2f1d",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.Maui.Controls.Core, 8.0.40. Add package reference to Microsoft.Maui.Controls.Core, 8.0.40",
+          "projectPath": "MyScoreBoardMaui/MyScoreBoardMaui.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Application",
+              "protected": "T:Microsoft.Maui.Controls.Application"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardMaui/App.xaml.cs",
+            "snippet": "Application",
+            "protectedSnippet": "T:Microsoft.Maui.Controls.Application",
+            "label": "T:Microsoft.Maui.Controls.Application",
+            "properties": {
+              "PackageId": "Microsoft.Maui.Controls.Core",
+              "PackageNewVersion": "8.0.40"
+            },
+            "line": 2,
+            "column": 27
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "MyScoreBoardShared/MyScoreBoardShared.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "MyScoreBoardShared",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 64,
+        "numberOfCodeFiles": 6,
+        "linesTotal": 66257,
+        "linesOfCode": 321,
+        "totalApiScanned": 439,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "9e1ffb73-98f1-441d-b719-83d1b203249a",
+          "ruleId": "NuGet.0002",
+          "projectPath": "MyScoreBoardShared/MyScoreBoardShared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Components.Web, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Web, and replace with new package Microsoft.AspNetCore.Components.Web 10.0.1",
+              "protected": "Microsoft.AspNetCore.Components.Web, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Web, and replace with new package Microsoft.AspNetCore.Components.Web 10.0.1"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardShared/MyScoreBoardShared.csproj",
+            "snippet": "Microsoft.AspNetCore.Components.Web, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Web, and replace with new package Microsoft.AspNetCore.Components.Web 10.0.1",
+            "protectedSnippet": "Microsoft.AspNetCore.Components.Web, 9.0.6\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Components.Web, and replace with new package Microsoft.AspNetCore.Components.Web 10.0.1",
+            "label": "Microsoft.AspNetCore.Components.Web 9.0.6",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Components.Web",
+              "PackageVersion": "9.0.6",
+              "PackageNewVersion": "10.0.1",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "d3f040ee-fb9a-4e7e-8c31-e03bdbd2b561",
+          "ruleId": "Project.0002",
+          "projectPath": "MyScoreBoardShared/MyScoreBoardShared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "MyScoreBoardShared/MyScoreBoardShared.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0002": {
+      "id": "NuGet.0002",
+      "isFeature": false,
+      "description": "NuGet package upgrade is recommended for selected target framework.\n\nStandard .NET packages are recommended to have versions matching version of .NET that project targets.\n\nSome other packages also are known to work better for selected target frameworks.",
+      "label": "NuGet package upgrade is recommended",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262530",
+          "isCustom": false
+        }
+      ]
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0003": {
+      "id": "Api.0003",
+      "isFeature": false,
+      "description": "API has a behavioral change in selected .NET version: code and binaries may behave differently at runtime without needing recompilation, but the new behavior might be undesirable and require updates.",
+      "label": "Behavioral change in selected .NET version",
+      "severity": "Potential",
+      "effort": 1
+    },
+    "Api.0002": {
+      "id": "Api.0002",
+      "isFeature": false,
+      "description": "API is source incompatible for selected .NET version: requires code changes to compile successfully when targeting a new version, such as removing obsolete APIs or changing method signatures.",
+      "label": "Source incompatible for selected .NET version",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Breaking changes in .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262679",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0001": {
+      "id": "Api.0001",
+      "isFeature": false,
+      "description": "API is binary incompatible for selected .NET version: affects existing binaries, often requiring recompilation, because the API has changed in a way that prevents older binaries from loading or executing.",
+      "label": "Binary incompatible for selected .NET version",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Breaking changes in .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262679",
+          "isCustom": false
+        }
+      ]
+    }
+  }
+}
