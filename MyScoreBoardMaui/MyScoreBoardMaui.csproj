@@ -29,8 +29,8 @@
         <ApplicationId>com.refractored.scoreboard</ApplicationId>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>3.0.0</ApplicationDisplayVersion>
-        <ApplicationVersion>51</ApplicationVersion>
+        <ApplicationDisplayVersion>3.1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>52</ApplicationVersion>
 
         <!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
         <WindowsPackageType>None</WindowsPackageType>
