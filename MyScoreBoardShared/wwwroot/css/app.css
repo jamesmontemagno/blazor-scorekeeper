@@ -12,6 +12,8 @@
     /* Theme-adaptive variables (overridden per theme below) */
     --hero-bg: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
     --hero-color: white;
+    --hero-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --hero-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
     --card-color: white;
     --card-muted-color: rgba(255, 255, 255, 0.9);
     --nav-link-color: #fff;
@@ -83,6 +85,8 @@
     --body-bg: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
     --hero-bg: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
     --hero-color: white;
+    --hero-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --hero-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
     --glass-bg: rgba(255, 255, 255, 0.25);
     --glass-border: rgba(255, 255, 255, 0.18);
     --card-color: white;
@@ -99,6 +103,8 @@
     --body-bg: #f1f5f9;
     --hero-bg: #ffffff;
     --hero-color: #1e293b;
+    --hero-text-shadow: none;
+    --hero-shadow: none;
     --glass-bg: rgba(255, 255, 255, 0.75);
     --glass-border: rgba(0, 0, 0, 0.1);
     --card-color: #1e293b;
@@ -115,6 +121,8 @@
     --body-bg: #0f172a;
     --hero-bg: #1e293b;
     --hero-color: #f1f5f9;
+    --hero-text-shadow: none;
+    --hero-shadow: none;
     --glass-bg: rgba(255, 255, 255, 0.07);
     --glass-border: rgba(255, 255, 255, 0.12);
     --card-color: #f1f5f9;
@@ -133,6 +141,8 @@
         --body-bg: #f1f5f9;
         --hero-bg: #ffffff;
         --hero-color: #1e293b;
+        --hero-text-shadow: none;
+        --hero-shadow: none;
         --glass-bg: rgba(255, 255, 255, 0.75);
         --glass-border: rgba(0, 0, 0, 0.1);
         --card-color: #1e293b;
@@ -150,6 +160,8 @@
         --body-bg: #0f172a;
         --hero-bg: #1e293b;
         --hero-color: #f1f5f9;
+        --hero-text-shadow: none;
+        --hero-shadow: none;
         --glass-bg: rgba(255, 255, 255, 0.07);
         --glass-border: rgba(255, 255, 255, 0.12);
         --card-color: #f1f5f9;
@@ -231,13 +243,13 @@ html, body {
     color: var(--hero-color, white);
     text-align: center;
     border-radius: 20px;
-    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--hero-shadow, 0 20px 25px rgba(0, 0, 0, 0.15));
 }
 
 /* Text contrast utilities */
-.text-contrast { color: white !important; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-.text-contrast-muted { color: rgba(255,255,255,0.9) !important; font-weight:500; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-.text-contrast-white { color: white !important; font-weight:600; }
+.text-contrast { color: var(--hero-color, white) !important; font-weight: 600; text-shadow: var(--hero-text-shadow, none); }
+.text-contrast-muted { color: var(--card-muted-color, rgba(255,255,255,0.9)) !important; font-weight:500; text-shadow: var(--hero-text-shadow, none); }
+.text-contrast-white { color: var(--hero-color, white) !important; font-weight:600; }
 
 /* Player card styling */
 .player-card { cursor:pointer; transition: all 0.3s; background: rgba(255,255,255,0.4) !important; border:2px solid rgba(255,255,255,0.3);} 
