@@ -28,34 +28,34 @@ html, body {
 
 /* Navbar styling now centralized in shared CSS */
 
-/* Web-specific hero enhancements */
+/* Web-specific hero enhancements - font sizes only; colors inherit from shared theme variables */
 .hero h1 {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    color: white !important;
+    text-shadow: var(--hero-text-shadow, none);
+    color: var(--hero-color, white) !important;
 }
 
 .hero h2 {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    color: white !important;
+    text-shadow: var(--hero-text-shadow, none);
+    color: var(--hero-color, white) !important;
 }
 
 .hero p {
     font-size: 1.2rem;
     opacity: 0.95;
     margin-bottom: 2rem;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    color: white !important;
+    text-shadow: var(--hero-text-shadow, none);
+    color: var(--hero-color, white) !important;
 }
 
 .hero .text-muted {
-    color: rgba(255, 255, 255, 0.8) !important;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    color: var(--card-muted-color, rgba(255, 255, 255, 0.8)) !important;
+    text-shadow: var(--hero-text-shadow, none);
 }
 
 /* Web-specific Blazor error UI */
