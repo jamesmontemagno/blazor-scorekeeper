@@ -29,6 +29,9 @@ public static class MauiProgram
 		// Register platform detection service
 		builder.Services.AddSingleton<IPlatformService, PlatformService>();
 
+		// Register theme service
+		builder.Services.AddSingleton<IThemeService, ThemeService>();
+
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();

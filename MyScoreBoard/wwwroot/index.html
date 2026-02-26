@@ -13,6 +13,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="My Score Keeper" />
     <link rel="stylesheet" href="_content/MyScoreBoardShared/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Apply persisted theme immediately to prevent flash -->
+    <script>(function(){var t=localStorage.getItem('appTheme')||'system';document.documentElement.setAttribute('data-theme',t);})();</script>
     <link rel="stylesheet" href="css/app.css" />
     <!-- shared styles from MyScoreBoardShared -->
     <link rel="stylesheet" href="_content/MyScoreBoardShared/css/app.css" />

@@ -16,5 +16,6 @@ builder.Services.AddScoped<IIndexedDbService, IndexedDbService>();
 builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
 builder.Services.AddScoped<IPlatformService, PlatformService>();
+builder.Services.AddScoped<IThemeService, ThemeService>();
 
 await builder.Build().RunAsync();
