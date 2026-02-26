@@ -11,10 +11,14 @@
     --body-bg: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
     /* Theme-adaptive variables (overridden per theme below) */
     --hero-bg: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
+    --hero-color: white;
     --card-color: white;
     --card-muted-color: rgba(255, 255, 255, 0.9);
     --nav-link-color: #fff;
     --label-color: white;
+    --btn-primary-bg: #ff6b6b;
+    --btn-secondary-bg: #4ecdc4;
+    --btn-success-bg: #45b7d1;
 
     /* color tokens shared between hosts */
     --bs-primary: #ff6b6b;
@@ -78,36 +82,48 @@
 [data-theme="fun"] {
     --body-bg: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
     --hero-bg: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
+    --hero-color: white;
     --glass-bg: rgba(255, 255, 255, 0.25);
     --glass-border: rgba(255, 255, 255, 0.18);
     --card-color: white;
     --card-muted-color: rgba(255, 255, 255, 0.9);
     --nav-link-color: #fff;
     --label-color: white;
+    --btn-primary-bg: #ff6b6b;
+    --btn-secondary-bg: #4ecdc4;
+    --btn-success-bg: #45b7d1;
 }
 
 /* Light theme: clean solid light background, no gradients */
 [data-theme="light"] {
     --body-bg: #f1f5f9;
-    --hero-bg: #4f46e5;
+    --hero-bg: #ffffff;
+    --hero-color: #1e293b;
     --glass-bg: rgba(255, 255, 255, 0.75);
     --glass-border: rgba(0, 0, 0, 0.1);
     --card-color: #1e293b;
     --card-muted-color: #64748b;
     --nav-link-color: #1e293b;
     --label-color: #1e293b;
+    --btn-primary-bg: #4f46e5;
+    --btn-secondary-bg: #0891b2;
+    --btn-success-bg: #059669;
 }
 
 /* Dark theme: clean solid dark background, no gradients */
 [data-theme="dark"] {
     --body-bg: #0f172a;
     --hero-bg: #1e293b;
+    --hero-color: #f1f5f9;
     --glass-bg: rgba(255, 255, 255, 0.07);
     --glass-border: rgba(255, 255, 255, 0.12);
     --card-color: #f1f5f9;
     --card-muted-color: rgba(241, 245, 249, 0.75);
     --nav-link-color: #f1f5f9;
     --label-color: #f1f5f9;
+    --btn-primary-bg: #818cf8;
+    --btn-secondary-bg: #22d3ee;
+    --btn-success-bg: #34d399;
 }
 
 /* System theme (default): uses simple light or dark based on OS preference */
@@ -115,13 +131,17 @@
     [data-theme="system"],
     :root:not([data-theme]) {
         --body-bg: #f1f5f9;
-        --hero-bg: #4f46e5;
+        --hero-bg: #ffffff;
+        --hero-color: #1e293b;
         --glass-bg: rgba(255, 255, 255, 0.75);
         --glass-border: rgba(0, 0, 0, 0.1);
         --card-color: #1e293b;
         --card-muted-color: #64748b;
         --nav-link-color: #1e293b;
         --label-color: #1e293b;
+        --btn-primary-bg: #4f46e5;
+        --btn-secondary-bg: #0891b2;
+        --btn-success-bg: #059669;
     }
 }
 @media (prefers-color-scheme: dark) {
@@ -129,12 +149,16 @@
     :root:not([data-theme]) {
         --body-bg: #0f172a;
         --hero-bg: #1e293b;
+        --hero-color: #f1f5f9;
         --glass-bg: rgba(255, 255, 255, 0.07);
         --glass-border: rgba(255, 255, 255, 0.12);
         --card-color: #f1f5f9;
         --card-muted-color: rgba(241, 245, 249, 0.75);
         --nav-link-color: #f1f5f9;
         --label-color: #f1f5f9;
+        --btn-primary-bg: #818cf8;
+        --btn-secondary-bg: #22d3ee;
+        --btn-success-bg: #34d399;
     }
 }
 
@@ -193,6 +217,9 @@ html, body {
     box-shadow: var(--shadow-lg);
     transition: var(--transition-base);
     color: var(--card-color, white);
+}
+
+.glass-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
 }
@@ -201,7 +228,7 @@ html, body {
     padding: 2rem;
     margin-bottom: 2rem;
     background: var(--hero-bg, linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%));
-    color: white;
+    color: var(--hero-color, white);
     text-align: center;
     border-radius: 20px;
     box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
@@ -258,17 +285,17 @@ html, body {
 }
 
 .btn-primary {
-    background: var(--gradient-primary);
+    background: var(--btn-primary-bg, #ff6b6b);
     color: white;
 }
 
 .btn-secondary {
-    background: var(--gradient-secondary);
+    background: var(--btn-secondary-bg, #4ecdc4);
     color: white;
 }
 
 .btn-success {
-    background: var(--gradient-success);
+    background: var(--btn-success-bg, #45b7d1);
     color: white;
 }
 
