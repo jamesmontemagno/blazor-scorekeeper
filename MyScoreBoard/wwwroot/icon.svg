@@ -1,16 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#667eea"/>
-      <stop offset="50%" stop-color="#764ba2"/>
-      <stop offset="100%" stop-color="#ff6b6b"/>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#312e81"/>
+      <stop offset="45%" stop-color="#6d28d9"/>
+      <stop offset="100%" stop-color="#db2777"/>
     </linearGradient>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="rgba(0,0,0,0.25)"/>
+    <radialGradient id="bghl" cx="30%" cy="25%" r="50%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.15)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3"/>
+      <stop offset="30%" stop-color="#fde68a"/>
+      <stop offset="70%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <filter id="ts" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="rgba(0,0,0,0.4)"/>
+    </filter>
+    <filter id="sg" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <rect x="32" y="32" width="448" height="448" rx="96" fill="url(#g)" filter="url(#shadow)"/>
-  <g fill="#fff" font-family="Poppins, Arial, Helvetica, sans-serif" font-weight="800" text-anchor="middle">
-    <text x="50%" y="55%" font-size="240" dy="0.35em" letter-spacing="4">SB</text>
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="96" fill="url(#bghl)"/>
+  <!-- Trophy -->
+  <g filter="url(#ts)">
+    <path d="M 150,152 L 362,152 L 326,292 Q 304,330 256,330 Q 208,330 186,292 Z" fill="url(#gold)"/>
+    <path d="M 162,172 C 90,172 72,230 94,276 C 106,302 146,314 184,294" fill="none" stroke="url(#gold)" stroke-width="26" stroke-linecap="round"/>
+    <path d="M 350,172 C 422,172 440,230 418,276 C 406,302 366,314 328,294" fill="none" stroke="url(#gold)" stroke-width="26" stroke-linecap="round"/>
+    <line x1="194" y1="214" x2="318" y2="214" stroke="rgba(251,191,36,0.45)" stroke-width="7" stroke-linecap="round"/>
+    <line x1="206" y1="256" x2="306" y2="256" stroke="rgba(251,191,36,0.35)" stroke-width="5" stroke-linecap="round"/>
+    <rect x="234" y="330" width="44" height="50" rx="4" fill="url(#gold)"/>
+    <rect x="178" y="380" width="156" height="34" rx="17" fill="url(#gold)"/>
+  </g>
+  <!-- Stars -->
+  <g filter="url(#sg)">
+    <polygon points="256.0,48.0 265.4,75.1 294.0,75.6 271.2,92.9 279.5,120.4 256.0,104.0 232.5,120.4 240.8,92.9 218.0,75.6 246.6,75.1" fill="#fef9c3"/>
+    <polygon points="184.0,93.0 189.9,109.9 207.8,110.3 193.5,121.1 198.7,138.2 184.0,128.0 169.3,138.2 174.5,121.1 160.2,110.3 178.1,109.9" fill="#fde68a" opacity="0.9"/>
+    <polygon points="328.0,93.0 333.9,109.9 351.8,110.3 337.5,121.1 342.7,138.2 328.0,128.0 313.3,138.2 318.5,121.1 304.2,110.3 322.1,109.9" fill="#fde68a" opacity="0.9"/>
   </g>
 </svg>
