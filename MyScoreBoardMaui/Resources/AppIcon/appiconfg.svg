@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="456" height="456" viewBox="0 0 456 456" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="ts" x="-15%" y="-15%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.35)"/>
-    </filter>
     <filter id="sg" x="-30%" y="-30%" width="160%" height="160%">
       <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
   <!-- White trophy (foreground over gradient background) -->
-  <g filter="url(#ts)">
+  <g>
     <path d="M 134,135 L 323,135 L 290,260 Q 271,294 228,294 Q 185,294 166,260 Z" fill="#FFFFFF"/>
     <path d="M 144,153 C 80,153 64,205 84,246 C 94,269 130,280 164,261" fill="none" stroke="#FFFFFF" stroke-width="23" stroke-linecap="round"/>
     <path d="M 312,153 C 376,153 392,205 372,246 C 362,269 326,280 292,261" fill="none" stroke="#FFFFFF" stroke-width="23" stroke-linecap="round"/>
