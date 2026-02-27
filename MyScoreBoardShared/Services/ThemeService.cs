@@ -34,6 +34,10 @@ public class ThemeService : IThemeService
         try
         {
             await _js.InvokeVoidAsync("document.documentElement.setAttribute", "data-theme", theme);
+            // Also persist to browser localStorage so the inline script in index.html
+            // can restore the theme on next app launch (MAUI uses native Preferences for
+            // app-level storage, but the HTML inline script reads browser localStorage).
+            await _js.InvokeVoidAsync("localStorage.setItem", "appTheme", theme);
         }
         catch
         {
