@@ -441,6 +441,40 @@ html, body {
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
 }
 
+/* Light theme: dark hamburger icon on light background */
+[data-theme="light"] .navbar .navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.05);
+}
+[data-theme="light"] .navbar .navbar-toggler:hover,
+[data-theme="light"] .navbar .navbar-toggler:focus {
+    background: rgba(0, 0, 0, 0.1);
+}
+[data-theme="light"] .navbar .navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0,0,0,0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    filter: none;
+}
+
+/* System theme: dark hamburger when OS is in light mode */
+@media (prefers-color-scheme: light) {
+    [data-theme="system"] .navbar .navbar-toggler,
+    :root:not([data-theme]) .navbar .navbar-toggler {
+        border-color: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.05);
+    }
+    [data-theme="system"] .navbar .navbar-toggler:hover,
+    :root:not([data-theme]) .navbar .navbar-toggler:hover,
+    [data-theme="system"] .navbar .navbar-toggler:focus,
+    :root:not([data-theme]) .navbar .navbar-toggler:focus {
+        background: rgba(0, 0, 0, 0.1);
+    }
+    [data-theme="system"] .navbar .navbar-toggler .navbar-toggler-icon,
+    :root:not([data-theme]) .navbar .navbar-toggler .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0,0,0,0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        filter: none;
+    }
+}
+
 /* Brand & links */
 .navbar-brand {
     font-weight: 700;
@@ -543,11 +577,8 @@ canvas[style*="z-index"] {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: trophy-shimmer 3s ease-in-out infinite;
-    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
 }
 
-.brand-text {
-    color: var(--nav-link-color, white) !important;
 @keyframes trophy-shimmer {
     0%, 100% {
         background-position: 0% 50%;
@@ -555,6 +586,10 @@ canvas[style*="z-index"] {
     50% {
         background-position: 100% 50%;
     }
+}
+
+.brand-text {
+    color: var(--nav-link-color, white) !important;
 }
 
 /* Button outline styles - consolidated from platform-specific files */
