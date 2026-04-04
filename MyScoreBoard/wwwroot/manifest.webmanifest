@@ -3,6 +3,7 @@
   "short_name": "Score Keeper",
   "description": "Keep score for board games with a fast, friendly Blazor PWA.",
   "lang": "en-US",
+  "categories": ["games", "utilities"],
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
