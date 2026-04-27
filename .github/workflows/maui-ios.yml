@@ -24,7 +24,7 @@ on:
       base_version:
         description: 'Base ApplicationDisplayVersion (e.g. 3.0)'
         required: false
-        default: '3.2.0'
+        default: '3.3.0'
 
 permissions:
   contents: read

@@ -1,0 +1,76 @@
+@inherits LayoutComponentBase
+@inject IThemeService ThemeService
+
+<div class="maui-layout">
+    <header class="maui-header">
+        <div class="maui-header-inner">
+            <NavLink class="maui-brand" href="/" Match="NavLinkMatch.All">
+                <i class="bi bi-trophy-fill trophy-icon me-2"></i>
+                <span class="brand-text">My Score Keeper</span>
+            </NavLink>
+            <div class="maui-theme-toggles">
+                <button class="btn-theme-toggle @(_currentTheme == "system" ? "active" : "")" @onclick='() => ChangeThemeAsync("system")' aria-label="Switch to system theme">
+                    <i class="bi bi-circle-half" aria-hidden="true"></i>
+                </button>
+                <button class="btn-theme-toggle @(_currentTheme == "light" ? "active" : "")" @onclick='() => ChangeThemeAsync("light")' aria-label="Switch to light theme">
+                    <i class="bi bi-sun-fill" aria-hidden="true"></i>
+                </button>
+                <button class="btn-theme-toggle @(_currentTheme == "dark" ? "active" : "")" @onclick='() => ChangeThemeAsync("dark")' aria-label="Switch to dark theme">
+                    <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="maui-content">
+        <div class="container py-3">
+            @Body
+        </div>
+    </main>
+
+    <nav class="maui-bottom-nav" aria-label="Main navigation">
+        <NavLink class="maui-nav-item" href="/" Match="NavLinkMatch.All">
+            <i class="bi bi-house-fill"></i>
+            <span>Home</span>
+        </NavLink>
+        <NavLink class="maui-nav-item" href="/setup">
+            <i class="bi bi-plus-circle-fill"></i>
+            <span>Setup</span>
+        </NavLink>
+        <NavLink class="maui-nav-item" href="/play">
+            <i class="bi bi-play-fill"></i>
+            <span>Play</span>
+        </NavLink>
+        <NavLink class="maui-nav-item" href="/history">
+            <i class="bi bi-clock-history"></i>
+            <span>History</span>
+        </NavLink>
+    </nav>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
+@code {
+    private string _currentTheme = "system";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _currentTheme = await ThemeService.GetThemeAsync();
+            await ThemeService.ApplyThemeAsync(_currentTheme);
+            StateHasChanged();
+        }
+    }
+
+    private async Task ChangeThemeAsync(string theme)
+    {
+        _currentTheme = theme;
+        await ThemeService.SetThemeAsync(theme);
+        StateHasChanged();
+    }
+}
