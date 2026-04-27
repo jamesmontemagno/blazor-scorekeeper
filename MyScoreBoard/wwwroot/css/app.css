@@ -33,7 +33,6 @@ html, body {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    text-shadow: var(--hero-text-shadow, none);
     color: var(--hero-color, white) !important;
 }
 
@@ -41,7 +40,6 @@ html, body {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    text-shadow: var(--hero-text-shadow, none);
     color: var(--hero-color, white) !important;
 }
 
@@ -49,13 +47,11 @@ html, body {
     font-size: 1.2rem;
     opacity: 0.95;
     margin-bottom: 2rem;
-    text-shadow: var(--hero-text-shadow, none);
     color: var(--hero-color, white) !important;
 }
 
 .hero .text-muted {
-    color: var(--card-muted-color, rgba(255, 255, 255, 0.8)) !important;
-    text-shadow: var(--hero-text-shadow, none);
+    color: var(--card-muted-color) !important;
 }
 
 /* Web-specific Blazor error UI */
@@ -63,7 +59,6 @@ html, body {
     color-scheme: light only;
     background: lightyellow;
     bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     display: none;
     left: 0;

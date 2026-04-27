@@ -2,7 +2,7 @@ namespace MyScoreBoardShared.Services;
 
 public interface IThemeService
 {
-    /// <summary>Returns the persisted theme name ("system", "light", "dark", or "fun").</summary>
+    /// <summary>Returns the persisted theme name ("system", "light", or "dark").</summary>
     Task<string> GetThemeAsync();
 
     /// <summary>Persists the theme and applies it to the document immediately.</summary>

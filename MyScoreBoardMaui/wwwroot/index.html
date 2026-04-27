@@ -7,7 +7,7 @@
     <base href="/" />
     <link href="_content/MyScoreBoardShared/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Apply persisted theme immediately to prevent flash -->
-    <script>(function(){var t=localStorage.getItem('appTheme')||'system';document.documentElement.setAttribute('data-theme',t);})();</script>
+    <script>(function(){var t=localStorage.getItem('appTheme')||'system';if(['system','light','dark'].indexOf(t)<0)t='system';document.documentElement.setAttribute('data-theme',t);})();</script>
     <link rel="stylesheet" href="css/app.css" />
     <!-- shared styles from MyScoreBoardShared -->
     <link rel="stylesheet" href="_content/MyScoreBoardShared/css/app.css" />
