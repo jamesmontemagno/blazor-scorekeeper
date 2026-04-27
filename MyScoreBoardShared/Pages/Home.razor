@@ -7,51 +7,51 @@
 
 <PageTitle>My Score Keeper</PageTitle>
 
-<div class="hero animate-fade-in-up">
-    <h1>🎮 Game Score Keeper</h1>
-    <p>Track scores, compete with friends, and never lose count again!</p>
-    
-    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-        <button class="btn btn-primary btn-lg animate-pulse" @onclick="NewGame">
-            <i class="bi bi-plus-circle-fill me-2"></i>
-            Start New Game
-        </button>
+<div class="hero">
+    <div class="mx-auto" style="max-width: 760px;">
+        <h1>Game Score Keeper</h1>
+        <p>Track players, rounds, and totals with a clean scoreboard that works on web and mobile.</p>
         
-        @if (hasActive)
-        {
-            <button class="btn btn-success btn-lg" @onclick="Resume">
-                <i class="bi bi-play-fill me-2"></i>
-                Resume Game
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            @if (hasActive)
+            {
+                <button class="btn btn-success btn-lg" @onclick="Resume">
+                    <i class="bi bi-play-fill me-2"></i>
+                    Resume Game
+                </button>
+            }
+            <button class="btn btn-primary btn-lg" @onclick="NewGame">
+                <i class="bi bi-plus-circle-fill me-2"></i>
+                Start New Game
             </button>
-        }
-        
-        <button class="btn btn-secondary btn-lg" @onclick="ViewHistory">
-            <i class="bi bi-clock-history me-2"></i>
-            View History
-        </button>
+            <button class="btn btn-outline-secondary btn-lg" @onclick="ViewHistory">
+                <i class="bi bi-clock-history me-2"></i>
+                History
+            </button>
+        </div>
     </div>
 </div>
 
-<div class="row g-4 mt-4">
+<div class="row g-3 mt-2">
     <div class="col-md-4">
-        <div class="glass-card p-4 text-center h-100">
-            <i class="bi bi-people-fill fs-1 mb-3" style="color: var(--bs-primary); text-shadow: 0 1px 2px rgba(0,0,0,0.2);"></i>
-            <h4 class="text-contrast">Multiplayer Ready</h4>
-            <p class="text-contrast-muted">Add unlimited players and track everyone's progress</p>
+        <div class="glass-card p-4 h-100">
+            <i class="bi bi-people-fill fs-2 mb-3 text-primary"></i>
+            <h4 class="text-contrast">Add players</h4>
+            <p class="text-contrast-muted mb-0">Create a scoreboard for any number of players.</p>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="glass-card p-4 text-center h-100">
-            <i class="bi bi-arrow-clockwise fs-1 mb-3" style="color: var(--bs-success); text-shadow: 0 1px 2px rgba(0,0,0,0.2);"></i>
-            <h4 class="text-contrast">Round System</h4>
-            <p class="text-contrast-muted">Organize scoring by rounds for better game flow</p>
+        <div class="glass-card p-4 h-100">
+            <i class="bi bi-arrow-clockwise fs-2 mb-3 text-success"></i>
+            <h4 class="text-contrast">Score rounds</h4>
+            <p class="text-contrast-muted mb-0">Enter scores round by round and see totals instantly.</p>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="glass-card p-4 text-center h-100">
-            <i class="bi bi-cloud-check-fill fs-1 mb-3" style="color: var(--bs-info); text-shadow: 0 1px 2px rgba(0,0,0,0.2);"></i>
-            <h4 class="text-contrast">Auto Save</h4>
-            <p class="text-contrast-muted">Never lose your game progress with automatic saving</p>
+        <div class="glass-card p-4 h-100">
+            <i class="bi bi-cloud-check-fill fs-2 mb-3 text-info"></i>
+            <h4 class="text-contrast">Keep progress</h4>
+            <p class="text-contrast-muted mb-0">Resume active games and review completed games later.</p>
         </div>
     </div>
 </div>
@@ -62,7 +62,7 @@
         <div class="col-12">
             <div class="glass-card p-4 d-flex flex-column flex-md-row align-items-center justify-content-between">
                 <div class="d-flex align-items-center mb-3 mb-md-0">
-                    <i class="bi bi-apple fs-1 me-3" style="color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.4);"></i>
+                    <i class="bi bi-apple fs-1 me-3" style="color: var(--bs-primary);"></i>
                     <div>
                         <h4 class="mb-1 text-contrast">Download for iOS</h4>
                         <p class="mb-0 text-contrast-muted">Get the native iOS app for the best mobile experience.</p>
@@ -81,7 +81,7 @@
     <div class="col-12">
         <div class="glass-card p-4 d-flex flex-column flex-md-row align-items-center justify-content-between">
             <div class="d-flex align-items-center mb-3 mb-md-0">
-                <i class="bi bi-github fs-1 me-3" style="color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.4);"></i>
+                <i class="bi bi-github fs-1 me-3" style="color: var(--bs-primary);"></i>
                 <div>
                     <h4 class="mb-1 text-contrast">Open source on GitHub</h4>
                     <p class="mb-0 text-contrast-muted">Star the repo, file issues, or contribute features and fixes.</p>

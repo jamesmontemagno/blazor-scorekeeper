@@ -37,9 +37,7 @@ html, body {
 /* Status bar safe area for notched devices */
 .status-bar-safe-area {
     /* No explicit height - let it be minimal or zero */
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--backdrop-blur));
-    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    background: var(--surface);
     position: fixed;
     top: 0;
     left: 0;
@@ -77,7 +75,6 @@ html, body {
 }
 
 .btn:active {
-    transform: scale(0.98);
 }
 
 /* Ensure btn-sm also has adequate touch targets */
@@ -118,7 +115,6 @@ button.btn:not([disabled]):not(.disabled),
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     display: none;
     left: 0;
@@ -232,11 +228,10 @@ button.btn:not([disabled]):not(.disabled),
         background: var(--bs-warning) !important;
         color: var(--bs-dark) !important;
         border: 2px solid rgba(0, 0, 0, 0.1);
-        transition: all 0.2s ease;
+        transition: var(--transition-base);
     }
     
     .glass-card .badge.bg-warning:active {
-        transform: scale(0.95);
         background: rgba(254, 202, 87, 0.8) !important;
     }
 }
@@ -270,8 +265,8 @@ button.btn:not([disabled]):not(.disabled),
 /* High contrast mode support */
 @media (prefers-contrast: high) {
     .glass-card {
-        border: 2px solid white;
-        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid var(--foreground);
+        background: var(--surface);
     }
     
     .btn {

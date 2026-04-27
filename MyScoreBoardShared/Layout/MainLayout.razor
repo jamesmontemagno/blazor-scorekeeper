@@ -5,7 +5,7 @@
 <div class="status-bar-safe-area"></div>
 
 <div class="app-container">
-    <nav class="navbar navbar-expand-md sticky-top glass-card navbar-dark">
+    <nav class="navbar navbar-expand-md sticky-top app-navbar">
         <div class="container">
             <NavLink class="navbar-brand" href="/" Match="NavLinkMatch.All">
                 <i class="bi bi-trophy-fill trophy-icon me-2"></i>
@@ -60,11 +60,6 @@
                                     <i class="bi bi-moon-stars-fill me-2"></i>Dark
                                 </button>
                             </li>
-                            <li>
-                                <button class="dropdown-item @(_currentTheme == "fun" ? "active" : "")" @onclick='() => ChangeThemeAsync("fun")'>
-                                    <i class="bi bi-stars me-2"></i>Fun
-                                </button>
-                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -109,7 +104,6 @@
     {
         "light" => "bi-sun-fill",
         "dark" => "bi-moon-stars-fill",
-        "fun" => "bi-stars",
         _ => "bi-circle-half"
     };
 }
