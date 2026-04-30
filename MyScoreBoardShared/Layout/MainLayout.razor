@@ -1,6 +1,7 @@
 @inherits LayoutComponentBase
 @inject NavigationManager Nav
 @inject IThemeService ThemeService
+@inject IJSRuntime JS
 
 <div class="status-bar-safe-area"></div>
 
@@ -40,27 +41,16 @@
                             History
                         </NavLink>
                     </li>
-                    <li class="nav-item dropdown theme-switcher ms-md-2">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Change theme (@_currentTheme)" title="Change theme">
-                            <i class="bi @GetThemeIcon()" aria-hidden="true"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <button class="dropdown-item @(_currentTheme == "system" ? "active" : "")" @onclick='() => ChangeThemeAsync("system")'>
-                                    <i class="bi bi-circle-half me-2" aria-hidden="true"></i>System
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item @(_currentTheme == "light" ? "active" : "")" @onclick='() => ChangeThemeAsync("light")'>
-                                    <i class="bi bi-sun-fill me-2" aria-hidden="true"></i>Light
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item @(_currentTheme == "dark" ? "active" : "")" @onclick='() => ChangeThemeAsync("dark")'>
-                                    <i class="bi bi-moon-stars-fill me-2" aria-hidden="true"></i>Dark
-                                </button>
-                            </li>
-                        </ul>
+                    <li class="nav-item theme-switcher ms-md-2 d-flex align-items-center gap-1">
+                        <button class="btn-theme-toggle @(_currentTheme == "system" ? "active" : "")" @onclick='() => ChangeThemeAsync("system")' aria-label="Switch to system theme" title="System">
+                            <i class="bi bi-circle-half" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn-theme-toggle @(_currentTheme == "light" ? "active" : "")" @onclick='() => ChangeThemeAsync("light")' aria-label="Switch to light theme" title="Light">
+                            <i class="bi bi-sun-fill" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn-theme-toggle @(_currentTheme == "dark" ? "active" : "")" @onclick='() => ChangeThemeAsync("dark")' aria-label="Switch to dark theme" title="Dark">
+                            <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -97,13 +87,7 @@
     {
         _currentTheme = theme;
         await ThemeService.SetThemeAsync(theme);
+        try { await JS.InvokeVoidAsync("myMenu.closeNav"); } catch { /* ignore JS interop errors */ }
         StateHasChanged();
     }
-
-    private string GetThemeIcon() => _currentTheme switch
-    {
-        "light" => "bi-sun-fill",
-        "dark" => "bi-moon-stars-fill",
-        _ => "bi-circle-half"
-    };
 }

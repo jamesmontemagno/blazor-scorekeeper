@@ -334,6 +334,32 @@ a, .btn-link {
     color: var(--bs-primary);
 }
 
+/* Theme toggle inline buttons (used in both web navbar and MAUI header) */
+.btn-theme-toggle {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--muted);
+    padding: 0.35rem 0.45rem;
+    min-width: 38px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-base);
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.btn-theme-toggle.active {
+    background: var(--surface-muted);
+    border-color: var(--border);
+    color: var(--bs-primary);
+}
+
 .btn {
     border-radius: var(--radius-md);
     font-weight: 650;
