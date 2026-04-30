@@ -87,7 +87,7 @@
     {
         _currentTheme = theme;
         await ThemeService.SetThemeAsync(theme);
-        try { await JS.InvokeVoidAsync("myMenu.closeNav"); } catch { }
+        try { await JS.InvokeVoidAsync("myMenu.closeNav"); } catch { /* ignore JS interop errors */ }
         StateHasChanged();
     }
 }

@@ -1,5 +1,6 @@
 @inherits LayoutComponentBase
 @inject IThemeService ThemeService
+@inject IJSRuntime JS
 
 <div class="maui-layout">
     <header class="maui-header">
@@ -62,7 +63,7 @@
         if (firstRender)
         {
             _currentTheme = await ThemeService.GetThemeAsync();
-            await ThemeService.ApplyThemeAsync(_currentTheme);
+            try { await JS.InvokeVoidAsync("setAppTheme", _currentTheme); } catch { /* JS may not be ready on first render */ }
             StateHasChanged();
         }
     }
@@ -71,6 +72,7 @@
     {
         _currentTheme = theme;
         await ThemeService.SetThemeAsync(theme);
+        try { await JS.InvokeVoidAsync("setAppTheme", theme); } catch { /* ignore JS interop errors */ }
         StateHasChanged();
     }
 }
