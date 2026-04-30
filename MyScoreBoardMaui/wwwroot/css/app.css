@@ -6,7 +6,6 @@ html, body {
     font-family: var(--app-font, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif);
     height: 100%;
     background: var(--body-bg);
-    background-attachment: fixed;
     /* Mobile-specific optimizations */
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
@@ -15,14 +14,10 @@ html, body {
 }
 
 #app {
-    position: relative;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    /* Mobile-specific overflow handling */
-    overflow-x: hidden;
-    /* Reduced top padding - let navbar handle its own spacing */
-    padding-top: env(safe-area-inset-top, 0px);
+    overflow: hidden;
 }
 
 /* MAUI-specific custom property overrides */
@@ -34,30 +29,120 @@ html, body {
     --form-control-font-size: 16px; /* Prevents zoom on iOS */
 }
 
-/* Status bar safe area for notched devices */
-.status-bar-safe-area {
-    /* No explicit height - let it be minimal or zero */
+/* ===== MAUI Bottom-Tab Layout ===== */
+
+.maui-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Fixed top header */
+.maui-header {
+    flex-shrink: 0;
     background: var(--surface);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1030;
+    border-bottom: 1px solid var(--border);
+    padding-top: env(safe-area-inset-top, 0px);
+    z-index: 100;
 }
 
-/* Navbar styling now centralized in shared CSS */
-
-/* Simple nav item fade in */
-@keyframes navItemFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.maui-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
 }
+
+.maui-brand {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--foreground);
+    text-decoration: none;
+}
+
+.maui-brand .trophy-icon,
+.maui-brand .brand-text {
+    color: var(--foreground);
+}
+
+/* Inline theme toggle buttons - always visible, no dropdown needed */
+.maui-theme-toggles {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-theme-toggle {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--muted);
+    padding: 0.35rem 0.45rem;
+    min-width: 38px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-base);
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.btn-theme-toggle.active {
+    background: var(--surface-muted);
+    border-color: var(--border);
+    color: var(--bs-primary);
+}
+
+/* Scrollable content area - only this region scrolls */
+.maui-content {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    min-height: 0;
+    background: var(--body-bg);
+}
+
+/* Bottom tab navigation */
+.maui-bottom-nav {
+    flex-shrink: 0;
+    display: flex;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    z-index: 100;
+}
+
+.maui-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.25rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.65rem;
+    gap: 0.15rem;
+    min-height: 56px;
+    transition: var(--transition-base);
+    touch-action: manipulation;
+}
+
+.maui-nav-item i {
+    font-size: 1.35rem;
+}
+
+.maui-nav-item.active {
+    color: var(--bs-primary);
+}
+
+/* ===================================== */
 
 /* MAUI-specific button enhancements */
 .btn {
