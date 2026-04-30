@@ -36,18 +36,18 @@ else
                             @if (gameToDelete?.key == g.Key)
                             {
                                 <div class="d-flex gap-1">
-                                    <button class="btn btn-sm btn-success" @onclick="ConfirmDelete">
-                                        <i class="bi bi-check"></i>
+                                    <button class="btn btn-sm btn-success" aria-label="Confirm delete @g.GameName" @onclick="ConfirmDelete">
+                                        <i class="bi bi-check" aria-hidden="true"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-secondary" @onclick="CancelDelete">
-                                        <i class="bi bi-x"></i>
+                                    <button class="btn btn-sm btn-secondary" aria-label="Cancel delete" @onclick="CancelDelete">
+                                        <i class="bi bi-x" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             }
                             else
                             {
-                                <button class="btn btn-sm btn-outline-danger" @onclick="(() => ShowDeleteConfirmation(g.Key ?? 0, g.GameName))" disabled="@(g.Key is null)">
-                                    <i class="bi bi-trash"></i>
+                                <button class="btn btn-sm btn-outline-danger" aria-label="Delete @g.GameName" @onclick="(() => ShowDeleteConfirmation(g.Key ?? 0, g.GameName))" disabled="@(g.Key is null)">
+                                    <i class="bi bi-trash" aria-hidden="true"></i>
                                 </button>
                             }
                         </div>

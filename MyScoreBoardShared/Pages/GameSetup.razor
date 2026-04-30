@@ -15,14 +15,14 @@
     <div class="col-md-8 col-lg-6">
         <div class="glass-card p-4">
             <div class="mb-3">
-                <label class="form-label fw-semibold text-contrast">Game Name</label>
-                <input @bind="gameName" class="form-control form-control-lg" placeholder="Enter board game name..." />
+                <label class="form-label fw-semibold text-contrast" for="gameName">Game Name</label>
+                <input @bind="gameName" id="gameName" class="form-control form-control-lg" placeholder="Enter board game name..." />
             </div>
 
             <div class="mb-4">
-                <label class="form-label fw-semibold text-contrast">Players</label>
+                <label class="form-label fw-semibold text-contrast" for="playerName">Players</label>
                 <div class="input-group mb-3">
-                    <input @bind="playerName" @onkeypress="HandleKeyPress" class="form-control" placeholder="Enter player name..." />
+                    <input @bind="playerName" @onkeypress="HandleKeyPress" id="playerName" class="form-control" placeholder="Enter player name..." />
                     <button class="btn btn-primary" @onclick="AddPlayer" disabled="@string.IsNullOrWhiteSpace(playerName)">
                         <i class="bi bi-plus-lg"></i> Add
                     </button>
@@ -36,13 +36,13 @@
                             <div class="col-auto">
                                 <div class="badge bg-secondary p-2 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
                                     <span style="color: white; font-weight: 500;">@p.Name</span>
-                                    <button class="btn-close btn-close-white" style="font-size: 0.7em;" @onclick="(() => RemovePlayer(p.Id))"></button>
+                                    <button class="btn-close btn-close-white" style="font-size: 0.7em;" aria-label="Remove @p.Name" @onclick="(() => RemovePlayer(p.Id))"></button>
                                 </div>
                             </div>
                         }
                     </div>
                     <div class="text-center">
-                        <span class="badge bg-info text-dark" style="font-size: 0.85rem; font-weight: 600;">@players.Count @(players.Count == 1 ? "player" : "players")</span>
+                        <span class="badge badge-count">@players.Count @(players.Count == 1 ? "player" : "players")</span>
                     </div>
                 }
             </div>
