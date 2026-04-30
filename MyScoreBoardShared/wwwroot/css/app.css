@@ -545,7 +545,6 @@ canvas[style*="z-index"] {
 @media (max-width: 767.98px) {
     .hero {
         padding: 1.5rem;
-        text-align: left;
     }
 
     .navbar .navbar-collapse.collapse.show {
