@@ -8,56 +8,56 @@
     <nav class="navbar navbar-expand-md sticky-top app-navbar">
         <div class="container">
             <NavLink class="navbar-brand" href="/" Match="NavLinkMatch.All">
-                <i class="bi bi-trophy-fill trophy-icon me-2"></i>
+                <i class="bi bi-trophy-fill trophy-icon me-2" aria-hidden="true"></i>
                 <span class="brand-text">My Score Keeper</span>
             </NavLink>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon" aria-hidden="true"></span>
             </button>
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
-                            <i class="bi bi-house-fill me-1"></i>
+                            <i class="bi bi-house-fill me-1" aria-hidden="true"></i>
                             Home
                         </NavLink>
                     </li>
                     <li class="nav-item">
                         <NavLink class="nav-link" href="/setup">
-                            <i class="bi bi-plus-circle-fill me-1"></i>
+                            <i class="bi bi-plus-circle-fill me-1" aria-hidden="true"></i>
                             Setup
                         </NavLink>
                     </li>
                     <li class="nav-item">
                         <NavLink class="nav-link" href="/play">
-                            <i class="bi bi-play-fill me-1"></i>
+                            <i class="bi bi-play-fill me-1" aria-hidden="true"></i>
                             Play
                         </NavLink>
                     </li>
                     <li class="nav-item">
                         <NavLink class="nav-link" href="/history">
-                            <i class="bi bi-clock-history me-1"></i>
+                            <i class="bi bi-clock-history me-1" aria-hidden="true"></i>
                             History
                         </NavLink>
                     </li>
                     <li class="nav-item dropdown theme-switcher ms-md-2">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change theme">
-                            <i class="bi @GetThemeIcon()"></i>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Change theme (@_currentTheme)" title="Change theme">
+                            <i class="bi @GetThemeIcon()" aria-hidden="true"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
                                 <button class="dropdown-item @(_currentTheme == "system" ? "active" : "")" @onclick='() => ChangeThemeAsync("system")'>
-                                    <i class="bi bi-circle-half me-2"></i>System
+                                    <i class="bi bi-circle-half me-2" aria-hidden="true"></i>System
                                 </button>
                             </li>
                             <li>
                                 <button class="dropdown-item @(_currentTheme == "light" ? "active" : "")" @onclick='() => ChangeThemeAsync("light")'>
-                                    <i class="bi bi-sun-fill me-2"></i>Light
+                                    <i class="bi bi-sun-fill me-2" aria-hidden="true"></i>Light
                                 </button>
                             </li>
                             <li>
                                 <button class="dropdown-item @(_currentTheme == "dark" ? "active" : "")" @onclick='() => ChangeThemeAsync("dark")'>
-                                    <i class="bi bi-moon-stars-fill me-2"></i>Dark
+                                    <i class="bi bi-moon-stars-fill me-2" aria-hidden="true"></i>Dark
                                 </button>
                             </li>
                         </ul>
@@ -76,7 +76,7 @@
     <div id="blazor-error-ui">
         An unhandled error has occurred.
         <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+        <a class="dismiss" role="button" tabindex="0" aria-label="Dismiss error">🗙</a>
     </div>
 </div>
 

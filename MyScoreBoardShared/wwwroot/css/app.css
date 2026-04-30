@@ -10,7 +10,7 @@
     --surface-muted: #f1f5f9;
     --surface-strong: #e2e8f0;
     --foreground: #172033;
-    --muted: #64748b;
+    --muted: #5e6b7c;
     --border: #d8dee8;
     --ring: #2563eb;
 
@@ -44,8 +44,10 @@
     --btn-secondary-bg: var(--bs-secondary);
     --btn-success-bg: var(--bs-success);
     --primary-foreground: #ffffff;
+    --success-foreground: #ffffff;
     --accent: var(--bs-warning);
     --accent-foreground: #111827;
+    --warning-text: #b45309;
 
     --radius-sm: 0.5rem;
     --radius-md: 0.75rem;
@@ -101,9 +103,11 @@
     --glass-border: var(--border);
     --btn-primary-bg: var(--bs-primary);
     --btn-secondary-bg: #475569;
-    --btn-success-bg: #16a34a;
+    --btn-success-bg: #4ade80;
     --primary-foreground: #0f172a;
+    --success-foreground: #0f172a;
     --accent-foreground: #0f172a;
+    --warning-text: #fbbf24;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -144,9 +148,11 @@
         --glass-border: var(--border);
         --btn-primary-bg: var(--bs-primary);
         --btn-secondary-bg: #475569;
-        --btn-success-bg: #16a34a;
+        --btn-success-bg: #4ade80;
         --primary-foreground: #0f172a;
+        --success-foreground: #0f172a;
         --accent-foreground: #0f172a;
+        --warning-text: #fbbf24;
     }
 }
 
@@ -351,7 +357,7 @@ a, .btn-link {
 .btn-success {
     background: var(--btn-success-bg);
     border-color: var(--btn-success-bg);
-    color: #ffffff;
+    color: var(--success-foreground);
 }
 
 .btn-lg {
@@ -483,7 +489,7 @@ a, .btn-link {
 
 .leader-badge {
     background: var(--bs-success);
-    color: #ffffff;
+    color: var(--success-foreground);
     padding: 0.25rem 0.75rem;
     border-radius: 999px;
     font-size: 0.75rem;
@@ -504,6 +510,19 @@ a, .btn-link {
     border: 1px solid rgba(var(--bs-warning-rgb), 0.35);
 }
 
+/* In dark mode the semi-transparent warning background blends into the dark surface,
+   making dark accent-foreground unreadable. Switch to the light foreground instead. */
+[data-theme="dark"] .score-pending {
+    color: var(--foreground) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    [data-theme="system"] .score-pending,
+    :root:not([data-theme]) .score-pending {
+        color: var(--foreground) !important;
+    }
+}
+
 .score-entered {
     color: var(--bs-success) !important;
     background: rgba(var(--bs-success-rgb), 0.12);
@@ -512,6 +531,11 @@ a, .btn-link {
 
 .score-hint {
     color: var(--bs-primary) !important;
+}
+
+/* Override Bootstrap's .text-warning to use an accessible shade for body text */
+.text-warning {
+    color: var(--warning-text) !important;
 }
 
 .alert {

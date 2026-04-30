@@ -9,15 +9,15 @@
 
 @if (showPauseModal)
 {
-    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+    <div class="modal fade show d-block" role="dialog" aria-modal="true" aria-labelledby="pauseModalTitle" tabindex="-1" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content glass-card">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title">
-                        <i class="bi bi-pause-fill text-primary me-2"></i>
+                    <h5 class="modal-title" id="pauseModalTitle">
+                        <i class="bi bi-pause-fill text-primary me-2" aria-hidden="true"></i>
                         Pause Game
                     </h5>
-                    <button type="button" class="btn-close" @onclick="CancelPause"></button>
+                    <button type="button" class="btn-close" aria-label="Close" @onclick="CancelPause"></button>
                 </div>
                 <div class="modal-body">
                     <p>Are you sure you want to pause this game?</p>
@@ -37,15 +37,15 @@
 
 @if (showFinishGameModal)
 {
-    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+    <div class="modal fade show d-block" role="dialog" aria-modal="true" aria-labelledby="finishModalTitle" tabindex="-1" style="background: rgba(0,0,0,0.5);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content glass-card">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title">
-                        <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                    <h5 class="modal-title" id="finishModalTitle">
+                        <i class="bi bi-exclamation-triangle-fill text-warning me-2" aria-hidden="true"></i>
                         Finish Game
                     </h5>
-                    <button type="button" class="btn-close" @onclick="CancelFinishGame"></button>
+                    <button type="button" class="btn-close" aria-label="Close" @onclick="CancelFinishGame"></button>
                 </div>
                 <div class="modal-body">
                     <p>Are you sure you want to finish this game?</p>
@@ -66,17 +66,17 @@
 @if (showWinnerModal)
 {
     <Confetti />
-    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.8);">
+    <div class="modal fade show d-block" role="dialog" aria-modal="true" aria-labelledby="winnerModalTitle" tabindex="-1" style="background: rgba(0,0,0,0.8);">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content glass-card">
                 <div class="modal-header border-0 text-center">
                     <div class="w-100">
-                        <h3 class="modal-title text-center">🎉 Game Complete! 🎉</h3>
+                        <h3 class="modal-title text-center" id="winnerModalTitle">🎉 Game Complete! 🎉</h3>
                     </div>
                 </div>
                 <div class="modal-body text-center py-4">
                     <div class="mb-4">
-                        <i class="bi bi-trophy-fill" style="font-size: 4rem; color: var(--bs-warning);"></i>
+                        <i class="bi bi-trophy-fill" aria-hidden="true" style="font-size: 4rem; color: var(--bs-warning);"></i>
                     </div>
                     <h4 class="mb-3">@winnerBanner</h4>
                     <p class="text-muted">Congratulations on a great game!</p>
@@ -145,7 +145,7 @@
         var cardClass = $"card h-100 glass-card player-card {(isLeader ? "leader-card" : string.Empty)} {(needsScore && !isLeader ? "needs-score" : string.Empty)}";
         
         <div class="col-12 col-sm-6 col-lg-4">
-            <div class="@cardClass" style="cursor:pointer" @onclick="(() => OpenScoreDialog(player))">
+            <div class="@cardClass" role="button" tabindex="0" aria-label="Enter score for @player.Name, current total: @total" style="cursor:pointer" @onclick="(() => OpenScoreDialog(player))" @onkeydown="((e) => OnPlayerCardKeyDown(e, player))">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h5 class="card-title mb-0">@player.Name</h5>
@@ -210,8 +210,8 @@ else
             <div class="d-flex flex-wrap gap-2">
                 @foreach (var player in pendingPlayers)
                 {
-                    <span class="badge bg-warning text-dark px-3 py-2" style="cursor: pointer;" @onclick="(() => OpenScoreDialog(player))">
-                        <i class="bi bi-person me-1"></i>
+                    <span class="badge bg-warning text-dark px-3 py-2" role="button" tabindex="0" aria-label="Enter score for @player.Name" style="cursor: pointer;" @onclick="(() => OpenScoreDialog(player))" @onkeydown="((e) => OnPlayerCardKeyDown(e, player))">
+                        <i class="bi bi-person me-1" aria-hidden="true"></i>
                         @player.Name
                     </span>
                 }
@@ -228,22 +228,22 @@ else
 
 @if (showDialog && selectedPlayer is not null)
 {
-    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5)">
+    <div class="modal fade show d-block" role="dialog" aria-modal="true" aria-labelledby="scoreModalTitle" tabindex="-1" style="background: rgba(0,0,0,0.5)">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content glass-card">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title">Score for @selectedPlayer!.Name</h5>
-                    <button type="button" class="btn-close" @onclick="CloseDialog"></button>
+                    <h5 class="modal-title" id="scoreModalTitle">Score for @selectedPlayer!.Name</h5>
+                    <button type="button" class="btn-close" aria-label="Close" @onclick="CloseDialog"></button>
                 </div>
                 <div class="modal-body text-center">
                     <div class="mb-4">
-                        <label class="form-label">Round @Game.Current.CurrentRound Score</label>
+                        <label class="form-label" for="roundScore">Round @Game.Current.CurrentRound Score</label>
                         <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2 gap-sm-3 mb-3">
                             <div class="d-flex gap-2 mb-2 mb-sm-0">
                                 <button class="btn btn-outline-danger btn-lg" @onclick="(() => AdjustScore(-5))">-5</button>
                                 <button class="btn btn-outline-danger" @onclick="(() => AdjustScore(-1))">-1</button>
                             </div>
-                            <input type="number" class="form-control form-control-lg text-center fw-bold flex-fill" style="max-width: 120px;" @bind-value="scoreInput" @bind-value:event="oninput" />
+                            <input type="number" id="roundScore" class="form-control form-control-lg text-center fw-bold flex-fill" style="max-width: 120px;" @bind-value="scoreInput" @bind-value:event="oninput" />
                             <div class="d-flex gap-2">
                                 <button class="btn btn-outline-success" @onclick="(() => AdjustScore(1))">+1</button>
                                 <button class="btn btn-outline-success btn-lg" @onclick="(() => AdjustScore(5))">+5</button>
@@ -316,6 +316,14 @@ else
         selectedPlayer = player;
         scoreInput = Game.GetRoundScore(player.Id, Game.Current.CurrentRound);
         showDialog = true;
+    }
+
+    private void OnPlayerCardKeyDown(KeyboardEventArgs e, MyScoreBoardShared.Models.Player player)
+    {
+        if (e.Key == "Enter" || e.Key == " ")
+        {
+            OpenScoreDialog(player);
+        }
     }
 
     private void CloseDialog()
