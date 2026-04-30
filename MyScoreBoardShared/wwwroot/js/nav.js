@@ -17,3 +17,12 @@ window.myMenu.closeNav = function () {
         // console.debug('myMenu.closeNav error', e);
     }
 };
+
+// Accessibility: prevent page scroll when Space is pressed on ARIA role="button" elements.
+// Native <button> elements handle this automatically; non-button elements with role="button"
+// must call event.preventDefault() in a synchronous JS handler (Blazor C# runs too late).
+document.addEventListener('keydown', function (e) {
+    if (e.key === ' ' && e.target.getAttribute('role') === 'button') {
+        e.preventDefault();
+    }
+}, { capture: true });

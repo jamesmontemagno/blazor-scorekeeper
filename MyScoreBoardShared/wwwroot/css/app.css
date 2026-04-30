@@ -438,6 +438,15 @@ a, .btn-link {
     font-size: 0.75rem;
 }
 
+/* Player-count or similar informational badges using surface tokens for accessible contrast */
+.badge-count {
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: var(--surface-strong);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+}
+
 .badge.bg-warning {
     background-color: var(--bs-warning) !important;
     color: var(--accent-foreground) !important;
