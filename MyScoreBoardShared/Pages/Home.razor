@@ -12,7 +12,7 @@
         <h1>Game Score Keeper</h1>
         <p>Track players, rounds, and totals with a clean scoreboard that works on web and mobile.</p>
         
-        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+        <div class="d-grid d-sm-flex gap-3 justify-content-sm-center">
             @if (hasActive)
             {
                 <button class="btn btn-success btn-lg" @onclick="Resume">
@@ -32,32 +32,32 @@
     </div>
 </div>
 
-<div class="row g-3 mt-2">
-    <div class="col-md-4">
-        <div class="glass-card p-4 h-100">
-            <i class="bi bi-people-fill fs-2 mb-3 text-primary"></i>
-            <h4 class="text-contrast">Add players</h4>
-            <p class="text-contrast-muted mb-0">Create a scoreboard for any number of players.</p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="glass-card p-4 h-100">
-            <i class="bi bi-arrow-clockwise fs-2 mb-3 text-success"></i>
-            <h4 class="text-contrast">Score rounds</h4>
-            <p class="text-contrast-muted mb-0">Enter scores round by round and see totals instantly.</p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="glass-card p-4 h-100">
-            <i class="bi bi-cloud-check-fill fs-2 mb-3 text-info"></i>
-            <h4 class="text-contrast">Keep progress</h4>
-            <p class="text-contrast-muted mb-0">Resume active games and review completed games later.</p>
-        </div>
-    </div>
-</div>
-
 @if (Platform.IsWebAssembly)
 {
+    <div class="row g-3 mt-2">
+        <div class="col-md-4">
+            <div class="glass-card p-4 h-100">
+                <i class="bi bi-people-fill fs-2 mb-3 text-primary"></i>
+                <h4 class="text-contrast">Add players</h4>
+                <p class="text-contrast-muted mb-0">Create a scoreboard for any number of players.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-card p-4 h-100">
+                <i class="bi bi-arrow-clockwise fs-2 mb-3 text-success"></i>
+                <h4 class="text-contrast">Score rounds</h4>
+                <p class="text-contrast-muted mb-0">Enter scores round by round and see totals instantly.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="glass-card p-4 h-100">
+                <i class="bi bi-cloud-check-fill fs-2 mb-3 text-info"></i>
+                <h4 class="text-contrast">Keep progress</h4>
+                <p class="text-contrast-muted mb-0">Resume active games and review completed games later.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="row g-4 mt-1">
         <div class="col-12">
             <div class="glass-card p-4 d-flex flex-column flex-md-row align-items-center justify-content-between">
@@ -75,26 +75,25 @@
             </div>
         </div>
     </div>
-}
 
-<div class="row g-4 mt-1">
-    <div class="col-12">
-        <div class="glass-card p-4 d-flex flex-column flex-md-row align-items-center justify-content-between">
-            <div class="d-flex align-items-center mb-3 mb-md-0">
-                <i class="bi bi-github fs-1 me-3" style="color: var(--bs-primary);"></i>
-                <div>
-                    <h4 class="mb-1 text-contrast">Open source on GitHub</h4>
-                    <p class="mb-0 text-contrast-muted">Star the repo, file issues, or contribute features and fixes.</p>
+    <div class="row g-4 mt-1">
+        <div class="col-12">
+            <div class="glass-card p-4 d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <div class="d-flex align-items-center mb-3 mb-md-0">
+                    <i class="bi bi-github fs-1 me-3" style="color: var(--bs-primary);"></i>
+                    <div>
+                        <h4 class="mb-1 text-contrast">Open source on GitHub</h4>
+                        <p class="mb-0 text-contrast-muted">Star the repo, file issues, or contribute features and fixes.</p>
+                    </div>
                 </div>
+                <a class="btn btn-primary" href="https://github.com/jamesmontemagno/blazor-scorekeeper" target="_blank" rel="noopener noreferrer" role="button">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>
+                    View on GitHub
+                </a>
             </div>
-            <a class="btn btn-primary" href="https://github.com/jamesmontemagno/blazor-scorekeeper" target="_blank" rel="noopener noreferrer" role="button">
-                <i class="bi bi-box-arrow-up-right me-2"></i>
-                View on GitHub
-            </a>
         </div>
     </div>
-    
-</div>
+}
 
 @code {
     private bool hasActive = false;
