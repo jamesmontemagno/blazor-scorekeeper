@@ -14,17 +14,6 @@
                 <span class="brand-text">My Score Keeper</span>
             </NavLink>
             <div class="maui-header-actions">
-                <div class="maui-theme-toggles">
-                    <button class="btn-theme-toggle @(_currentTheme == "system" ? "active" : "")" @onclick='() => ChangeThemeAsync("system")' aria-label="Switch to system theme">
-                        <i class="bi bi-circle-half" aria-hidden="true"></i>
-                    </button>
-                    <button class="btn-theme-toggle @(_currentTheme == "light" ? "active" : "")" @onclick='() => ChangeThemeAsync("light")' aria-label="Switch to light theme">
-                        <i class="bi bi-sun-fill" aria-hidden="true"></i>
-                    </button>
-                    <button class="btn-theme-toggle @(_currentTheme == "dark" ? "active" : "")" @onclick='() => ChangeThemeAsync("dark")' aria-label="Switch to dark theme">
-                        <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
-                    </button>
-                </div>
                 <NavLink class="btn-header-settings" href="/settings" aria-label="Settings">
                     <i class="bi bi-gear-fill" aria-hidden="true"></i>
                 </NavLink>
@@ -68,7 +57,6 @@
 </div>
 
 @code {
-    private string _currentTheme = "system";
     private bool _hasActiveGame = false;
     private bool _locationChangedSubscribed = false;
 
@@ -76,8 +64,8 @@
     {
         if (firstRender)
         {
-            _currentTheme = await ThemeService.GetThemeAsync();
-            try { await JS.InvokeVoidAsync("setAppTheme", _currentTheme); } catch { /* JS may not be ready on first render */ }
+            var theme = await ThemeService.GetThemeAsync();
+            try { await JS.InvokeVoidAsync("setAppTheme", theme); } catch { /* JS may not be ready on first render */ }
 
             // Quick check from localStorage, then verify with backing store
             _hasActiveGame = await LocalStorage.GetHasActiveGameAsync();
@@ -90,30 +78,8 @@
                 StateHasChanged();
             }
 
-            ThemeService.ThemeChanged += OnThemeChanged;
             Nav.LocationChanged += OnLocationChanged;
             _locationChangedSubscribed = true;
-        }
-    }
-
-    private async Task ChangeThemeAsync(string theme)
-    {
-        _currentTheme = theme;
-        await ThemeService.SetThemeAsync(theme);
-        try { await JS.InvokeVoidAsync("setAppTheme", theme); } catch { /* ignore JS interop errors */ }
-        StateHasChanged();
-    }
-
-    private async void OnThemeChanged()
-    {
-        try
-        {
-            _currentTheme = await ThemeService.GetThemeAsync();
-            await InvokeAsync(StateHasChanged);
-        }
-        catch
-        {
-            // Ignore errors during theme change notification
         }
     }
 
@@ -136,7 +102,6 @@
 
     public void Dispose()
     {
-        ThemeService.ThemeChanged -= OnThemeChanged;
         if (_locationChangedSubscribed)
         {
             Nav.LocationChanged -= OnLocationChanged;
