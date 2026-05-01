@@ -2,9 +2,11 @@
 // Database: myscoreboard, Store: games (key auto-increment)
 
 const DB_NAME = 'myscoreboard';
-const DB_VERSION = 7; // bump to force schema upgrade
+const DB_VERSION = 8; // bump to force schema upgrade
 const STORE_GAMES = 'games';
 const STORE_ACTIVE = 'active';
+const STORE_FAVORITE_GAMES = 'favoritegames';
+const STORE_FAVORITE_PLAYERS = 'favoriteplayers';
 
 export function initDb() {
   return new Promise((resolve, reject) => {
@@ -24,6 +26,13 @@ export function initDb() {
       }
       // Simple store without keyPath (no autoIncrement): we will supply a fixed key 'current'
       db.createObjectStore(STORE_ACTIVE);
+
+      if (!db.objectStoreNames.contains(STORE_FAVORITE_GAMES)) {
+        db.createObjectStore(STORE_FAVORITE_GAMES, { autoIncrement: true });
+      }
+      if (!db.objectStoreNames.contains(STORE_FAVORITE_PLAYERS)) {
+        db.createObjectStore(STORE_FAVORITE_PLAYERS, { autoIncrement: true });
+      }
     };
 
     request.onsuccess = () => {

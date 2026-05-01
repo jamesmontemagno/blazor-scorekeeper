@@ -1,7 +1,9 @@
 @page "/setup"
 @using MyScoreBoardShared.Services
+@using MyScoreBoardShared.Models
 @inject IGameService Game
 @inject ILocalStorageService LocalStorage
+@inject ISettingsService SettingsService
 @inject NavigationManager Nav
 
 <PageTitle>New Game</PageTitle>
@@ -16,17 +18,29 @@
         <div class="glass-card p-4">
             <div class="mb-3">
                 <label class="form-label fw-semibold text-contrast" for="gameName">Game Name</label>
-                <input @bind="gameName" id="gameName" class="form-control form-control-lg" placeholder="Enter board game name..." />
+                <input @bind="gameName" id="gameName" list="favoriteGamesList" class="form-control form-control-lg" placeholder="Enter board game name..." />
+                <datalist id="favoriteGamesList">
+                    @foreach (var fg in _favoriteGames)
+                    {
+                        <option value="@fg.Name" />
+                    }
+                </datalist>
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-semibold text-contrast" for="playerName">Players</label>
                 <div class="input-group mb-3">
-                    <input @bind="playerName" @onkeypress="HandleKeyPress" id="playerName" class="form-control" placeholder="Enter player name..." />
+                    <input @bind="playerName" @onkeypress="HandleKeyPress" id="playerName" list="favoritePlayersList" class="form-control" placeholder="Enter player name..." />
                     <button class="btn btn-primary" @onclick="AddPlayer" disabled="@string.IsNullOrWhiteSpace(playerName)">
                         <i class="bi bi-plus-lg"></i> Add
                     </button>
                 </div>
+                <datalist id="favoritePlayersList">
+                    @foreach (var fp in _favoritePlayers.Where(fp => !players.Any(p => p.Name.Equals(fp.Name, StringComparison.OrdinalIgnoreCase))))
+                    {
+                        <option value="@fp.Name" />
+                    }
+                </datalist>
 
                 @if (players.Count > 0)
                 {
@@ -67,12 +81,24 @@
     private string playerName = string.Empty;
     private List<MyScoreBoardShared.Models.Player> players = new();
     private bool hasSavedData = false;
+    private List<FavoriteGame> _favoriteGames = new();
+    private List<FavoritePlayer> _favoritePlayers = new();
 
     private bool CanStart => !string.IsNullOrWhiteSpace(gameName) && players.Count >= 1;
 
     protected override async Task OnInitializedAsync()
     {
         await CheckForSavedData();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _favoriteGames = await SettingsService.GetFavoriteGamesAsync();
+            _favoritePlayers = await SettingsService.GetFavoritePlayersAsync();
+            StateHasChanged();
+        }
     }
 
     private async Task CheckForSavedData()

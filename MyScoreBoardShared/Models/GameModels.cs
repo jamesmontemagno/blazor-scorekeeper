@@ -54,6 +54,18 @@ public class GameSession
     }
 }
 
+public class FavoriteGame
+{
+    public int? Key { get; set; }
+    public string Name { get; set; } = string.Empty;
+}
+
+public class FavoritePlayer
+{
+    public int? Key { get; set; }
+    public string Name { get; set; } = string.Empty;
+}
+
 // Flattened storage model for IndexedDB
 public class GameStoreEntry
 {

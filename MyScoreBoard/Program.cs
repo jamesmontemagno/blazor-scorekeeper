@@ -17,5 +17,6 @@ builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
 builder.Services.AddScoped<IPlatformService, PlatformService>();
 builder.Services.AddScoped<IThemeService, ThemeService>();
+builder.Services.AddScoped<ISettingsService, SettingsService>();
 
 await builder.Build().RunAsync();

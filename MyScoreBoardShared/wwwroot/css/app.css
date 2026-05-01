@@ -601,6 +601,31 @@ canvas[style*="z-index"] {
     z-index: 99999 !important;
 }
 
+/* Settings page */
+.settings-theme-btn {
+    min-width: 7rem;
+}
+
+.settings-favorites-list {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.settings-favorites-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: var(--surface-muted);
+    border-color: var(--border);
+    color: var(--foreground);
+    padding: 0.6rem 0.9rem;
+}
+
+.settings-favorites-item + .settings-favorites-item {
+    border-top: 1px solid var(--border);
+}
+
 @media (max-width: 767.98px) {
     .hero {
         padding: 1.5rem;

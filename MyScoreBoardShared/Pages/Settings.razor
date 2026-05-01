@@ -1,0 +1,177 @@
+@page "/settings"
+@using MyScoreBoardShared.Services
+@using MyScoreBoardShared.Models
+@inject IThemeService ThemeService
+@inject ISettingsService SettingsService
+
+<PageTitle>Settings</PageTitle>
+
+<div class="hero mb-4 glass-card">
+    <h2 class="mb-1 text-contrast-white">Settings</h2>
+    <p class="mb-0 text-contrast-muted">Manage your theme, favorite games, and players.</p>
+</div>
+
+<div class="row justify-content-center g-4">
+    <div class="col-md-8 col-lg-6">
+
+        @* ── Theme ── *@
+        <div class="glass-card p-4 mb-4">
+            <h5 class="fw-semibold text-contrast mb-3">
+                <i class="bi bi-palette-fill me-2" aria-hidden="true"></i>Theme
+            </h5>
+            <div class="d-flex gap-2 flex-wrap">
+                <button class="btn @(_currentTheme == "system" ? "btn-primary" : "btn-outline-secondary") settings-theme-btn"
+                        @onclick='() => SetThemeAsync("system")'>
+                    <i class="bi bi-circle-half me-1" aria-hidden="true"></i> System
+                </button>
+                <button class="btn @(_currentTheme == "light" ? "btn-primary" : "btn-outline-secondary") settings-theme-btn"
+                        @onclick='() => SetThemeAsync("light")'>
+                    <i class="bi bi-sun-fill me-1" aria-hidden="true"></i> Light
+                </button>
+                <button class="btn @(_currentTheme == "dark" ? "btn-primary" : "btn-outline-secondary") settings-theme-btn"
+                        @onclick='() => SetThemeAsync("dark")'>
+                    <i class="bi bi-moon-stars-fill me-1" aria-hidden="true"></i> Dark
+                </button>
+            </div>
+        </div>
+
+        @* ── Favorite Games ── *@
+        <div class="glass-card p-4 mb-4">
+            <h5 class="fw-semibold text-contrast mb-3">
+                <i class="bi bi-controller me-2" aria-hidden="true"></i>Favorite Games
+            </h5>
+            <div class="input-group mb-3">
+                <input @bind="newGameName" @onkeypress="HandleGameKeyPress"
+                       class="form-control" placeholder="Add a game name..." />
+                <button class="btn btn-primary" @onclick="AddFavoriteGame"
+                        disabled="@string.IsNullOrWhiteSpace(newGameName)">
+                    <i class="bi bi-plus-lg"></i> Add
+                </button>
+            </div>
+            @if (_favoriteGames.Count > 0)
+            {
+                <ul class="list-group settings-favorites-list">
+                    @foreach (var game in _favoriteGames)
+                    {
+                        <li class="list-group-item settings-favorites-item">
+                            <span class="text-contrast">@game.Name</span>
+                            <button class="btn btn-sm btn-outline-danger" aria-label="Remove @game.Name"
+                                    @onclick="() => RemoveFavoriteGame(game)">
+                                <i class="bi bi-trash3-fill" aria-hidden="true"></i>
+                            </button>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="text-contrast-muted small mb-0">No favorite games saved yet.</p>
+            }
+        </div>
+
+        @* ── Favorite Players ── *@
+        <div class="glass-card p-4">
+            <h5 class="fw-semibold text-contrast mb-3">
+                <i class="bi bi-people-fill me-2" aria-hidden="true"></i>Favorite Players
+            </h5>
+            <div class="input-group mb-3">
+                <input @bind="newPlayerName" @onkeypress="HandlePlayerKeyPress"
+                       class="form-control" placeholder="Add a player name..." />
+                <button class="btn btn-primary" @onclick="AddFavoritePlayer"
+                        disabled="@string.IsNullOrWhiteSpace(newPlayerName)">
+                    <i class="bi bi-plus-lg"></i> Add
+                </button>
+            </div>
+            @if (_favoritePlayers.Count > 0)
+            {
+                <ul class="list-group settings-favorites-list">
+                    @foreach (var player in _favoritePlayers)
+                    {
+                        <li class="list-group-item settings-favorites-item">
+                            <span class="text-contrast">@player.Name</span>
+                            <button class="btn btn-sm btn-outline-danger" aria-label="Remove @player.Name"
+                                    @onclick="() => RemoveFavoritePlayer(player)">
+                                <i class="bi bi-trash3-fill" aria-hidden="true"></i>
+                            </button>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="text-contrast-muted small mb-0">No favorite players saved yet.</p>
+            }
+        </div>
+
+    </div>
+</div>
+
+@code {
+    private string _currentTheme = "system";
+    private List<FavoriteGame> _favoriteGames = new();
+    private List<FavoritePlayer> _favoritePlayers = new();
+
+    private string newGameName = string.Empty;
+    private string newPlayerName = string.Empty;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _currentTheme = await ThemeService.GetThemeAsync();
+            _favoriteGames = await SettingsService.GetFavoriteGamesAsync();
+            _favoritePlayers = await SettingsService.GetFavoritePlayersAsync();
+            StateHasChanged();
+        }
+    }
+
+    private async Task SetThemeAsync(string theme)
+    {
+        _currentTheme = theme;
+        await ThemeService.SetThemeAsync(theme);
+    }
+
+    private async Task AddFavoriteGame()
+    {
+        var name = newGameName.Trim();
+        if (string.IsNullOrWhiteSpace(name)) return;
+        if (_favoriteGames.Any(g => g.Name.Equals(name, StringComparison.OrdinalIgnoreCase))) return;
+        var key = await SettingsService.AddFavoriteGameAsync(name);
+        _favoriteGames.Add(new FavoriteGame { Key = key, Name = name });
+        newGameName = string.Empty;
+    }
+
+    private async Task RemoveFavoriteGame(FavoriteGame game)
+    {
+        if (game.Key is null) return;
+        await SettingsService.RemoveFavoriteGameAsync(game.Key.Value);
+        _favoriteGames.Remove(game);
+    }
+
+    private async Task AddFavoritePlayer()
+    {
+        var name = newPlayerName.Trim();
+        if (string.IsNullOrWhiteSpace(name)) return;
+        if (_favoritePlayers.Any(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase))) return;
+        var key = await SettingsService.AddFavoritePlayerAsync(name);
+        _favoritePlayers.Add(new FavoritePlayer { Key = key, Name = name });
+        newPlayerName = string.Empty;
+    }
+
+    private async Task RemoveFavoritePlayer(FavoritePlayer player)
+    {
+        if (player.Key is null) return;
+        await SettingsService.RemoveFavoritePlayerAsync(player.Key.Value);
+        _favoritePlayers.Remove(player);
+    }
+
+    private async Task HandleGameKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter") await AddFavoriteGame();
+    }
+
+    private async Task HandlePlayerKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter") await AddFavoritePlayer();
+    }
+}
