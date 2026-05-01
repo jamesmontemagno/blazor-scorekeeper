@@ -3,6 +3,7 @@
 @using MyScoreBoardShared.Models
 @inject IThemeService ThemeService
 @inject ISettingsService SettingsService
+@inject IJSRuntime JS
 
 <PageTitle>Settings</PageTitle>
 
@@ -131,6 +132,7 @@
     {
         _currentTheme = theme;
         await ThemeService.SetThemeAsync(theme);
+        try { await JS.InvokeVoidAsync("setAppTheme", theme); } catch { /* ignore JS interop errors */ }
     }
 
     private async Task AddFavoriteGame()

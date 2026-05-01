@@ -360,6 +360,45 @@ a, .btn-link {
     color: var(--bs-primary);
 }
 
+/* Header actions container (theme toggles + settings link in MAUI toolbar) */
+.maui-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Settings icon button in the top toolbar */
+.btn-header-settings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--muted);
+    padding: 0.35rem 0.45rem;
+    min-width: 38px;
+    min-height: 38px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition-base);
+    text-decoration: none;
+    touch-action: manipulation;
+}
+
+.btn-header-settings:hover,
+.btn-header-settings:focus-visible {
+    background: var(--surface-muted);
+    border-color: var(--border);
+    color: var(--foreground);
+}
+
+.btn-header-settings.active {
+    color: var(--bs-primary);
+    background: var(--surface-muted);
+    border-color: var(--border);
+}
+
 .btn {
     border-radius: var(--radius-md);
     font-weight: 650;
