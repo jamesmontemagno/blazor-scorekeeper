@@ -36,7 +36,7 @@
                     </button>
                 </div>
                 <datalist id="favoritePlayersList">
-                    @foreach (var fp in _favoritePlayers.Where(fp => !players.Any(p => p.Name.Equals(fp.Name, StringComparison.OrdinalIgnoreCase))))
+                    @foreach (var fp in _availableFavoritePlayers)
                     {
                         <option value="@fp.Name" />
                     }
@@ -85,6 +85,9 @@
     private List<FavoritePlayer> _favoritePlayers = new();
 
     private bool CanStart => !string.IsNullOrWhiteSpace(gameName) && players.Count >= 1;
+
+    private IEnumerable<FavoritePlayer> _availableFavoritePlayers =>
+        _favoritePlayers.Where(fp => !players.Any(p => p.Name.Equals(fp.Name, StringComparison.OrdinalIgnoreCase)));
 
     protected override async Task OnInitializedAsync()
     {

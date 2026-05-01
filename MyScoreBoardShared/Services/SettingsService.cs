@@ -19,7 +19,7 @@ public class SettingsService : ISettingsService
 
     public async Task<int> AddFavoriteGameAsync(string name)
     {
-        var entry = new FavoriteGame { Name = name.Trim() };
+        var entry = new FavoriteGame { Name = name };
         return await _db.AddAsync(StoreGames, entry);
     }
 
@@ -31,7 +31,7 @@ public class SettingsService : ISettingsService
 
     public async Task<int> AddFavoritePlayerAsync(string name)
     {
-        var entry = new FavoritePlayer { Name = name.Trim() };
+        var entry = new FavoritePlayer { Name = name };
         return await _db.AddAsync(StorePlayers, entry);
     }
 

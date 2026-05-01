@@ -44,7 +44,7 @@
                 <input @bind="newGameName" @onkeypress="HandleGameKeyPress"
                        class="form-control" placeholder="Add a game name..." />
                 <button class="btn btn-primary" @onclick="AddFavoriteGame"
-                        disabled="@string.IsNullOrWhiteSpace(newGameName)">
+                        disabled="@(!_loaded || string.IsNullOrWhiteSpace(newGameName))">
                     <i class="bi bi-plus-lg"></i> Add
                 </button>
             </div>
@@ -78,7 +78,7 @@
                 <input @bind="newPlayerName" @onkeypress="HandlePlayerKeyPress"
                        class="form-control" placeholder="Add a player name..." />
                 <button class="btn btn-primary" @onclick="AddFavoritePlayer"
-                        disabled="@string.IsNullOrWhiteSpace(newPlayerName)">
+                        disabled="@(!_loaded || string.IsNullOrWhiteSpace(newPlayerName))">
                     <i class="bi bi-plus-lg"></i> Add
                 </button>
             </div>
@@ -110,6 +110,7 @@
     private string _currentTheme = "system";
     private List<FavoriteGame> _favoriteGames = new();
     private List<FavoritePlayer> _favoritePlayers = new();
+    private bool _loaded = false;
 
     private string newGameName = string.Empty;
     private string newPlayerName = string.Empty;
@@ -121,6 +122,7 @@
             _currentTheme = await ThemeService.GetThemeAsync();
             _favoriteGames = await SettingsService.GetFavoriteGamesAsync();
             _favoritePlayers = await SettingsService.GetFavoritePlayersAsync();
+            _loaded = true;
             StateHasChanged();
         }
     }
