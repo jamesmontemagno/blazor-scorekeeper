@@ -47,6 +47,3 @@ jobs:
 
       - name: Restore MAUI Android app
         run: dotnet restore MyScoreBoardMaui/MyScoreBoardMaui.csproj
-
-      - name: Pre-build MAUI Android target
-        run: dotnet build MyScoreBoardMaui/MyScoreBoardMaui.csproj -f net10.0-android --no-restore
