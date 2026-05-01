@@ -129,7 +129,7 @@ export function putItem(storeName, value) {
         };
         putReq.onerror = () => reject(putReq.error);
       } else {
-        // For games store, use put without key (auto-increment)
+        // For other stores (auto-increment), use put without explicit key
         const putReq = store.put(value);
         putReq.onsuccess = () => {
           const resultKey = putReq.result;

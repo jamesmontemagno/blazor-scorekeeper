@@ -34,7 +34,7 @@ public class IndexedDbService : IIndexedDbService
         var entity = new DatabaseEntity
         {
             StoreName = storeName,
-            Key = string.Empty // Auto-increment store, no specific key
+            Key = string.Empty // Row distinguished by SQLite auto-increment ID
         };
         entity.SetData(value);
         
@@ -87,7 +87,8 @@ public class IndexedDbService : IIndexedDbService
     {
         await InitAsync();
         
-        // For "active" store, use fixed key "current"
+        // "active" uses fixed key "current"; all other stores (favoriteGames,
+        // favoritePlayers, etc.) use "" as a stable single-row key.
         string key = storeName == "active" ? "current" : string.Empty;
         
         var existing = await _db!.Table<DatabaseEntity>()
@@ -115,7 +116,7 @@ public class IndexedDbService : IIndexedDbService
     {
         await InitAsync();
         
-        // For "active" store, look for "current" key
+        // "active" uses fixed key "current"; all other single-value stores use "".
         string key = storeName == "active" ? "current" : string.Empty;
         
         var entity = await _db!.Table<DatabaseEntity>()
