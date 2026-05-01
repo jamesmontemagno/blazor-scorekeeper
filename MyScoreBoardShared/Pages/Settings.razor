@@ -53,9 +53,9 @@
                     @foreach (var game in favoriteGames)
                     {
                         <div class="col-auto">
-                            <div class="badge bg-secondary p-2 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
+                            <div class="badge bg-secondary p-2 d-flex align-items-center gap-2 favorite-badge">
                                 <i class="bi bi-controller" aria-hidden="true"></i>
-                                <span style="color: white; font-weight: 500;">@game</span>
+                                <span>@game</span>
                                 <button class="btn-close btn-close-white" style="font-size: 0.7em;"
                                         aria-label="Remove @game" @onclick="(() => RemoveFavoriteGame(game))"></button>
                             </div>
@@ -88,9 +88,9 @@
                     @foreach (var player in favoritePlayers)
                     {
                         <div class="col-auto">
-                            <div class="badge bg-secondary p-2 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
+                            <div class="badge bg-secondary p-2 d-flex align-items-center gap-2 favorite-badge">
                                 <i class="bi bi-person-fill" aria-hidden="true"></i>
-                                <span style="color: white; font-weight: 500;">@player</span>
+                                <span>@player</span>
                                 <button class="btn-close btn-close-white" style="font-size: 0.7em;"
                                         aria-label="Remove @player" @onclick="(() => RemoveFavoritePlayer(player))"></button>
                             </div>
@@ -165,11 +165,11 @@
 
     private void HandleGameKeyPress(KeyboardEventArgs e)
     {
-        if (e.Key == "Enter") _ = AddFavoriteGame();
+        if (e.Key == "Enter") _ = InvokeAsync(AddFavoriteGame);
     }
 
     private void HandlePlayerKeyPress(KeyboardEventArgs e)
     {
-        if (e.Key == "Enter") _ = AddFavoritePlayer();
+        if (e.Key == "Enter") _ = InvokeAsync(AddFavoritePlayer);
     }
 }

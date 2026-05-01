@@ -601,6 +601,16 @@ canvas[style*="z-index"] {
     z-index: 99999 !important;
 }
 
+/* Favorites badge used on Settings and Setup pages */
+.favorite-badge {
+    font-size: 0.9rem;
+}
+
+.favorite-badge span {
+    color: white;
+    font-weight: 500;
+}
+
 @media (max-width: 767.98px) {
     .hero {
         padding: 1.5rem;

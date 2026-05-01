@@ -66,8 +66,8 @@
                         @foreach (var p in players)
                         {
                             <div class="col-auto">
-                                <div class="badge bg-secondary p-2 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
-                                    <span style="color: white; font-weight: 500;">@p.Name</span>
+                                <div class="badge bg-secondary p-2 d-flex align-items-center gap-2 favorite-badge">
+                                    <span>@p.Name</span>
                                     <button class="btn-close btn-close-white" style="font-size: 0.7em;" aria-label="Remove @p.Name" @onclick="(() => RemovePlayer(p.Id))"></button>
                                 </div>
                             </div>
@@ -108,11 +108,15 @@
     {
         if (firstRender)
         {
-            await CheckForSavedData();
-            favoriteGames = await LocalStorage.GetFavoriteGamesAsync();
-            favoritePlayers = await LocalStorage.GetFavoritePlayersAsync();
+            await Task.WhenAll(CheckForSavedData(), LoadFavoritesAsync());
             StateHasChanged();
         }
+    }
+
+    private async Task LoadFavoritesAsync()
+    {
+        favoriteGames = await LocalStorage.GetFavoriteGamesAsync();
+        favoritePlayers = await LocalStorage.GetFavoritePlayersAsync();
     }
 
     private async Task CheckForSavedData()
