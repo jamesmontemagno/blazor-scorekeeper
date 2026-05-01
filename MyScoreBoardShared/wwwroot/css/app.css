@@ -334,6 +334,17 @@ a, .btn-link {
     color: var(--bs-primary);
 }
 
+/* Game setup favorites dropdown */
+.setup-favorites-dropdown {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0.35rem;
+    margin-top: 0.25rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
 /* Theme toggle inline buttons (used in both web navbar and MAUI header) */
 .btn-theme-toggle {
     background: transparent;

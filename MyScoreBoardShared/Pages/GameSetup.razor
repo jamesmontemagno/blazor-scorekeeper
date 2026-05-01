@@ -18,29 +18,53 @@
         <div class="glass-card p-4">
             <div class="mb-3">
                 <label class="form-label fw-semibold text-contrast" for="gameName">Game Name</label>
-                <input @bind="gameName" id="gameName" list="favoriteGamesList" class="form-control form-control-lg" placeholder="Enter board game name..." />
-                <datalist id="favoriteGamesList">
-                    @foreach (var fg in _favoriteGames)
+                <div class="input-group">
+                    <input @bind="gameName" id="gameName" class="form-control form-control-lg" placeholder="Enter board game name..." />
+                    @if (_favoriteGames.Count > 0)
                     {
-                        <option value="@fg.Name" />
+                        <button class="btn btn-outline-secondary" type="button" @onclick="ToggleGameFavorites" title="Show favorite games">
+                            <i class="bi bi-star-fill"></i>
+                        </button>
                     }
-                </datalist>
+                </div>
+                @if (_showGameFavorites && _favoriteGames.Count > 0)
+                {
+                    <div class="setup-favorites-dropdown">
+                        @foreach (var fg in _favoriteGames)
+                        {
+                            <button class="dropdown-item" type="button" @onclick="() => SelectGame(fg.Name)">
+                                <i class="bi bi-star me-2 text-warning"></i>@fg.Name
+                            </button>
+                        }
+                    </div>
+                }
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-semibold text-contrast" for="playerName">Players</label>
                 <div class="input-group mb-3">
-                    <input @bind="playerName" @onkeypress="HandleKeyPress" id="playerName" list="favoritePlayersList" class="form-control" placeholder="Enter player name..." />
+                    <input @bind="playerName" @onkeypress="HandleKeyPress" id="playerName" class="form-control" placeholder="Enter player name..." />
+                    @if (_availableFavoritePlayers.Any())
+                    {
+                        <button class="btn btn-outline-secondary" type="button" @onclick="TogglePlayerFavorites" title="Show favorite players">
+                            <i class="bi bi-person-lines-fill"></i>
+                        </button>
+                    }
                     <button class="btn btn-primary" @onclick="AddPlayer" disabled="@string.IsNullOrWhiteSpace(playerName)">
                         <i class="bi bi-plus-lg"></i> Add
                     </button>
                 </div>
-                <datalist id="favoritePlayersList">
-                    @foreach (var fp in _availableFavoritePlayers)
-                    {
-                        <option value="@fp.Name" />
-                    }
-                </datalist>
+                @if (_showPlayerFavorites && _availableFavoritePlayers.Any())
+                {
+                    <div class="setup-favorites-dropdown mb-2">
+                        @foreach (var fp in _availableFavoritePlayers)
+                        {
+                            <button class="dropdown-item" type="button" @onclick="() => SelectPlayer(fp.Name)">
+                                <i class="bi bi-person me-2"></i>@fp.Name
+                            </button>
+                        }
+                    </div>
+                }
 
                 @if (players.Count > 0)
                 {
@@ -83,6 +107,8 @@
     private bool hasSavedData = false;
     private List<FavoriteGame> _favoriteGames = new();
     private List<FavoritePlayer> _favoritePlayers = new();
+    private bool _showGameFavorites = false;
+    private bool _showPlayerFavorites = false;
 
     private bool CanStart => !string.IsNullOrWhiteSpace(gameName) && players.Count >= 1;
 
@@ -147,6 +173,31 @@
         if (players.Any(p => p.Name.Equals(playerName.Trim(), StringComparison.OrdinalIgnoreCase))) return;
         players.Add(new(id, playerName.Trim()));
         playerName = string.Empty;
+    }
+
+    private void ToggleGameFavorites()
+    {
+        _showGameFavorites = !_showGameFavorites;
+        _showPlayerFavorites = false;
+    }
+
+    private void SelectGame(string name)
+    {
+        gameName = name;
+        _showGameFavorites = false;
+    }
+
+    private void TogglePlayerFavorites()
+    {
+        _showPlayerFavorites = !_showPlayerFavorites;
+        _showGameFavorites = false;
+    }
+
+    private void SelectPlayer(string name)
+    {
+        playerName = name;
+        _showPlayerFavorites = false;
+        AddPlayer();
     }
 
     private void RemovePlayer(string id)
