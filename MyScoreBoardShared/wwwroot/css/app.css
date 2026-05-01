@@ -579,6 +579,45 @@ a, .btn-link {
     font-weight: 500;
 }
 
+/* In dark mode Bootstrap's alert-warning/alert-info keep their light-mode
+   backgrounds and Bootstrap's text-emphasis colours don't adapt without
+   data-bs-theme="dark". Override to match the glass-card dark vocabulary. */
+[data-theme="dark"] .alert-warning,
+[data-theme="dark"] .alert-info {
+    color: var(--foreground);
+}
+
+[data-theme="dark"] .alert-warning {
+    background-color: rgba(var(--bs-warning-rgb), 0.15);
+    border-color: rgba(var(--bs-warning-rgb), 0.35);
+}
+
+[data-theme="dark"] .alert-info {
+    background-color: rgba(var(--bs-info-rgb), 0.15);
+    border-color: rgba(var(--bs-info-rgb), 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+    [data-theme="system"] .alert-warning,
+    :root:not([data-theme]) .alert-warning,
+    [data-theme="system"] .alert-info,
+    :root:not([data-theme]) .alert-info {
+        color: var(--foreground);
+    }
+
+    [data-theme="system"] .alert-warning,
+    :root:not([data-theme]) .alert-warning {
+        background-color: rgba(var(--bs-warning-rgb), 0.15);
+        border-color: rgba(var(--bs-warning-rgb), 0.35);
+    }
+
+    [data-theme="system"] .alert-info,
+    :root:not([data-theme]) .alert-info {
+        background-color: rgba(var(--bs-info-rgb), 0.15);
+        border-color: rgba(var(--bs-info-rgb), 0.35);
+    }
+}
+
 .valid.modified:not([type=checkbox]) { outline: 1px solid #26b050; }
 .invalid { outline: 1px solid #e50000; }
 .validation-message { color: #e50000; }
