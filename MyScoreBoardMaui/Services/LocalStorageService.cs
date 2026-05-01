@@ -6,6 +6,16 @@ namespace MyScoreBoardMaui.Services;
 
 public class LocalStorageService : ILocalStorageService
 {
+    private const string FavoriteGamesStore = "favoriteGames";
+    private const string FavoritePlayersStore = "favoritePlayers";
+
+    private readonly IIndexedDbService _db;
+
+    public LocalStorageService(IIndexedDbService db)
+    {
+        _db = db;
+    }
+
     public Task<bool> GetHasActiveGameAsync()
     {
         var value = Preferences.Get("hasActiveGame", false);
@@ -79,53 +89,47 @@ public class LocalStorageService : ILocalStorageService
         return Task.CompletedTask;
     }
 
-    public Task<List<string>> GetFavoriteGamesAsync()
+    public async Task<List<string>> GetFavoriteGamesAsync()
     {
         try
         {
-            var json = Preferences.Get("favoriteGames", string.Empty);
-            if (string.IsNullOrWhiteSpace(json)) return Task.FromResult(new List<string>());
-            return Task.FromResult(System.Text.Json.JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>());
+            var result = await _db.GetFirstAsync<List<string>>(FavoriteGamesStore);
+            return result ?? new List<string>();
         }
         catch
         {
-            return Task.FromResult(new List<string>());
+            return new List<string>();
         }
     }
 
-    public Task SetFavoriteGamesAsync(List<string> games)
+    public async Task SetFavoriteGamesAsync(List<string> games)
     {
         try
         {
-            var json = System.Text.Json.JsonSerializer.Serialize(games);
-            Preferences.Set("favoriteGames", json);
+            await _db.UpsertAsync(FavoriteGamesStore, games);
         }
         catch { }
-        return Task.CompletedTask;
     }
 
-    public Task<List<string>> GetFavoritePlayersAsync()
+    public async Task<List<string>> GetFavoritePlayersAsync()
     {
         try
         {
-            var json = Preferences.Get("favoritePlayers", string.Empty);
-            if (string.IsNullOrWhiteSpace(json)) return Task.FromResult(new List<string>());
-            return Task.FromResult(System.Text.Json.JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>());
+            var result = await _db.GetFirstAsync<List<string>>(FavoritePlayersStore);
+            return result ?? new List<string>();
         }
         catch
         {
-            return Task.FromResult(new List<string>());
+            return new List<string>();
         }
     }
 
-    public Task SetFavoritePlayersAsync(List<string> players)
+    public async Task SetFavoritePlayersAsync(List<string> players)
     {
         try
         {
-            var json = System.Text.Json.JsonSerializer.Serialize(players);
-            Preferences.Set("favoritePlayers", json);
+            await _db.UpsertAsync(FavoritePlayersStore, players);
         }
         catch { }
-        return Task.CompletedTask;
     }
 }
