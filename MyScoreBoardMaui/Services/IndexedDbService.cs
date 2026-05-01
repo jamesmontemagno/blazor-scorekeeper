@@ -56,11 +56,13 @@ public class IndexedDbService : IIndexedDbService
             var data = entity.GetData<T>();
             if (data != null)
             {
-                // For GameStoreEntry objects, set the Key property from database ID
+                // Set the Key property from database ID for all keyed model types
                 if (data is GameStoreEntry gameEntry)
-                {
                     gameEntry.Key = entity.ID;
-                }
+                else if (data is FavoriteGame favoriteGame)
+                    favoriteGame.Key = entity.ID;
+                else if (data is FavoritePlayer favoritePlayer)
+                    favoritePlayer.Key = entity.ID;
                 results.Add(data);
             }
         }

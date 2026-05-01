@@ -81,7 +81,7 @@ export function getAll(storeName) {
         const cursor = event.target.result;
         if (cursor) {
           const item = cursor.value;
-          item.Key = cursor.key; // Add the auto-generated key to the object
+          item.key = cursor.key; // Add the auto-generated key to the object
           items.push(item);
           cursor.continue();
         } else {
