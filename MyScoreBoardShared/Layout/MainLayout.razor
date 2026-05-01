@@ -1,7 +1,6 @@
 @inherits LayoutComponentBase
 @inject NavigationManager Nav
 @inject IThemeService ThemeService
-@inject IJSRuntime JS
 @inject IGameService GameService
 @inject ILocalStorageService LocalStorage
 @implements IDisposable
@@ -47,16 +46,11 @@
                             History
                         </NavLink>
                     </li>
-                    <li class="nav-item theme-switcher ms-md-2 d-flex align-items-center gap-1">
-                        <button class="btn-theme-toggle @(_currentTheme == "system" ? "active" : "")" @onclick='() => ChangeThemeAsync("system")' aria-label="Switch to system theme" title="System">
-                            <i class="bi bi-circle-half" aria-hidden="true"></i>
-                        </button>
-                        <button class="btn-theme-toggle @(_currentTheme == "light" ? "active" : "")" @onclick='() => ChangeThemeAsync("light")' aria-label="Switch to light theme" title="Light">
-                            <i class="bi bi-sun-fill" aria-hidden="true"></i>
-                        </button>
-                        <button class="btn-theme-toggle @(_currentTheme == "dark" ? "active" : "")" @onclick='() => ChangeThemeAsync("dark")' aria-label="Switch to dark theme" title="Dark">
-                            <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
-                        </button>
+                    <li class="nav-item ms-md-1">
+                        <NavLink class="nav-link" href="/settings">
+                            <i class="bi bi-gear-fill me-1" aria-hidden="true"></i>
+                            Settings
+                        </NavLink>
                     </li>
                 </ul>
             </div>
@@ -77,7 +71,6 @@
 </div>
 
 @code {
-    private string _currentTheme = "system";
     private bool _hasActiveGame = false;
     private bool _locationChangedSubscribed = false;
 
@@ -85,8 +78,8 @@
     {
         if (firstRender)
         {
-            _currentTheme = await ThemeService.GetThemeAsync();
-            await ThemeService.ApplyThemeAsync(_currentTheme);
+            var theme = await ThemeService.GetThemeAsync();
+            await ThemeService.ApplyThemeAsync(theme);
 
             // Quick check from localStorage, then verify with backing store
             _hasActiveGame = await LocalStorage.GetHasActiveGameAsync();
@@ -127,13 +120,5 @@
         {
             Nav.LocationChanged -= OnLocationChanged;
         }
-    }
-
-    private async Task ChangeThemeAsync(string theme)
-    {
-        _currentTheme = theme;
-        await ThemeService.SetThemeAsync(theme);
-        try { await JS.InvokeVoidAsync("myMenu.closeNav"); } catch { /* ignore JS interop errors */ }
-        StateHasChanged();
     }
 }

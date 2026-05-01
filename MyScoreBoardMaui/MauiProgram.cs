@@ -32,6 +32,9 @@ public static class MauiProgram
 		// Register theme service
 		builder.Services.AddSingleton<IThemeService, ThemeService>();
 
+		// Register settings service
+		builder.Services.AddSingleton<ISettingsService, SettingsService>();
+
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
