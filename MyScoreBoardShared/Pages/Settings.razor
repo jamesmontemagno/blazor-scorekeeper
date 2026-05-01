@@ -1,5 +1,6 @@
 @page "/settings"
 @using MyScoreBoardShared.Services
+@using MyScoreBoardShared.Models
 @inject IThemeService ThemeService
 @inject ILocalStorageService LocalStorage
 
@@ -55,9 +56,9 @@
                         <div class="col-auto">
                             <div class="badge bg-secondary p-2 d-flex align-items-center gap-2 favorite-badge">
                                 <i class="bi bi-controller" aria-hidden="true"></i>
-                                <span>@game</span>
+                                <span>@game.Name</span>
                                 <button class="btn-close btn-close-white" style="font-size: 0.7em;"
-                                        aria-label="Remove @game" @onclick="(() => RemoveFavoriteGame(game))"></button>
+                                        aria-label="Remove @game.Name" @onclick="(() => RemoveFavoriteGame(game))"></button>
                             </div>
                         </div>
                     }
@@ -90,9 +91,9 @@
                         <div class="col-auto">
                             <div class="badge bg-secondary p-2 d-flex align-items-center gap-2 favorite-badge">
                                 <i class="bi bi-person-fill" aria-hidden="true"></i>
-                                <span>@player</span>
+                                <span>@player.Name</span>
                                 <button class="btn-close btn-close-white" style="font-size: 0.7em;"
-                                        aria-label="Remove @player" @onclick="(() => RemoveFavoritePlayer(player))"></button>
+                                        aria-label="Remove @player.Name" @onclick="(() => RemoveFavoritePlayer(player))"></button>
                             </div>
                         </div>
                     }
@@ -109,8 +110,8 @@
 
 @code {
     private string _currentTheme = "system";
-    private List<string> favoriteGames = new();
-    private List<string> favoritePlayers = new();
+    private List<FavoriteGame> favoriteGames = new();
+    private List<FavoritePlayer> favoritePlayers = new();
     private string newGameName = string.Empty;
     private string newPlayerName = string.Empty;
 
@@ -135,13 +136,13 @@
     {
         var name = newGameName.Trim();
         if (string.IsNullOrWhiteSpace(name)) return;
-        if (favoriteGames.Any(g => g.Equals(name, StringComparison.OrdinalIgnoreCase))) return;
-        favoriteGames.Add(name);
+        if (favoriteGames.Any(g => g.Name.Equals(name, StringComparison.OrdinalIgnoreCase))) return;
+        favoriteGames.Add(new FavoriteGame { Name = name });
         newGameName = string.Empty;
         await LocalStorage.SetFavoriteGamesAsync(favoriteGames);
     }
 
-    private async Task RemoveFavoriteGame(string game)
+    private async Task RemoveFavoriteGame(FavoriteGame game)
     {
         favoriteGames.Remove(game);
         await LocalStorage.SetFavoriteGamesAsync(favoriteGames);
@@ -151,13 +152,13 @@
     {
         var name = newPlayerName.Trim();
         if (string.IsNullOrWhiteSpace(name)) return;
-        if (favoritePlayers.Any(p => p.Equals(name, StringComparison.OrdinalIgnoreCase))) return;
-        favoritePlayers.Add(name);
+        if (favoritePlayers.Any(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase))) return;
+        favoritePlayers.Add(new FavoritePlayer { Name = name });
         newPlayerName = string.Empty;
         await LocalStorage.SetFavoritePlayersAsync(favoritePlayers);
     }
 
-    private async Task RemoveFavoritePlayer(string player)
+    private async Task RemoveFavoritePlayer(FavoritePlayer player)
     {
         favoritePlayers.Remove(player);
         await LocalStorage.SetFavoritePlayersAsync(favoritePlayers);

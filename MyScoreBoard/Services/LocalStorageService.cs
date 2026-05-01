@@ -1,4 +1,5 @@
 using Microsoft.JSInterop;
+using MyScoreBoardShared.Models;
 
 namespace MyScoreBoard.Services;
 
@@ -125,21 +126,21 @@ public class LocalStorageService : MyScoreBoardShared.Services.ILocalStorageServ
         }
     }
 
-    public async Task<List<string>> GetFavoriteGamesAsync()
+    public async Task<List<FavoriteGame>> GetFavoriteGamesAsync()
     {
         try
         {
             var json = await _jsRuntime.InvokeAsync<string?>("localStorage.getItem", "favoriteGames");
-            if (string.IsNullOrEmpty(json)) return new List<string>();
-            return System.Text.Json.JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+            if (string.IsNullOrEmpty(json)) return new List<FavoriteGame>();
+            return System.Text.Json.JsonSerializer.Deserialize<List<FavoriteGame>>(json) ?? new List<FavoriteGame>();
         }
         catch
         {
-            return new List<string>();
+            return new List<FavoriteGame>();
         }
     }
 
-    public async Task SetFavoriteGamesAsync(List<string> games)
+    public async Task SetFavoriteGamesAsync(List<FavoriteGame> games)
     {
         try
         {
@@ -149,21 +150,21 @@ public class LocalStorageService : MyScoreBoardShared.Services.ILocalStorageServ
         catch { }
     }
 
-    public async Task<List<string>> GetFavoritePlayersAsync()
+    public async Task<List<FavoritePlayer>> GetFavoritePlayersAsync()
     {
         try
         {
             var json = await _jsRuntime.InvokeAsync<string?>("localStorage.getItem", "favoritePlayers");
-            if (string.IsNullOrEmpty(json)) return new List<string>();
-            return System.Text.Json.JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+            if (string.IsNullOrEmpty(json)) return new List<FavoritePlayer>();
+            return System.Text.Json.JsonSerializer.Deserialize<List<FavoritePlayer>>(json) ?? new List<FavoritePlayer>();
         }
         catch
         {
-            return new List<string>();
+            return new List<FavoritePlayer>();
         }
     }
 
-    public async Task SetFavoritePlayersAsync(List<string> players)
+    public async Task SetFavoritePlayersAsync(List<FavoritePlayer> players)
     {
         try
         {

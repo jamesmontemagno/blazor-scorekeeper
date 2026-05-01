@@ -1,5 +1,6 @@
 @page "/setup"
 @using MyScoreBoardShared.Services
+@using MyScoreBoardShared.Models
 @inject IGameService Game
 @inject ILocalStorageService LocalStorage
 @inject NavigationManager Nav
@@ -24,8 +25,8 @@
                         <div class="d-flex flex-wrap gap-1 mt-1">
                             @foreach (var fg in favoriteGames)
                             {
-                                <button class="btn btn-sm btn-outline-secondary" @onclick="() => gameName = fg">
-                                    <i class="bi bi-controller me-1" aria-hidden="true"></i>@fg
+                                <button class="btn btn-sm btn-outline-secondary" @onclick="() => gameName = fg.Name">
+                                    <i class="bi bi-controller me-1" aria-hidden="true"></i>@fg.Name
                                 </button>
                             }
                         </div>
@@ -49,11 +50,11 @@
                         <div class="d-flex flex-wrap gap-1 mt-1">
                             @foreach (var fp in favoritePlayers)
                             {
-                                var alreadyAdded = players.Any(p => p.Name.Equals(fp, StringComparison.OrdinalIgnoreCase));
+                                var alreadyAdded = players.Any(p => p.Name.Equals(fp.Name, StringComparison.OrdinalIgnoreCase));
                                 <button class="btn btn-sm @(alreadyAdded ? "btn-secondary" : "btn-outline-secondary")"
                                         disabled="@alreadyAdded"
-                                        @onclick="() => AddFavoritePlayer(fp)">
-                                    <i class="bi bi-person-fill me-1" aria-hidden="true"></i>@fp
+                                        @onclick="() => AddFavoritePlayer(fp.Name)">
+                                    <i class="bi bi-person-fill me-1" aria-hidden="true"></i>@fp.Name
                                 </button>
                             }
                         </div>
@@ -99,8 +100,8 @@
     private string playerName = string.Empty;
     private List<MyScoreBoardShared.Models.Player> players = new();
     private bool hasSavedData = false;
-    private List<string> favoriteGames = new();
-    private List<string> favoritePlayers = new();
+    private List<FavoriteGame> favoriteGames = new();
+    private List<FavoritePlayer> favoritePlayers = new();
 
     private bool CanStart => !string.IsNullOrWhiteSpace(gameName) && players.Count >= 1;
 

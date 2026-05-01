@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using MyScoreBoardShared.Services;
+using MyScoreBoardShared.Models;
 using Microsoft.Maui.Storage;
 
 namespace MyScoreBoardMaui.Services;
@@ -89,20 +90,20 @@ public class LocalStorageService : ILocalStorageService
         return Task.CompletedTask;
     }
 
-    public async Task<List<string>> GetFavoriteGamesAsync()
+    public async Task<List<FavoriteGame>> GetFavoriteGamesAsync()
     {
         try
         {
-            var result = await _db.GetFirstAsync<List<string>>(FavoriteGamesStore);
-            return result ?? new List<string>();
+            var result = await _db.GetFirstAsync<List<FavoriteGame>>(FavoriteGamesStore);
+            return result ?? new List<FavoriteGame>();
         }
         catch
         {
-            return new List<string>();
+            return new List<FavoriteGame>();
         }
     }
 
-    public async Task SetFavoriteGamesAsync(List<string> games)
+    public async Task SetFavoriteGamesAsync(List<FavoriteGame> games)
     {
         try
         {
@@ -111,20 +112,20 @@ public class LocalStorageService : ILocalStorageService
         catch { }
     }
 
-    public async Task<List<string>> GetFavoritePlayersAsync()
+    public async Task<List<FavoritePlayer>> GetFavoritePlayersAsync()
     {
         try
         {
-            var result = await _db.GetFirstAsync<List<string>>(FavoritePlayersStore);
-            return result ?? new List<string>();
+            var result = await _db.GetFirstAsync<List<FavoritePlayer>>(FavoritePlayersStore);
+            return result ?? new List<FavoritePlayer>();
         }
         catch
         {
-            return new List<string>();
+            return new List<FavoritePlayer>();
         }
     }
 
-    public async Task SetFavoritePlayersAsync(List<string> players)
+    public async Task SetFavoritePlayersAsync(List<FavoritePlayer> players)
     {
         try
         {

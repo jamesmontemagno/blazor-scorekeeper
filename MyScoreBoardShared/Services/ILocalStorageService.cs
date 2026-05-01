@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using MyScoreBoardShared.Models;
 
 namespace MyScoreBoardShared.Services;
 
@@ -21,8 +23,8 @@ public interface ILocalStorageService
     Task SetLastPlayersAsync(List<string> playerNames);
 
     // Favorites
-    Task<List<string>> GetFavoriteGamesAsync();
-    Task SetFavoriteGamesAsync(List<string> games);
-    Task<List<string>> GetFavoritePlayersAsync();
-    Task SetFavoritePlayersAsync(List<string> players);
+    Task<List<FavoriteGame>> GetFavoriteGamesAsync();
+    Task SetFavoriteGamesAsync(List<FavoriteGame> games);
+    Task<List<FavoritePlayer>> GetFavoritePlayersAsync();
+    Task SetFavoritePlayersAsync(List<FavoritePlayer> players);
 }
