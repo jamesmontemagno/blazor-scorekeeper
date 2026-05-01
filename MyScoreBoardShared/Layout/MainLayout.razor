@@ -2,6 +2,9 @@
 @inject NavigationManager Nav
 @inject IThemeService ThemeService
 @inject IJSRuntime JS
+@inject IGameService GameService
+@inject ILocalStorageService LocalStorage
+@implements IDisposable
 
 <div class="status-bar-safe-area"></div>
 
@@ -29,12 +32,15 @@
                             Setup
                         </NavLink>
                     </li>
-                    <li class="nav-item">
-                        <NavLink class="nav-link" href="/play">
-                            <i class="bi bi-play-fill me-1" aria-hidden="true"></i>
-                            Play
-                        </NavLink>
-                    </li>
+                    @if (_hasActiveGame)
+                    {
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="/play">
+                                <i class="bi bi-play-fill me-1" aria-hidden="true"></i>
+                                Play
+                            </NavLink>
+                        </li>
+                    }
                     <li class="nav-item">
                         <NavLink class="nav-link" href="/history">
                             <i class="bi bi-clock-history me-1" aria-hidden="true"></i>
@@ -72,6 +78,7 @@
 
 @code {
     private string _currentTheme = "system";
+    private bool _hasActiveGame = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -79,8 +86,35 @@
         {
             _currentTheme = await ThemeService.GetThemeAsync();
             await ThemeService.ApplyThemeAsync(_currentTheme);
+
+            // Quick check from localStorage, then verify with backing store
+            _hasActiveGame = await LocalStorage.GetHasActiveGameAsync();
             StateHasChanged();
+
+            var actual = await GameService.HasActiveGameAsync();
+            if (actual != _hasActiveGame)
+            {
+                _hasActiveGame = actual;
+                StateHasChanged();
+            }
+
+            Nav.LocationChanged += OnLocationChanged;
         }
+    }
+
+    private async void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        var hasActive = await GameService.HasActiveGameAsync();
+        if (hasActive != _hasActiveGame)
+        {
+            _hasActiveGame = hasActive;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        Nav.LocationChanged -= OnLocationChanged;
     }
 
     private async Task ChangeThemeAsync(string theme)
