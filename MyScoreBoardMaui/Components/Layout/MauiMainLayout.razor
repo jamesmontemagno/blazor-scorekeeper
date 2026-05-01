@@ -13,16 +13,21 @@
                 <i class="bi bi-trophy-fill trophy-icon me-2"></i>
                 <span class="brand-text">My Score Keeper</span>
             </NavLink>
-            <div class="maui-theme-toggles">
-                <button class="btn-theme-toggle @(_currentTheme == "system" ? "active" : "")" @onclick='() => ChangeThemeAsync("system")' aria-label="Switch to system theme">
-                    <i class="bi bi-circle-half" aria-hidden="true"></i>
-                </button>
-                <button class="btn-theme-toggle @(_currentTheme == "light" ? "active" : "")" @onclick='() => ChangeThemeAsync("light")' aria-label="Switch to light theme">
-                    <i class="bi bi-sun-fill" aria-hidden="true"></i>
-                </button>
-                <button class="btn-theme-toggle @(_currentTheme == "dark" ? "active" : "")" @onclick='() => ChangeThemeAsync("dark")' aria-label="Switch to dark theme">
-                    <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
-                </button>
+            <div class="maui-header-actions">
+                <div class="maui-theme-toggles">
+                    <button class="btn-theme-toggle @(_currentTheme == "system" ? "active" : "")" @onclick='() => ChangeThemeAsync("system")' aria-label="Switch to system theme">
+                        <i class="bi bi-circle-half" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn-theme-toggle @(_currentTheme == "light" ? "active" : "")" @onclick='() => ChangeThemeAsync("light")' aria-label="Switch to light theme">
+                        <i class="bi bi-sun-fill" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn-theme-toggle @(_currentTheme == "dark" ? "active" : "")" @onclick='() => ChangeThemeAsync("dark")' aria-label="Switch to dark theme">
+                        <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <NavLink class="btn-header-settings" href="/settings" aria-label="Settings">
+                    <i class="bi bi-gear-fill" aria-hidden="true"></i>
+                </NavLink>
             </div>
         </div>
     </header>
@@ -52,10 +57,6 @@
         <NavLink class="maui-nav-item" href="/history">
             <i class="bi bi-clock-history"></i>
             <span>History</span>
-        </NavLink>
-        <NavLink class="maui-nav-item" href="/settings">
-            <i class="bi bi-gear-fill"></i>
-            <span>Settings</span>
         </NavLink>
     </nav>
 </div>
@@ -89,6 +90,7 @@
                 StateHasChanged();
             }
 
+            ThemeService.ThemeChanged += OnThemeChanged;
             Nav.LocationChanged += OnLocationChanged;
             _locationChangedSubscribed = true;
         }
@@ -100,6 +102,19 @@
         await ThemeService.SetThemeAsync(theme);
         try { await JS.InvokeVoidAsync("setAppTheme", theme); } catch { /* ignore JS interop errors */ }
         StateHasChanged();
+    }
+
+    private async void OnThemeChanged()
+    {
+        try
+        {
+            _currentTheme = await ThemeService.GetThemeAsync();
+            await InvokeAsync(StateHasChanged);
+        }
+        catch
+        {
+            // Ignore errors during theme change notification
+        }
     }
 
     private async void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
@@ -121,6 +136,7 @@
 
     public void Dispose()
     {
+        ThemeService.ThemeChanged -= OnThemeChanged;
         if (_locationChangedSubscribed)
         {
             Nav.LocationChanged -= OnLocationChanged;
