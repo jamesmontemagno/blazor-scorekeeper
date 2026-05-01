@@ -1,7 +1,15 @@
 name: "Copilot Setup Steps"
 
-# Allow testing of the setup steps from your repository's "Actions" tab.
-on: workflow_dispatch
+# Allow testing of the setup steps from the repository's "Actions" tab,
+# and automatically validate whenever this file changes.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
 
 jobs:
   # The job MUST be called `copilot-setup-steps` or it will not be picked up by Copilot.
@@ -24,9 +32,18 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
-      
-      - name: Install maui
+
+      - name: Install MAUI Android workload
         run: dotnet workload install maui-android
 
-      - name: Install dependencies
-        run: dotnet restore MyScoreBoard.sln
+      # Restore the Blazor web app and the MAUI Android app separately.
+      # MyScoreBoardShared has two .csproj files that target different frameworks
+      # (net9.0 for Blazor, net10.0 for MAUI) but share the same obj/ directory.
+      # Restoring via the solution file causes the project.assets.json to be
+      # overwritten by whichever project is restored last, breaking the other
+      # framework's build. Restoring each host project individually avoids this.
+      - name: Restore Blazor web app
+        run: dotnet restore MyScoreBoard/MyScoreBoard.csproj
+
+      - name: Restore MAUI Android app
+        run: dotnet restore MyScoreBoardMaui/MyScoreBoardMaui.csproj
