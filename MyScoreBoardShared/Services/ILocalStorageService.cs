@@ -19,4 +19,10 @@ public interface ILocalStorageService
     Task SetLastGameNameAsync(string gameName);
     Task<List<string>?> GetLastPlayersAsync();
     Task SetLastPlayersAsync(List<string> playerNames);
+
+    // Favorites
+    Task<List<string>> GetFavoriteGamesAsync();
+    Task SetFavoriteGamesAsync(List<string> games);
+    Task<List<string>> GetFavoritePlayersAsync();
+    Task SetFavoritePlayersAsync(List<string> players);
 }

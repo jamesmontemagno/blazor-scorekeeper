@@ -124,4 +124,52 @@ public class LocalStorageService : MyScoreBoardShared.Services.ILocalStorageServ
             // Ignore localStorage errors
         }
     }
+
+    public async Task<List<string>> GetFavoriteGamesAsync()
+    {
+        try
+        {
+            var json = await _jsRuntime.InvokeAsync<string?>("localStorage.getItem", "favoriteGames");
+            if (string.IsNullOrEmpty(json)) return new List<string>();
+            return System.Text.Json.JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+        }
+        catch
+        {
+            return new List<string>();
+        }
+    }
+
+    public async Task SetFavoriteGamesAsync(List<string> games)
+    {
+        try
+        {
+            var json = System.Text.Json.JsonSerializer.Serialize(games);
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", "favoriteGames", json);
+        }
+        catch { }
+    }
+
+    public async Task<List<string>> GetFavoritePlayersAsync()
+    {
+        try
+        {
+            var json = await _jsRuntime.InvokeAsync<string?>("localStorage.getItem", "favoritePlayers");
+            if (string.IsNullOrEmpty(json)) return new List<string>();
+            return System.Text.Json.JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+        }
+        catch
+        {
+            return new List<string>();
+        }
+    }
+
+    public async Task SetFavoritePlayersAsync(List<string> players)
+    {
+        try
+        {
+            var json = System.Text.Json.JsonSerializer.Serialize(players);
+            await _jsRuntime.InvokeVoidAsync("localStorage.setItem", "favoritePlayers", json);
+        }
+        catch { }
+    }
 }

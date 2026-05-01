@@ -1,0 +1,175 @@
+@page "/settings"
+@using MyScoreBoardShared.Services
+@inject IThemeService ThemeService
+@inject ILocalStorageService LocalStorage
+
+<PageTitle>Settings</PageTitle>
+
+<div class="hero mb-4 glass-card">
+    <h2 class="mb-1 text-contrast-white">Settings</h2>
+    <p class="mb-0 text-contrast-muted">Customize your experience and manage favorites.</p>
+</div>
+
+<div class="row justify-content-center g-4">
+    <div class="col-md-8 col-lg-6">
+
+        <!-- Theme -->
+        <div class="glass-card p-4 mb-4">
+            <h5 class="fw-semibold text-contrast mb-3">
+                <i class="bi bi-palette-fill me-2" aria-hidden="true"></i>Theme
+            </h5>
+            <div class="d-flex gap-2">
+                <button class="btn @(_currentTheme == "system" ? "btn-primary" : "btn-outline-secondary") flex-fill"
+                        @onclick='() => ChangeThemeAsync("system")'>
+                    <i class="bi bi-circle-half me-1" aria-hidden="true"></i>System
+                </button>
+                <button class="btn @(_currentTheme == "light" ? "btn-primary" : "btn-outline-secondary") flex-fill"
+                        @onclick='() => ChangeThemeAsync("light")'>
+                    <i class="bi bi-sun-fill me-1" aria-hidden="true"></i>Light
+                </button>
+                <button class="btn @(_currentTheme == "dark" ? "btn-primary" : "btn-outline-secondary") flex-fill"
+                        @onclick='() => ChangeThemeAsync("dark")'>
+                    <i class="bi bi-moon-stars-fill me-1" aria-hidden="true"></i>Dark
+                </button>
+            </div>
+        </div>
+
+        <!-- Favorite Games -->
+        <div class="glass-card p-4 mb-4">
+            <h5 class="fw-semibold text-contrast mb-3">
+                <i class="bi bi-controller me-2" aria-hidden="true"></i>Favorite Games
+            </h5>
+            <div class="input-group mb-3">
+                <input @bind="newGameName" @onkeypress="HandleGameKeyPress" class="form-control"
+                       placeholder="Add a game name..." />
+                <button class="btn btn-primary" @onclick="AddFavoriteGame"
+                        disabled="@string.IsNullOrWhiteSpace(newGameName)">
+                    <i class="bi bi-plus-lg"></i> Add
+                </button>
+            </div>
+            @if (favoriteGames.Count > 0)
+            {
+                <div class="row g-2">
+                    @foreach (var game in favoriteGames)
+                    {
+                        <div class="col-auto">
+                            <div class="badge bg-secondary p-2 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
+                                <i class="bi bi-controller" aria-hidden="true"></i>
+                                <span style="color: white; font-weight: 500;">@game</span>
+                                <button class="btn-close btn-close-white" style="font-size: 0.7em;"
+                                        aria-label="Remove @game" @onclick="(() => RemoveFavoriteGame(game))"></button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-contrast-muted small mb-0">No favorite games yet. Add some above!</p>
+            }
+        </div>
+
+        <!-- Favorite Players -->
+        <div class="glass-card p-4">
+            <h5 class="fw-semibold text-contrast mb-3">
+                <i class="bi bi-people-fill me-2" aria-hidden="true"></i>Favorite Players
+            </h5>
+            <div class="input-group mb-3">
+                <input @bind="newPlayerName" @onkeypress="HandlePlayerKeyPress" class="form-control"
+                       placeholder="Add a player name..." />
+                <button class="btn btn-primary" @onclick="AddFavoritePlayer"
+                        disabled="@string.IsNullOrWhiteSpace(newPlayerName)">
+                    <i class="bi bi-plus-lg"></i> Add
+                </button>
+            </div>
+            @if (favoritePlayers.Count > 0)
+            {
+                <div class="row g-2">
+                    @foreach (var player in favoritePlayers)
+                    {
+                        <div class="col-auto">
+                            <div class="badge bg-secondary p-2 d-flex align-items-center gap-2" style="font-size: 0.9rem;">
+                                <i class="bi bi-person-fill" aria-hidden="true"></i>
+                                <span style="color: white; font-weight: 500;">@player</span>
+                                <button class="btn-close btn-close-white" style="font-size: 0.7em;"
+                                        aria-label="Remove @player" @onclick="(() => RemoveFavoritePlayer(player))"></button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-contrast-muted small mb-0">No favorite players yet. Add some above!</p>
+            }
+        </div>
+
+    </div>
+</div>
+
+@code {
+    private string _currentTheme = "system";
+    private List<string> favoriteGames = new();
+    private List<string> favoritePlayers = new();
+    private string newGameName = string.Empty;
+    private string newPlayerName = string.Empty;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _currentTheme = await ThemeService.GetThemeAsync();
+            favoriteGames = await LocalStorage.GetFavoriteGamesAsync();
+            favoritePlayers = await LocalStorage.GetFavoritePlayersAsync();
+            StateHasChanged();
+        }
+    }
+
+    private async Task ChangeThemeAsync(string theme)
+    {
+        _currentTheme = theme;
+        await ThemeService.SetThemeAsync(theme);
+    }
+
+    private async Task AddFavoriteGame()
+    {
+        var name = newGameName.Trim();
+        if (string.IsNullOrWhiteSpace(name)) return;
+        if (favoriteGames.Any(g => g.Equals(name, StringComparison.OrdinalIgnoreCase))) return;
+        favoriteGames.Add(name);
+        newGameName = string.Empty;
+        await LocalStorage.SetFavoriteGamesAsync(favoriteGames);
+    }
+
+    private async Task RemoveFavoriteGame(string game)
+    {
+        favoriteGames.Remove(game);
+        await LocalStorage.SetFavoriteGamesAsync(favoriteGames);
+    }
+
+    private async Task AddFavoritePlayer()
+    {
+        var name = newPlayerName.Trim();
+        if (string.IsNullOrWhiteSpace(name)) return;
+        if (favoritePlayers.Any(p => p.Equals(name, StringComparison.OrdinalIgnoreCase))) return;
+        favoritePlayers.Add(name);
+        newPlayerName = string.Empty;
+        await LocalStorage.SetFavoritePlayersAsync(favoritePlayers);
+    }
+
+    private async Task RemoveFavoritePlayer(string player)
+    {
+        favoritePlayers.Remove(player);
+        await LocalStorage.SetFavoritePlayersAsync(favoritePlayers);
+    }
+
+    private void HandleGameKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter") _ = AddFavoriteGame();
+    }
+
+    private void HandlePlayerKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter") _ = AddFavoritePlayer();
+    }
+}

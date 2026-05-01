@@ -17,6 +17,20 @@
             <div class="mb-3">
                 <label class="form-label fw-semibold text-contrast" for="gameName">Game Name</label>
                 <input @bind="gameName" id="gameName" class="form-control form-control-lg" placeholder="Enter board game name..." />
+                @if (favoriteGames.Count > 0)
+                {
+                    <div class="mt-2">
+                        <small class="text-contrast-muted">Favorites:</small>
+                        <div class="d-flex flex-wrap gap-1 mt-1">
+                            @foreach (var fg in favoriteGames)
+                            {
+                                <button class="btn btn-sm btn-outline-secondary" @onclick="() => gameName = fg">
+                                    <i class="bi bi-controller me-1" aria-hidden="true"></i>@fg
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
             </div>
 
             <div class="mb-4">
@@ -27,6 +41,24 @@
                         <i class="bi bi-plus-lg"></i> Add
                     </button>
                 </div>
+
+                @if (favoritePlayers.Count > 0)
+                {
+                    <div class="mb-3">
+                        <small class="text-contrast-muted">Favorites:</small>
+                        <div class="d-flex flex-wrap gap-1 mt-1">
+                            @foreach (var fp in favoritePlayers)
+                            {
+                                var alreadyAdded = players.Any(p => p.Name.Equals(fp, StringComparison.OrdinalIgnoreCase));
+                                <button class="btn btn-sm @(alreadyAdded ? "btn-secondary" : "btn-outline-secondary")"
+                                        disabled="@alreadyAdded"
+                                        @onclick="() => AddFavoritePlayer(fp)">
+                                    <i class="bi bi-person-fill me-1" aria-hidden="true"></i>@fp
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
 
                 @if (players.Count > 0)
                 {
@@ -67,12 +99,20 @@
     private string playerName = string.Empty;
     private List<MyScoreBoardShared.Models.Player> players = new();
     private bool hasSavedData = false;
+    private List<string> favoriteGames = new();
+    private List<string> favoritePlayers = new();
 
     private bool CanStart => !string.IsNullOrWhiteSpace(gameName) && players.Count >= 1;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await CheckForSavedData();
+        if (firstRender)
+        {
+            await CheckForSavedData();
+            favoriteGames = await LocalStorage.GetFavoriteGamesAsync();
+            favoritePlayers = await LocalStorage.GetFavoritePlayersAsync();
+            StateHasChanged();
+        }
     }
 
     private async Task CheckForSavedData()
@@ -118,6 +158,12 @@
         if (players.Any(p => p.Name.Equals(playerName.Trim(), StringComparison.OrdinalIgnoreCase))) return;
         players.Add(new(id, playerName.Trim()));
         playerName = string.Empty;
+    }
+
+    private void AddFavoritePlayer(string name)
+    {
+        if (players.Any(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase))) return;
+        players.Add(new(Guid.NewGuid().ToString(), name));
     }
 
     private void RemovePlayer(string id)

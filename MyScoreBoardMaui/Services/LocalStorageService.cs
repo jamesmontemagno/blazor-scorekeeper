@@ -78,4 +78,54 @@ public class LocalStorageService : ILocalStorageService
         }
         return Task.CompletedTask;
     }
+
+    public Task<List<string>> GetFavoriteGamesAsync()
+    {
+        try
+        {
+            var json = Preferences.Get("favoriteGames", string.Empty);
+            if (string.IsNullOrWhiteSpace(json)) return Task.FromResult(new List<string>());
+            return Task.FromResult(System.Text.Json.JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>());
+        }
+        catch
+        {
+            return Task.FromResult(new List<string>());
+        }
+    }
+
+    public Task SetFavoriteGamesAsync(List<string> games)
+    {
+        try
+        {
+            var json = System.Text.Json.JsonSerializer.Serialize(games);
+            Preferences.Set("favoriteGames", json);
+        }
+        catch { }
+        return Task.CompletedTask;
+    }
+
+    public Task<List<string>> GetFavoritePlayersAsync()
+    {
+        try
+        {
+            var json = Preferences.Get("favoritePlayers", string.Empty);
+            if (string.IsNullOrWhiteSpace(json)) return Task.FromResult(new List<string>());
+            return Task.FromResult(System.Text.Json.JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>());
+        }
+        catch
+        {
+            return Task.FromResult(new List<string>());
+        }
+    }
+
+    public Task SetFavoritePlayersAsync(List<string> players)
+    {
+        try
+        {
+            var json = System.Text.Json.JsonSerializer.Serialize(players);
+            Preferences.Set("favoritePlayers", json);
+        }
+        catch { }
+        return Task.CompletedTask;
+    }
 }
