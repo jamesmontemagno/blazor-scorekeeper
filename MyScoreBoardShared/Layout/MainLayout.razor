@@ -79,6 +79,7 @@
 @code {
     private string _currentTheme = "system";
     private bool _hasActiveGame = false;
+    private bool _locationChangedSubscribed = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -99,22 +100,33 @@
             }
 
             Nav.LocationChanged += OnLocationChanged;
+            _locationChangedSubscribed = true;
         }
     }
 
     private async void OnLocationChanged(object? sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
     {
-        var hasActive = await GameService.HasActiveGameAsync();
-        if (hasActive != _hasActiveGame)
+        try
         {
-            _hasActiveGame = hasActive;
-            await InvokeAsync(StateHasChanged);
+            var hasActive = await GameService.HasActiveGameAsync();
+            if (hasActive != _hasActiveGame)
+            {
+                _hasActiveGame = hasActive;
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+        catch
+        {
+            // Ignore errors during navigation-triggered refresh
         }
     }
 
     public void Dispose()
     {
-        Nav.LocationChanged -= OnLocationChanged;
+        if (_locationChangedSubscribed)
+        {
+            Nav.LocationChanged -= OnLocationChanged;
+        }
     }
 
     private async Task ChangeThemeAsync(string theme)
