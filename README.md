@@ -2,6 +2,9 @@
 
 A modern, mobile-friendly board game scorekeeper. Built with .NET 9 Blazor WebAssembly and a touch of flair. Tracks players, rounds, totals, history, and lets you pause/resume games with persistent storage in the browser.
 
+<img width="1070" height="745" alt="image" src="https://github.com/user-attachments/assets/d78d2606-6592-4c0e-b35b-63c0c3d41268" />
+
+
 ## ✨ Features
 
 - Quick game setup with saved defaults (game name + players)
